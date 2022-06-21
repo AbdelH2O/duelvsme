@@ -1,4 +1,4 @@
-<section class="pt-20 lg:pt-[120px] pb-12 lg:pb-[90px]">
+<section class="dark:bg-gray-900 pt-20 lg:pt-[120px] pb-12 lg:pb-[90px]">
     <div class="container">
        <div class="flex flex-wrap -mx-4">
           <div class="w-full px-4">
@@ -13,6 +13,7 @@
                    sm:text-4xl
                    md:text-[40px]
                    text-dark
+                   dark:text-white
                    mb-4
                    "
                    >
@@ -34,6 +35,7 @@
                 xl:px-10
                 rounded-[20px]
                 bg-white
+                dark:bg-red-700
                 shadow-md
                 hover:shadow-lg
                 mb-8
@@ -47,6 +49,7 @@
                    items-center
                    justify-center
                    bg-primary
+                   dark:bg-red-900
                    rounded-2xl
                    mb-8
                    "
@@ -64,10 +67,10 @@
                          />
                    </svg>
                 </div>
-                <h4 class="font-semibold text-xl text-dark mb-3">
+                <h4 class="font-semibold text-xl text-dark dark:text-white mb-3">
                    Refreshing Design
                 </h4>
-                <p class="text-body-color">
+                <p class="text-body-color dark:text-slate-300">
                    We dejoy working with discerning clients, people for whom
                    qualuty, service, integrity & aesthetics.
                 </p>
@@ -81,6 +84,7 @@
                 xl:px-10
                 rounded-[20px]
                 bg-white
+                dark:bg-red-700
                 shadow-md
                 hover:shadow-lg
                 mb-8
@@ -94,6 +98,7 @@
                    items-center
                    justify-center
                    bg-primary
+                   dark:bg-red-900
                    rounded-2xl
                    mb-8
                    "
@@ -119,10 +124,10 @@
                          />
                    </svg>
                 </div>
-                <h4 class="font-semibold text-xl text-dark mb-3">
+                <h4 class="font-semibold text-xl text-dark dark:text-white mb-3">
                    Based on Tailwind CSS
                 </h4>
-                <p class="text-body-color">
+                <p class="text-body-color dark:text-slate-300">
                    We dejoy working with discerning clients, people for whom
                    qualuty, service, integrity & aesthetics.
                 </p>
@@ -136,6 +141,7 @@
                 xl:px-10
                 rounded-[20px]
                 bg-white
+                dark:bg-red-700
                 shadow-md
                 hover:shadow-lg
                 mb-8
@@ -149,6 +155,7 @@
                    items-center
                    justify-center
                    bg-primary
+                   dark:bg-red-900
                    rounded-2xl
                    mb-8
                    "
@@ -178,10 +185,10 @@
                          />
                    </svg>
                 </div>
-                <h4 class="font-semibold text-xl text-dark mb-3">
+                <h4 class="font-semibold text-xl text-dark dark:text-white mb-3">
                    100+ Components
                 </h4>
-                <p class="text-body-color">
+                <p class="text-body-color dark:text-slate-300">
                    We dejoy working with discerning clients, people for whom
                    qualuty, service, integrity & aesthetics.
                 </p>
@@ -195,6 +202,7 @@
                 xl:px-10
                 rounded-[20px]
                 bg-white
+                dark:bg-red-700
                 shadow-md
                 hover:shadow-lg
                 mb-8
@@ -208,6 +216,7 @@
                    items-center
                    justify-center
                    bg-primary
+                   dark:bg-red-900
                    rounded-2xl
                    mb-8
                    "
@@ -237,10 +246,10 @@
                          />
                    </svg>
                 </div>
-                <h4 class="font-semibold text-xl text-dark mb-3">
+                <h4 class="font-semibold text-xl text-dark dark:text-white mb-3">
                    Speed Optimized
                 </h4>
-                <p class="text-body-color">
+                <p class="text-body-color dark:text-slate-300">
                    We dejoy working with discerning clients, people for whom
                    qualuty, service, integrity & aesthetics.
                 </p>
@@ -254,6 +263,7 @@
                 xl:px-10
                 rounded-[20px]
                 bg-white
+                dark:bg-red-700
                 shadow-md
                 hover:shadow-lg
                 mb-8
@@ -267,6 +277,7 @@
                    items-center
                    justify-center
                    bg-primary
+                   dark:bg-red-900
                    rounded-2xl
                    mb-8
                    "
@@ -284,10 +295,10 @@
                          />
                    </svg>
                 </div>
-                <h4 class="font-semibold text-xl text-dark mb-3">
+                <h4 class="font-semibold text-xl text-dark dark:text-white mb-3">
                    Fully Customizable
                 </h4>
-                <p class="text-body-color">
+                <p class="text-body-color dark:text-slate-300">
                    We dejoy working with discerning clients, people for whom
                    qualuty, service, integrity & aesthetics.
                 </p>
@@ -301,6 +312,7 @@
                 xl:px-10
                 rounded-[20px]
                 bg-white
+                dark:bg-red-700
                 shadow-md
                 hover:shadow-lg
                 mb-8
@@ -314,6 +326,7 @@
                    items-center
                    justify-center
                    bg-primary
+                   dark:bg-red-900
                    rounded-2xl
                    mb-8
                    "
@@ -335,10 +348,10 @@
                          />
                    </svg>
                 </div>
-                <h4 class="font-semibold text-xl text-dark mb-3">
+                <h4 class="font-semibold text-xl text-dark dark:text-white mb-3">
                    Regular Updates
                 </h4>
-                <p class="text-body-color">
+                <p class="text-body-color dark:text-slate-300">
                    We dejoy working with discerning clients, people for whom
                    qualuty, service, integrity & aesthetics.
                 </p>

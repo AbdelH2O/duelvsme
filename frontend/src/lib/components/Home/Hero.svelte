@@ -1,15 +1,28 @@
 <script lang="ts">
     import laptop from '../../../assets/laptop.jpeg';
     import dvsme from '../../../assets/duelvsme.svg';
+	import { createEventDispatcher } from 'svelte';
+	import { isAuthenticated } from '$lib/stores/auth';
+
+    const dispatch = createEventDispatcher();
+	const login = () => {
+        dispatch('message', {
+            text: 'login'
+        });
+    }
+	const logout = () => {
+		dispatch('message', {
+			text: 'logout'
+		});
+	};
 </script>
-<div class="relative bg-white overflow-hidden lg:h-screen">
+<div class="relative bg-white dark:bg-gray-900 overflow-hidden lg:h-screen">
 	<div class="max-w-7xl mx-auto">
 		<div
-			class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 lg:h-screen"
+			class="relative z-10 pb-8 bg-white dark:bg-gray-900 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 lg:h-screen"
 		>
 			<svg
-				class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2"
-				fill="currentColor"
+				class="hidden fill-white dark:fill-gray-900 lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2"
 				viewBox="0 0 100 100"
 				preserveAspectRatio="none"
 				aria-hidden="true"
@@ -32,7 +45,7 @@
 								<div class="-mr-2 flex items-center md:hidden">
 									<button
 										type="button"
-										class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
+										class="bg-white dark:bg-gray-900 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
 										aria-expanded="false"
 									>
 										<span class="sr-only">Open main menu</span>
@@ -57,15 +70,21 @@
 							</div>
 						</div>
 						<div class="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
-							<a href="#" class="font-medium text-gray-500 hover:text-gray-900">Product</a>
+							<a href="#" class="font-xl text-gray-500 hover:text-gray-900">Product</a>
 
 							<a href="#" class="font-medium text-gray-500 hover:text-gray-900">Features</a>
 
-							<a href="#" class="font-medium text-gray-500 hover:text-gray-900">Marketplace</a>
+							<!-- <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Marketplace</a> -->
 
 							<a href="#" class="font-medium text-gray-500 hover:text-gray-900">Company</a>
+							{#if !$isAuthenticated}
+								<button on:click={login} class="font-medium text-red-600 hover:text-red-500">Log in</button>
+								<!-- {/if} -->
+							{:else}
+								<button on:click={logout} class="font-medium text-red-600 hover:text-red-500">Log out</button>
+							{/if}
 
-							<a href="#" class="font-medium text-red-600 hover:text-red-500">Log in</a>
+							<!-- <a href="/signup" class="font-medium text-red-600 hover:text-red-500">Sign up</a> -->
 						</div>
 					</nav>
 				</div>
@@ -84,7 +103,7 @@
 					class="absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
 				>
 					<div
-						class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden"
+						class="rounded-lg shadow-md bg-white dark:bg-gray-900 ring-1 ring-black ring-opacity-5 overflow-hidden"
 					>
 						<div class="px-5 pt-4 flex items-center justify-between">
 							<div>
@@ -97,7 +116,7 @@
 							<div class="-mr-2">
 								<button
 									type="button"
-									class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
+									class="bg-white dark:bg-gray-900 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
 								>
 									<span class="sr-only">Close main menu</span>
 									<!-- Heroicon name: outline/x -->
@@ -141,7 +160,7 @@
 							>
 						</div>
 						<a
-							href="#"
+							href="/login"
 							class="block w-full px-5 py-3 text-center font-medium text-red-600 bg-gray-50 hover:bg-gray-100"
 						>
 							Log in
@@ -154,7 +173,7 @@
 				class="mt-280 mx-200 max-w-7xl px-4 sm:mt-20 sm:px-6 md:mt-26 lg:mt-44 lg:px-8 xl:mt-400"
 			>
 				<div class="sm:text-center lg:text-left">
-					<h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+					<h1 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
 						<span class="block xl:inline">A new take at</span>
 						<span class="block text-red-600 xl:inline">Competitive Programming</span>
 					</h1>
@@ -175,7 +194,7 @@
 						<div class="mt-3 sm:mt-0 sm:ml-3">
 							<a
 								href="#"
-								class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 md:py-4 md:text-lg md:px-10"
+								class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-red-700 bg-red-100 dark:bg-white hover:bg-red-200 md:py-4 md:text-lg md:px-10"
 							>
 								Learn more
 							</a>

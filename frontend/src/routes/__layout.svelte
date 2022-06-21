@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script lang="ts">
     import '../app.css';
     import {authGuard} from '../lib/guards/AuthGuard';
     import type { LoadEvent, LoadOutput } from '@sveltejs/kit';

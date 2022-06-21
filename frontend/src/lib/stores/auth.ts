@@ -1,12 +1,12 @@
-import {writable} from 'svelte/store';
-import type {User} from '../utils/User';
+import { writable, derived, type Writable } from "svelte/store";
+import type { User } from "../utils/User";
 
-export const user = writable({
-    id: '',
-    name: '',
-    email: '',
-    avatar: '',
-    jwt: '',
-    refreshToken: '',
-    isAuthenticated: false,
-} as User);
+export const isAuthenticated: Writable<boolean> = writable(false);
+export const user: Writable<User> = writable({
+    id: "",
+    name: "",
+    email: "",
+    avatar: ""
+});
+export const popupOpen: Writable<boolean> = writable(false);
+export const error: Writable<object> = writable();

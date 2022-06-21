@@ -7,19 +7,17 @@ module.exports = {
                 sans: ['Lato'],
             },
             colors: {
-                'primary': '#da3c40',
-                'secondary': '#f5f5f5',
+                primary: '#da3c40',
+                secondary: '#f5f5f5',
+                primary: '#da3c40',
+                red: {
+                    500: '#da3c40',
+                    600: '#c12d33',
+                    700: '#b12e2e',
+                },
+                black: '#000000',
             },
         },
-        colors: {
-            primary: '#da3c40',
-            red: {
-                500: '#da3c40',
-                600: '#c12d33',
-                700: '#b12e2e',
-            },
-            white: '#ffffff',
-        }
     },
     darkMode: 'class',
 };
