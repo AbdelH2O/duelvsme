@@ -1,6 +1,10 @@
 export type User = {
     id?: string;
     name?: string;
+    nickname?: string;
     email?: string;
-    avatar?: string;
+    email_verified?: boolean;
+    sub?: string;
+    picture?: string;
+    updated_at?: string;
 }
