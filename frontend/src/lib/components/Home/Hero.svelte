@@ -16,10 +16,10 @@
 		});
 	};
 </script>
-<div class="relative bg-white dark:bg-gray-900 overflow-hidden lg:h-screen">
+<div class="relative bg-white dark:bg-gray-900 overflow-hidden lg:h-[95vh]">
 	<div class="max-w-7xl mx-auto">
 		<div
-			class="relative z-10 pb-8 bg-white dark:bg-gray-900 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 lg:h-screen"
+			class="relative z-10 pb-8 bg-white dark:bg-gray-900 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 lg:h-[95vh]"
 		>
 			<svg
 				class="hidden fill-white dark:fill-gray-900 lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2"
@@ -70,18 +70,18 @@
 							</div>
 						</div>
 						<div class="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
-							<a href="#" class="font-xl text-gray-500 hover:text-gray-900">Product</a>
+							<a href="#" class="font-xl text-gray-300 hover:text-gray-50">Product</a>
 
-							<a href="#" class="font-medium text-gray-500 hover:text-gray-900">Features</a>
+							<a href="#" class="font-medium text-gray-300 hover:text-gray-50">Features</a>
 
 							<!-- <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Marketplace</a> -->
 
-							<a href="#" class="font-medium text-gray-500 hover:text-gray-900">Company</a>
+							<a href="#" class="font-medium text-gray-300 hover:text-gray-50">Company</a>
 							{#if !$isAuthenticated}
-								<button on:click={login} class="font-medium text-red-600 hover:text-red-500">Log in</button>
+								<button on:click={login} class="font-medium text-red-600 hover:text-red-50">Log in</button>
 								<!-- {/if} -->
 							{:else}
-								<button on:click={logout} class="font-medium text-red-600 hover:text-red-500">Log out</button>
+								<button on:click={logout} class="font-medium text-red-600 hover:text-red-50">Log out</button>
 							{/if}
 
 							<!-- <a href="/signup" class="font-medium text-red-600 hover:text-red-500">Sign up</a> -->
@@ -137,25 +137,25 @@
 						<div class="px-2 pt-2 pb-3 space-y-1">
 							<a
 								href="#"
-								class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+								class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-50"
 								>Product</a
 							>
 
 							<a
 								href="#"
-								class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+								class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-gray-900 hover:bg-gray-50"
 								>Features</a
 							>
 
 							<a
 								href="#"
-								class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+								class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-gray-900 hover:bg-gray-50"
 								>Marketplace</a
 							>
 
 							<a
 								href="#"
-								class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+								class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-gray-900 hover:bg-gray-50"
 								>Company</a
 							>
 						</div>
@@ -178,15 +178,15 @@
 						<span class="block text-red-600 xl:inline">Competitive Programming</span>
 					</h1>
 					<p
-						class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
+						class="mt-3 text-base text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
 					>
 						Level up your programming skills with coding duels.
 					</p>
 					<div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
 						<div class="rounded-md shadow">
 							<a
-								href="#"
-								class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10"
+								href="/dashboard"
+								class="font-bold w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10"
 							>
 								Get started
 							</a>
@@ -194,7 +194,7 @@
 						<div class="mt-3 sm:mt-0 sm:ml-3">
 							<a
 								href="#"
-								class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-red-700 bg-red-100 dark:bg-white hover:bg-red-200 md:py-4 md:text-lg md:px-10"
+								class="font-bold w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-red-700 bg-red-100 dark:bg-white hover:bg-red-200 md:py-4 md:text-lg md:px-10"
 							>
 								Learn more
 							</a>

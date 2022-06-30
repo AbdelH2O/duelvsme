@@ -12,11 +12,15 @@
 
     onMount(async () => {
         auth0Client = await auth.createClient();
-
-        isAuthenticated.set(await auth0Client.isAuthenticated());
-        const usr = await auth0Client.getUser();
-        console.log(usr);
-        user.set(usr ? usr : {});
+        isAuthenticated.subscribe(async (auth) => {
+            console.log(auth);
+            if (!auth) {
+                isAuthenticated.set(await auth0Client.isAuthenticated());
+                const usr = await auth0Client.getUser();
+                console.log(usr);
+                user.set(usr ? usr : {});
+            }
+        });
     });
 
     function login() {
