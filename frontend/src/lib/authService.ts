@@ -16,6 +16,10 @@ async function loginWithPopup(client: Auth0Client, options?: PopupLoginOptions) 
   try {
     await client.loginWithPopup(options);
     const usr = await client.getUser();
+    if (typeof window !== "undefined") {
+      localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("user", JSON.stringify(usr));
+    }
     user.set(usr ? usr : {});
     isAuthenticated.set(true);
   } catch (e) {
@@ -27,6 +31,8 @@ async function loginWithPopup(client: Auth0Client, options?: PopupLoginOptions) 
 }
 
 function logout(client: Auth0Client) {
+  localStorage.setItem("isAuthenticated", "false");
+  localStorage.setItem("user", "{}");
   return client.logout();
 }
 

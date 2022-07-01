@@ -28,11 +28,11 @@
     }
 
     function logout() {
+        console.log(auth0Client);
         auth.logout(auth0Client);
         console.log(isAuthenticated);
     }
     function handleDispatch(event: CustomEvent<{ text: string }>) {
-		// alert(event.detail.text);
         if(event.detail.text === "login") {
             login();
         } else if(event.detail.text === "logout") {
