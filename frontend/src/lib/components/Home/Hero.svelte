@@ -70,13 +70,13 @@
 							</div>
 						</div>
 						<div class="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
-							<a href="#" class="font-xl text-gray-300 hover:text-gray-50">Product</a>
+							<a href="#" class="font-xl text-gray-500 dark:text-gray-300 dark:hover:text-gray-50">Product</a>
 
-							<a href="#" class="font-medium text-gray-300 hover:text-gray-50">Features</a>
+							<a href="#" class="font-medium text-gray-500 dark:text-gray-300 hover:text-gray-50">Features</a>
 
 							<!-- <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Marketplace</a> -->
 
-							<a href="#" class="font-medium text-gray-300 hover:text-gray-50">Company</a>
+							<a href="#" class="font-medium text-gray-500 dark:text-gray-300 hover:text-gray-50">Company</a>
 							{#if !$isAuthenticated}
 								<button on:click={login} class="font-medium text-red-600 hover:text-red-50">Log in</button>
 								<!-- {/if} -->
@@ -137,25 +137,25 @@
 						<div class="px-2 pt-2 pb-3 space-y-1">
 							<a
 								href="#"
-								class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-50"
+								class="block px-3 py-2 rounded-md text-base font-medium text-gray-500 dark:text-gray-300 dark:hover:bg-gray-50"
 								>Product</a
 							>
 
 							<a
 								href="#"
-								class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-gray-900 hover:bg-gray-50"
+								class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-gray-900 dark:hover:bg-gray-50"
 								>Features</a
 							>
 
 							<a
 								href="#"
-								class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-gray-900 hover:bg-gray-50"
+								class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-gray-900 dark:hover:bg-gray-50"
 								>Marketplace</a
 							>
 
 							<a
 								href="#"
-								class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-gray-900 hover:bg-gray-50"
+								class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-gray-900 dark:hover:bg-gray-50"
 								>Company</a
 							>
 						</div>
@@ -178,7 +178,7 @@
 						<span class="block text-red-600 xl:inline">Competitive Programming</span>
 					</h1>
 					<p
-						class="mt-3 text-base text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
+						class="mt-3 text-base text-gray-500 dark:text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
 					>
 						Level up your programming skills with coding duels.
 					</p>

@@ -17,8 +17,10 @@
             if (!auth) {
                 isAuthenticated.set(await auth0Client.isAuthenticated());
                 const usr = await auth0Client.getUser();
-                console.log(usr);
-                user.set(usr ? usr : {});
+                const token = await auth0Client.getTokenSilently()
+                user.set(usr ? {...usr, jwt: token} : {});
+                
+                console.log(token);
             }
         });
     });

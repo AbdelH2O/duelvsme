@@ -2,7 +2,7 @@
 	"name": "frontend",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "svelte-kit dev",
+		"dev": "vite dev",
 		"build": "svelte-kit build",
 		"package": "svelte-kit package",
 		"preview": "svelte-kit preview",
@@ -30,13 +30,15 @@
 		"svelte": "^3.44.0",
 		"svelte-check": "^2.7.1",
 		"svelte-preprocess": "^4.10.7",
+		"tailgrids": "^1.1.7",
+		"tailwindcss": "^3.1.4",
 		"tslib": "^2.3.1",
 		"typescript": "^4.7.2",
-		"tailwindcss": "^3.1.4",
-		"tailgrids": "^1.1.7"
+		"vite": "^3.0.4"
 	},
 	"type": "module",
 	"dependencies": {
-		"@auth0/auth0-spa-js": "^1.22.1"
+		"@auth0/auth0-spa-js": "^1.22.1",
+		"flowbite": "^1.4.7"
 	}
 }

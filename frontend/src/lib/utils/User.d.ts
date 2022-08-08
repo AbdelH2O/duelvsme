@@ -7,4 +7,5 @@ export type User = {
     sub?: string;
     picture?: string;
     updated_at?: string;
+    jwt?: string;
 }
