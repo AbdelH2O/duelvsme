@@ -1,5 +1,7 @@
 import {isAuthenticated} from '../stores/auth'; // stores related to app state, auth state
 import type { LoadOutput } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit/data';
+
 // import type { User } from '../utils/User';
 
 let auth: boolean;
@@ -13,7 +15,7 @@ export async function authGuard(url: URL): Promise<LoadOutput> {
   } else {
     console.log('not logged in');
     console.log(typeof window !== 'undefined' ? localStorage.getItem('isAthenticated') || auth : auth);
-    return { redirect: '/', status: 302 };
+    throw redirect(302, '/')
   }
 }
 

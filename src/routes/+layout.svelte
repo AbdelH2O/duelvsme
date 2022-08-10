@@ -1,14 +1,16 @@
 <script lang="ts" context="module">
-  import '../app.css';
-  import { authGuard } from '../lib/guards/AuthGuard';
-  import type { LoadEvent, LoadOutput } from '@sveltejs/kit';
+  throw new Error("@migration task: Check code was safely removed (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292722)");
 
-  export async function load({ url }: LoadEvent): Promise<LoadOutput> {
-    if (url.pathname === '/') {
-      return {};
-    }
-    return await authGuard(url);
-  }
+  // import '../app.css';
+  // import { authGuard } from '../lib/guards/AuthGuard';
+  // import type { LoadEvent, LoadOutput } from '@sveltejs/kit';
+
+  // export async function load({ url }: LoadEvent): Promise<LoadOutput> {
+  //   if (url.pathname === '/') {
+  //     return {};
+  //   }
+  //   return await authGuard(url);
+  // }
 </script>
 
 <script lang="ts">
