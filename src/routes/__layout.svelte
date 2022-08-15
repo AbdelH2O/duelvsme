@@ -1,86 +1,62 @@
 <script lang="ts" context="module">
   import '../app.css';
-  import { authGuard } from '../lib/guards/AuthGuard';
-  import type { LoadEvent, LoadOutput } from '@sveltejs/kit';
+  import type { Load, LoadEvent, LoadOutput } from '@sveltejs/kit';
 
-  export async function load({ url }: LoadEvent): Promise<LoadOutput> {
-    if (url.pathname === '/') {
+  export const load: Load = async ({ url, session }: LoadEvent): Promise<LoadOutput> =>  {
+    
+    if ('lucia' in session && session.lucia !== null) {
+      if (url.pathname === '/auth/login' || url.pathname === '/auth/signup') {
+        return {
+          status: 302,
+          redirect: '/dashboard'
+        };
+      }
       return {};
     }
-    return await authGuard(url);
+    if (url.pathname !== '/' && url.pathname !== '/auth/login' && url.pathname !== '/auth/signup') {
+      return {
+        status: 302,
+        redirect: '/'
+      };
+    }
+    return {};
   }
 </script>
 
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import auth from '../lib/authService';
-  import { isAuthenticated, user } from '../lib/stores/auth';
-  import type { Auth0Client } from '@auth0/auth0-spa-js';
-
-  let auth0Client: Auth0Client;
-
-  onMount(async () => {
-    if (
-      !localStorage.getItem('isAuthenticated') ||
-      !localStorage.getItem('user')
-    ) {
-      auth0Client = await auth.createClient();
-      isAuthenticated.subscribe(async (auth) => {
-        console.log(auth);
-        if (!auth) {
-          isAuthenticated.set(await auth0Client.isAuthenticated());
-          localStorage.setItem('isAuthenticated', JSON.stringify(auth));
-          const usr = await auth0Client.getUser();
-          console.log(usr);
-          user.set(usr ? usr : {});
-          localStorage.setItem('user', JSON.stringify(usr));
-        }
-      });
-    } else {
-      isAuthenticated.set(
-        JSON.parse(
-          localStorage.getItem('isAuthenticated')
-            ? (localStorage.getItem('isAuthenticated') as string)
-            : 'false',
-        ),
-      );
-      user.set(
-        JSON.parse(
-          localStorage.getItem('user')
-            ? (localStorage.getItem('user') as string)
-            : '{}',
-        ),
-      );
-    }
-  });
-  $: theme = 'light';
+  import { theme } from '$lib/stores/theme';
+  let isDark: boolean;
+  theme.subscribe(val => isDark = (val === "dark"));
+  
   if (typeof window !== 'undefined') {
-    theme = localStorage.getItem('theme') || 'light';
+    console.log(localStorage.getItem('theme'));
+    theme.set(localStorage.getItem('theme') || 'light');
   }
   const handleThemeChange = () => {
-    if (theme === 'light') {
-      theme = 'dark';
+    console.log($theme);
+    if (!isDark) {
+      theme.set('dark');
     } else {
-      theme = 'light';
+      theme.set('light');
     }
     if (typeof window !== 'undefined') {
-      localStorage.setItem('theme', theme);
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
       console.log('set');
     }
   };
 </script>
 
-<html lang="en" class="{theme === 'light' ? "light" : "dark"}">
+<html lang="en" class="{$theme === 'light' ? "light" : "dark"}">
   <div class="fixed right-4 top-4 h-[2.4rem] w-[2.5rem] z-10">
     <button
       id="theme-toggle"
       type="button"
-      class="w-full h-full text-gray-500 dark:text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 rounded-lg text-sm p-4.5"
+      class="w-full h-full text-gray-500 dark:text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none dark:focus:ring-gray-800 rounded-lg text-sm p-4.5"
     >
       <svg
         id="theme-toggle-dark-icon"
         on:click="{handleThemeChange}"
-        class="{theme === 'light' ? "z-20 w-full h-full hidden fill-[#da3c40]" : "z-20 w-full h-full fill-[#da3c40]"}"
+        class="{$theme === 'light' ? "z-20 w-full h-full hidden fill-[#da3c40]" : "z-20 w-full h-full fill-[#da3c40]"}"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -91,7 +67,7 @@
       <svg
         id="theme-toggle-light-icon"
         on:click="{handleThemeChange}"
-        class="{theme === 'light' ? "z-20 w-full h-full fill-[#da3c40]" : "z-20 w-full h-full hidden fill-[#da3c40]"}"
+        class="{$theme === 'light' ? "z-20 w-full h-full fill-[#da3c40]" : "z-20 w-full h-full hidden fill-[#da3c40]"}"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
       >

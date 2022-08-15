@@ -1,19 +1,20 @@
 <script lang="ts">
     import laptop from '../../../assets/laptop.jpeg';
     import dvsme from '../../../assets/duelvsme.svg';
-	import { createEventDispatcher } from 'svelte';
-	import { isAuthenticated } from '$lib/stores/auth';
+	import { session } from '$app/stores';
+	import { goto } from '$app/navigation';
+	import { signOut } from "lucia-sveltekit/client";
 
-    const dispatch = createEventDispatcher();
-	const login = () => {
-        dispatch('message', {
-            text: 'login'
-        });
-    }
-	const logout = () => {
-		dispatch('message', {
-			text: 'logout'
-		});
+	const handleLogin = () => {
+		goto('/auth/login');
+	};
+	const handleLogout = async () => {
+		try {
+			await signOut();
+			window.location.href = '/';
+		} catch (e) {
+			console.log(e);
+		}
 	};
 </script>
 <div class="relative bg-white dark:bg-gray-900 overflow-hidden lg:h-[95vh]">
@@ -38,7 +39,7 @@
 					>
 						<div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
 							<div class="flex items-center justify-between w-full md:w-auto">
-								<a href="#">
+								<a  >
 									<span class="sr-only">Workflow</span>
 									<img alt="Workflow" style="height: 60px" src={dvsme} />
 								</a>
@@ -70,18 +71,17 @@
 							</div>
 						</div>
 						<div class="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
-							<a href="#" class="font-xl text-gray-500 dark:text-gray-300 dark:hover:text-gray-50">Product</a>
+							<a href="/" class="font-xl text-gray-500 dark:text-gray-300 dark:hover:text-gray-50">Product</a>
 
-							<a href="#" class="font-medium text-gray-500 dark:text-gray-300 hover:text-gray-50">Features</a>
+							<a href="/" class="font-medium text-gray-500 dark:text-gray-300 hover:text-gray-50">Features</a>
 
-							<!-- <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Marketplace</a> -->
+							<!-- <a href="/" class="font-medium text-gray-500 hover:text-gray-900">Marketplace</a> -->
 
-							<a href="#" class="font-medium text-gray-500 dark:text-gray-300 hover:text-gray-50">Company</a>
-							{#if !$isAuthenticated}
-								<button on:click={login} class="font-medium text-red-600 hover:text-red-50">Log in</button>
-								<!-- {/if} -->
+							<a href="/" class="font-medium text-gray-500 dark:text-gray-300 hover:text-gray-50">Company</a>
+							{#if !$session.lucia}
+								<button on:click={handleLogin} class="font-medium text-red-600 hover:text-red-50">Log in</button>
 							{:else}
-								<button on:click={logout} class="font-medium text-red-600 hover:text-red-50">Log out</button>
+								<button on:click={handleLogout} class="font-medium text-red-600 hover:text-red-50">Log out</button>
 							{/if}
 
 							<!-- <a href="/signup" class="font-medium text-red-600 hover:text-red-500">Sign up</a> -->
@@ -136,31 +136,31 @@
 						</div>
 						<div class="px-2 pt-2 pb-3 space-y-1">
 							<a
-								href="#"
+								 
 								class="block px-3 py-2 rounded-md text-base font-medium text-gray-500 dark:text-gray-300 dark:hover:bg-gray-50"
 								>Product</a
 							>
 
 							<a
-								href="#"
+								 
 								class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-gray-900 dark:hover:bg-gray-50"
 								>Features</a
 							>
 
 							<a
-								href="#"
+								 
 								class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-gray-900 dark:hover:bg-gray-50"
 								>Marketplace</a
 							>
 
 							<a
-								href="#"
+								 
 								class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-gray-900 dark:hover:bg-gray-50"
 								>Company</a
 							>
 						</div>
 						<a
-							href="/login"
+							href="/auth/login"
 							class="block w-full px-5 py-3 text-center font-medium text-red-600 bg-gray-50 hover:bg-gray-100"
 						>
 							Log in
@@ -184,7 +184,7 @@
 					</p>
 					<div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
 						<div class="rounded-md shadow">
-							{#if $isAuthenticated}
+							{#if $session.lucia}
 								<a
 									href="/dashboard"
 									class="font-bold w-full flex items-center justify-center px-8 py-3 border border-transparent text-base rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10"
@@ -193,7 +193,7 @@
 								</a>
 							{:else}
 								<div
-									on:click={login}
+									on:click={handleLogin}
 									class="cursor-pointer font-bold w-full flex items-center justify-center px-8 py-3 border border-transparent text-base rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10"
 								>
 									Login
@@ -202,7 +202,7 @@
 						</div>
 						<div class="mt-3 sm:mt-0 sm:ml-3">
 							<a
-								href="#"
+								 
 								class="font-bold w-full flex items-center justify-center px-8 py-3 border border-transparent text-base rounded-md text-red-700 bg-red-100 dark:bg-white hover:bg-red-200 md:py-4 md:text-lg md:px-10"
 							>
 								Learn more

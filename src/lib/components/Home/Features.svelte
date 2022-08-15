@@ -34,7 +34,7 @@
                 md:px-7
                 xl:px-10
                 rounded-[20px]
-                bg-white
+                bg-gray-100
                 dark:bg-red-700
                 shadow-md
                 hover:shadow-lg
@@ -83,7 +83,7 @@
                 md:px-7
                 xl:px-10
                 rounded-[20px]
-                bg-white
+                bg-gray-100
                 dark:bg-red-700
                 shadow-md
                 hover:shadow-lg
@@ -140,7 +140,7 @@
                 md:px-7
                 xl:px-10
                 rounded-[20px]
-                bg-white
+                bg-gray-100
                 dark:bg-red-700
                 shadow-md
                 hover:shadow-lg
@@ -201,7 +201,7 @@
                 md:px-7
                 xl:px-10
                 rounded-[20px]
-                bg-white
+                bg-gray-100
                 dark:bg-red-700
                 shadow-md
                 hover:shadow-lg
@@ -262,7 +262,7 @@
                 md:px-7
                 xl:px-10
                 rounded-[20px]
-                bg-white
+                bg-gray-100
                 dark:bg-red-700
                 shadow-md
                 hover:shadow-lg
@@ -311,7 +311,7 @@
                 md:px-7
                 xl:px-10
                 rounded-[20px]
-                bg-white
+                bg-gray-100
                 dark:bg-red-700
                 shadow-md
                 hover:shadow-lg

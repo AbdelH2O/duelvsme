@@ -3,10 +3,9 @@
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "vite dev",
-		"build": "svelte-kit build",
+		"build": "vite build",
 		"package": "svelte-kit package",
-		"preview": "svelte-kit preview",
-		"prepare": "svelte-kit sync",
+		"preview": "vite preview",
 		"test": "playwright test",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
@@ -16,7 +15,7 @@
 	"devDependencies": {
 		"@playwright/test": "^1.22.2",
 		"@sveltejs/adapter-auto": "next",
-		"@sveltejs/kit": "next",
+		"@sveltejs/kit": "^1.0.0-next.405",
 		"@tailwindcss/forms": "^0.5.2",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
 		"@typescript-eslint/parser": "^5.27.0",
@@ -24,6 +23,7 @@
 		"eslint": "^8.16.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-svelte3": "^4.0.0",
+		"lucia-sveltekit": "^0.5.9",
 		"postcss": "^8.4.14",
 		"prettier": "^2.6.2",
 		"prettier-plugin-svelte": "^2.7.0",
@@ -34,11 +34,12 @@
 		"tailwindcss": "^3.1.4",
 		"tslib": "^2.3.1",
 		"typescript": "^4.7.2",
-		"vite": "^3.0.4"
+		"vite": "^3.0.4",
+		"socket.io": "^4.5.1"
 	},
 	"type": "module",
 	"dependencies": {
-		"@auth0/auth0-spa-js": "^1.22.1",
+		"@lucia-sveltekit/adapter-supabase": "^0.3.1",
 		"flowbite": "^1.4.7"
 	}
 }

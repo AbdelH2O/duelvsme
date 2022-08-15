@@ -12,7 +12,7 @@ const config = {
 	kit: {
         adapter: adapter(),
         paths: {
-            base: process.env.NODE_ENV === 'development' ? '' : '/CapitalBikesProject'
+            base: process.env.VITE_NODE_ENV === 'development' ? '' : ''
         },
 
     }

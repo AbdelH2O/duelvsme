@@ -1,41 +1,33 @@
 <script lang="ts">
-	import { user } from '../../lib/stores/auth';
 	import { onMount } from 'svelte/internal';
-	import type { User } from '../../lib/utils/User';
 	import lockout from '../../assets/lockout.svg';
 	import bullet from '../../assets/bullet.svg';
-	let usr: User;
-	onMount(async () => {
-		user.subscribe((u) => {
-			usr = u;
-		});
-		console.log(usr);
-	});
+	import { session } from '$app/stores';
 </script>
 
 <div class="h-full max-w-[108rem] pt-12 px-14">
 	<div>
 		<h1 class="text-black dark:text-gray-50 text-3xl">
-			Welcome back, {usr ? usr.nickname : ''}
+			Welcome back, {$session.lucia.user.username}
 		</h1>
 	</div>
 	<div class="h-max flex justify-between mx-auto mt-4">
 		<a
-			href="#"
-			class="flex flex-col content-center ml-4 p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-xl hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 items-center"
+			 
+			class="flex flex-col content-center ml-4 p-6 max-w-sm bg-gray-200 rounded-lg border border-gray-200 shadow-xl hover:bg-slate-300 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 items-center"
 		>
 			<img src={lockout} alt="lockout" class="h-min" />
 			<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">
 				Lockout Game
 			</h5>
 			<p class="font-normal text-gray-700 dark:text-gray-400 text-center">
-				Face off against an opponent in a 45mins lockout game and see who comes out on top. Ready
+				Face off against an opponent in a 20-45mins lockout game and see who comes out on top. Ready
 				for the challenge?
 			</p>
 		</a>
 		<a
-			href="#"
-			class="flex flex-col content-center ml-4 p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-xl hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 items-center"
+			 
+			class="flex flex-col content-center ml-4 p-6 max-w-sm bg-gray-200 rounded-lg border border-gray-200 shadow-xl hover:bg-slate-300 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 items-center"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -123,8 +115,8 @@
 			</p>
 		</a>
 		<a
-			href="#"
-			class="flex flex-col content-center ml-4 p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-xl hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 items-center"
+			 
+			class="flex flex-col content-center ml-4 p-6 max-w-sm bg-gray-200 rounded-lg border border-gray-200 shadow-xl hover:bg-slate-300 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 items-center"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"

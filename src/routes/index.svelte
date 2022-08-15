@@ -3,47 +3,9 @@
     import Split from "$lib/components/Home/Split.svelte";
     import Features from "$lib/components/Home/Features.svelte";
     import Footer from "$lib/components/Footer.svelte";
-    import { onMount } from "svelte";
-    import auth from "../lib/authService";
-    import { isAuthenticated, user } from "../lib/stores/auth";
-    import type { Auth0Client } from '@auth0/auth0-spa-js';
 
-    let auth0Client: Auth0Client;
-
-    onMount(async () => {
-        auth0Client = await auth.createClient();
-        isAuthenticated.subscribe(async (auth) => {
-            console.log(auth);
-            if (!auth) {
-                isAuthenticated.set(await auth0Client.isAuthenticated());
-                const usr = await auth0Client.getUser();
-                const token = await auth0Client.getTokenSilently()
-                user.set(usr ? {...usr, jwt: token} : {});
-                
-                console.log(token);
-            }
-        });
-    });
-
-    function login() {
-        auth.loginWithPopup(auth0Client);
-    }
-
-    function logout() {
-        console.log(auth0Client);
-        auth.logout(auth0Client);
-        console.log(isAuthenticated);
-    }
-    function handleDispatch(event: CustomEvent<{ text: string }>) {
-        if(event.detail.text === "login") {
-            login();
-        } else if(event.detail.text === "logout") {
-            console.log("logout");
-            logout();
-        }
-	}
 </script>
-<Hero on:message="{handleDispatch}" />
+<Hero/>
 <Split />
 <Features />
 <Footer />
