@@ -6,6 +6,6 @@ const client = createClient({
     password: import.meta.env.REDIS_PASSWORD,
 });
 // client.connect();
-client.on('error', (err) => console.log('Redis Client Error', err));
+// client.on('error', (err) => console.log('Redis Client Error', err));
 
 export default client;
