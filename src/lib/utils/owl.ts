@@ -13,7 +13,7 @@ const owl = new Owl({
     },
 });
 
-export const job = await owl.createWorker(async (job, ackDescriptor) => {
+export const job = owl.createWorker(async (job, ackDescriptor) => {
     // console.log(`${job.queue}: Received job #${job.id} with payload ${job.payload}.`);
     await matchmake();
     await checkSubmissions();
@@ -25,7 +25,6 @@ export const job = await owl.createWorker(async (job, ackDescriptor) => {
     });
 });
 
-await job.start();
 const producer = owl.createProducer();
 
 export default producer;
