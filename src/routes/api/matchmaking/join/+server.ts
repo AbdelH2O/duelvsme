@@ -7,6 +7,7 @@ import client from "$lib/utils/redisClient";
 
 export const POST: RequestHandler = async ({ request }) => {
     try {
+        await client.connect();
         const user = await auth.validateRequest(request);
         const key = await client.hGet('sockets', user.user.username);
         console.log(key);
@@ -19,7 +20,7 @@ export const POST: RequestHandler = async ({ request }) => {
         await client.zAdd('queue_lower', [{score: user.user.rating - 50, value: `${user.user.username}`}]);
 
         await client.hSet('elo', `${user.user.username}`, `${user.user.rating}`);
-             
+        await client.disconnect();
         return json({message: "Successfully joined queue."});
     } catch (err) {
         console.error(err);

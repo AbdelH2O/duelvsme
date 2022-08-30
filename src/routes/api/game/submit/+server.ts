@@ -8,6 +8,7 @@ import type { Error } from '@abdelh2o/lucia-sveltekit';
 
 export const POST: RequestHandler = async ({ request }) => {
     try {
+        await client.connect();
         const user = await auth.validateRequest(request);
         const body = await request.json();
         console.log(request.headers);
@@ -49,6 +50,7 @@ export const POST: RequestHandler = async ({ request }) => {
             status: 'pending',
             match: match,
         });
+        await client.disconnect();
         return json({
             submission: submission,
         });

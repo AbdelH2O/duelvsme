@@ -14,13 +14,15 @@ export const load = async ({ params, parent }: LoadEvent) =>  {
     if (game.data?.length === 0) {
         throw error(404, "Game not found");
     }
+    await client.connect();
     const statements: string[] = [
         await client.hGet('problems', game.data[0].problems[0]) || "",
         await client.hGet('problems', game.data[0].problems[1]) || "",
         await client.hGet('problems', game.data[0].problems[2]) || "",
         await client.hGet('problems', game.data[0].problems[3]) || "",
         await client.hGet('problems', game.data[0].problems[4]) || "",
-    ]
+    ];
+    await client.disconnect();
     return {
         game: game.data,
         statements: statements,

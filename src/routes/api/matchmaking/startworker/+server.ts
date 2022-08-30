@@ -6,6 +6,7 @@ import fs from "fs";
 import process from 'process';
 
 export const POST = async () => {
+    await client.connect();
     const started = await client.get('back');
     if (started === 'true') {
         return json({
@@ -134,6 +135,7 @@ export const POST = async () => {
     });
     await job.start();
     await client.set('back', 'true');
+    await client.disconnect();
     return json({
         message: "ok"
     });
