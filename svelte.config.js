@@ -10,9 +10,7 @@ const config = {
     }),
 
 	kit: {
-        adapter: adapter({
-            split: true,
-        }),
+        adapter: adapter(),
         paths: {
             base: process.env.VITE_NODE_ENV === 'development' ? '' : ''
         },
