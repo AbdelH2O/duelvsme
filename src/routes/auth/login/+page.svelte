@@ -1,5 +1,8 @@
 <script lang="ts">
   import dvsme from "../../../assets/duelvsme.svg";
+  import supabase from "$lib/utils/supabase";
+  import { supabase_key } from "$lib/stores/supabase";
+
   let username: string = "";
   let password: string = "";
 
@@ -19,8 +22,13 @@
         password
       })
     });
+    const resp = await response.json();
+    
+    supabase.auth.setAuth(resp.supabase_key);
+    supabase_key.set(resp.supabase_key);
+    
     if (response.ok) {
-      return window.location.href = "/dashboard";
+      return window.location.href = "/app/dashboard";
     }
     const result = await response.json();
     error = result.error;
@@ -36,7 +44,7 @@
   
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        <form class="space-y-6">
+        <div class="space-y-6">
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700"> Email address </label>
             <div class="mt-1">
@@ -64,7 +72,7 @@
           <p>
             <span class="text-red-500">{error}</span>
           </p>
-        </form>
+        </div>
   
         <!-- <div class="mt-6">
           <div class="relative">

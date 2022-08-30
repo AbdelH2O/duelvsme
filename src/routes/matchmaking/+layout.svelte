@@ -51,13 +51,13 @@
 
       <div class="pt-5 pb-4">
         <div class="flex-shrink-0 flex items-center px-4">
-          <a href="/dashboard">
+          <a href="/app/dashboard">
             <img class="h-10 w-auto" src={dvsme} alt="Workflow">
           </a>
         </div>
         <nav aria-label="Sidebar" class="mt-5">
           <div class="px-2 space-y-1">
-            <a href="/dashboard" class="group p-2 rounded-md flex items-center text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900">
+            <a href="/app/dashboard" class="group p-2 rounded-md flex items-center text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900">
               <!-- Heroicon name: outline/home -->
               <svg class="mr-4 h-6 w-6 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -126,7 +126,7 @@
       <div class="flex-1 flex flex-col min-h-0 overflow-y-auto bg-red-600">
         <div class="flex-1">
           <div class="bg-red-900 py-4 flex items-center justify-center">
-            <a href="/dashboard">
+            <a href="/app/dashboard">
               <img class="h-14 w-auto" src={dvsme} alt="Duelvsme">
             </a>
           </div>

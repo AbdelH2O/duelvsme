@@ -7,4 +7,5 @@ node_modules
 .env
 .env.*
 !.env.example
-auth_config.ts
+users.txt
+.netlify
