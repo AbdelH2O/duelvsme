@@ -1,9 +1,9 @@
 {
 	"name": "frontend",
 	"version": "0.0.1",
-	"engines" : { 
-		"npm" : ">=7.0.0",
-		"node" : ">=16.0.0"
+	"engines": {
+		"npm": ">=7.0.0",
+		"node": ">=16.0.0"
 	},
 	"scripts": {
 		"dev": "vite dev",
@@ -19,7 +19,7 @@
 		"format": "prettier --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
-		"@abdelh2o/lucia-sveltekit": "^0.7.3",
+		"@abdelh2o/lucia-sveltekit": "^0.7.31",
 		"@lucia-sveltekit/adapter-supabase": "^0.3.1",
 		"@playwright/test": "^1.22.2",
 		"@quirrel/owl": "^0.14.3",

@@ -2,15 +2,15 @@
 # yarn lockfile v1
 
 
-"@abdelh2o/lucia-sveltekit@^0.7.3":
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/@abdelh2o/lucia-sveltekit/-/lucia-sveltekit-0.7.3.tgz#ee68cac7103f4b3f6744bd9009f8bc109cfd1e63"
-  integrity sha512-CEAK/ci+CmcG0KbsRG7uGyt7ZQY/5VlvD+lws9iPBRhX7uZnOLX+M7MBYrlyzX2KpYMWXwFz4jNEE0l8bNqahg==
+"@abdelh2o/lucia-sveltekit@^0.7.31":
+  version "0.7.31"
+  resolved "https://registry.yarnpkg.com/@abdelh2o/lucia-sveltekit/-/lucia-sveltekit-0.7.31.tgz#11a70ffaafa5b5375cc278dcb120eea3a0ca0d09"
+  integrity sha512-DtBHyBmaPr39GeabG0ReY0bjR6+Rqc7ksEl5va9FjvLcLHKmmwcfoF4p4nyf4d9OeHHl1CWfjukrYIG/px82OA==
   dependencies:
     bcryptjs "^2.4.3"
     cookie "^0.5.0"
     jsonwebtoken "^8.5.1"
-    nanoid "^4.0.0"
+    nanoid "^3.0.0"
 
 "@esbuild/linux-loong64@0.14.54":
   version "0.14.54"
@@ -2157,7 +2157,7 @@ ms@^2.1.1:
   resolved "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
 
-nanoid@^3.3.4:
+nanoid@^3.0.0, nanoid@^3.3.4:
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.4.tgz#730b67e3cd09e2deacf03c027c81c9d9dbc5e8ab"
   integrity sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==
