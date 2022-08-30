@@ -1,35 +1,16 @@
-<script lang="ts" context="module">
-  import '../app.css';
-  import type { Load, LoadEvent, LoadOutput } from '@sveltejs/kit';
-
-  export const load: Load = async ({ url, session }: LoadEvent): Promise<LoadOutput> =>  {
-    
-    if ('lucia' in session && session.lucia !== null) {
-      if (url.pathname === '/auth/login' || url.pathname === '/auth/signup') {
-        return {
-          status: 302,
-          redirect: '/dashboard'
-        };
-      }
-      return {};
-    }
-    if (url.pathname !== '/' && url.pathname !== '/auth/login' && url.pathname !== '/auth/signup') {
-      return {
-        status: 302,
-        redirect: '/'
-      };
-    }
-    return {};
-  }
-</script>
-
 <script lang="ts">
   import { theme } from '$lib/stores/theme';
+  import { supabase_key } from '$lib/stores/supabase';
+  import { Lucia } from "@abdelh2o/lucia-sveltekit/client";
+  import supabase from '$lib/utils/supabase';
+  import { browser } from '$app/env';
+  import 'agnostic-svelte/css/common.min.css';
+  import '../app.css';
+
   let isDark: boolean;
   theme.subscribe(val => isDark = (val === "dark"));
   
-  if (typeof window !== 'undefined') {
-    console.log(localStorage.getItem('theme'));
+  if (browser) {
     theme.set(localStorage.getItem('theme') || 'light');
   }
   const handleThemeChange = () => {
@@ -39,15 +20,17 @@
     } else {
       theme.set('light');
     }
-    if (typeof window !== 'undefined') {
+    if (browser) {
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      console.log('set');
     }
   };
+  supabase_key.subscribe((data) => {
+		supabase.auth.setAuth(data);
+	});
 </script>
 
-<html lang="en" class="{$theme === 'light' ? "light" : "dark"}">
-  <div class="fixed right-4 top-4 h-[2.4rem] w-[2.5rem] z-10">
+<html lang="en" class="dark">
+  <!-- <div class="fixed right-4 top-4 h-[2.4rem] w-[2.5rem] z-10">
     <button
       id="theme-toggle"
       type="button"
@@ -78,6 +61,8 @@
         />
       </svg>
     </button>
-  </div>
-  <slot class="-z-10" />
+  </div> -->
+  <Lucia>
+    <slot class="-z-10" />
+  </Lucia>
 </html>

@@ -1,4 +1,4 @@
-import lucia from "lucia-sveltekit";
+import lucia from "@abdelh2o/lucia-sveltekit";
 import supabase from "@lucia-sveltekit/adapter-supabase";
 import { dev } from "$app/env";
 

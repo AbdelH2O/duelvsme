@@ -1,3 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+:root {
+    --agnostic-font-family: font-family: 'Lato';
+    --agnostic-btn-font-family: font-family: 'Lato';
+    --agnostic-btn-primary: #7F1D1D;
+    --agnostic-btn-primary-color: #fafafa;
+}
+.header{
+	text-align: center;
+    border-bottom: 2px solid #374151;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    /* background-color: #7F1D1D; */
+}
+.problem-statement{
+	margin-left: 1.5rem;
+	margin-right: 1.5rem;
+    margin-top: 1rem;
+}
+
+.problem-statement p {
+    margin-bottom: 1rem;
+    font-size: 18px;
+}
+
+.input{
+	border: 2px solid #374151;
+    margin-bottom: 0.5rem;
+    border-radius: 0.375rem;
+    overflow: hidden;
+}
+.output{
+	border: 2px solid #374151;
+    border-radius: 0.375rem;
+}
+.input-output-copier {
+    font-size: 0.8rem;
+    float: right;
+    color: #ffffff !important;
+    cursor: pointer;
+    border: 1px solid rgb(185, 185, 185);
+    padding: 3px;
+    margin: 1px;
+    line-height: 1.1rem;
+    text-transform: none;
+	background: #373737;
+}
+.input-specification {
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 2px solid #374151;
+}
+.output-specification {
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 2px solid #374151;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #374151;
+}
+.input .title{
+	background: #7F1D1D;
+	color: #ffffff;
+	font-size: 1.2rem;
+	padding: 0.25em;;
+	font-weight: bold;
+}
+.output .title{
+	background: #7F1D1D;
+	color: #ffffff;
+	font-size: 1.2rem;
+	padding: 0.25em;;
+	font-weight: bold;
+}
+.output{
+	margin-bottom: 2rem;
+}
+.problem-statement .sample-tests pre {
+    line-height: 1.25em;
+    padding: 0.25em;
+    margin: 0;
+    background-color: #1f2937;
+	color: #ffffff;
+}
+.problem-statement .section-title {
+    /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
+    /* font-family: arial,sans-serif; */
+    font-size: 115%;
+    font-weight: bold;
+}
+.problem-statement .header .title {
+    font-size: 150%;
+    /* background-color: #7F1D1D; */
+    /* width: 50%; */
+    /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
+    /* font-family: arial,sans-serif; */
+}
+
+.problem-statement .property-title {
+    display: inline;
+    padding-right: 4px;
+}
+
+.time-limit {
+    margin-bottom: 5px;
+}
+
+.memory-limit {
+    margin-bottom: 5px;
+}
+
+.input-file {
+    margin-bottom: 5px;
+}
+
+.output-file {
+    margin-bottom: 5px;
+}
+
+.problem-statement .property-title:after {
+    content: ":";
+}
+
+.MathJax.CtxtMenu_Attached_0{
+	display: inline!important;
+    position: static;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    vertical-align: 0;
+    line-height: normal;
+    text-decoration: none;
+    box-sizing: content-box;
+}
+.nav-tabs .nav-link.active {
+    color: #495057;
+    background-color: #2d2d2d;
+    border-color: #2d2d2d #2d2d2d #2d2d2d;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    z-index: 100;
+    position: relative;
+}
+.nav-tabs {
+    border-bottom: 1px solid #212121;
+}
+.navbar .navbar-light .navbar-expand-md{
+    z-index: 2;
+    position: absolute;
+}
+.nav-tabs .nav-link {
+    border: 0!important;
+    /* border-top-left-radius: .25rem; */
+    /* border-top-right-radius: .25rem; */
+}
+.btn-outline-danger:hover {
+    color: #ffffff;
+    border-color: #dc3545;
+    background: #dc3545;
+}
