@@ -1,88 +1,45 @@
-<script lang="ts" context="module">
-  throw new Error("@migration task: Check code was safely removed (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292722)");
-
-  // import '../app.css';
-  // import { authGuard } from '../lib/guards/AuthGuard';
-  // import type { LoadEvent, LoadOutput } from '@sveltejs/kit';
-
-  // export async function load({ url }: LoadEvent): Promise<LoadOutput> {
-  //   if (url.pathname === '/') {
-  //     return {};
-  //   }
-  //   return await authGuard(url);
-  // }
-</script>
-
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import auth from '../lib/authService';
-  import { isAuthenticated, user } from '../lib/stores/auth';
-  import type { Auth0Client } from '@auth0/auth0-spa-js';
+  import { theme } from '$lib/stores/theme';
+  import { supabase_key } from '$lib/stores/supabase';
+  import { Lucia } from "@abdelh2o/lucia-sveltekit/client";
+  import supabase from '$lib/utils/supabase';
+  import { browser } from '$app/env';
+  import 'agnostic-svelte/css/common.min.css';
+  import '../app.css';
 
-  let auth0Client: Auth0Client;
-
-  onMount(async () => {
-    if (
-      !localStorage.getItem('isAuthenticated') ||
-      !localStorage.getItem('user')
-    ) {
-      auth0Client = await auth.createClient();
-      isAuthenticated.subscribe(async (auth) => {
-        console.log(auth);
-        if (!auth) {
-          isAuthenticated.set(await auth0Client.isAuthenticated());
-          localStorage.setItem('isAuthenticated', JSON.stringify(auth));
-          const usr = await auth0Client.getUser();
-          console.log(usr);
-          user.set(usr ? usr : {});
-          localStorage.setItem('user', JSON.stringify(usr));
-        }
-      });
-    } else {
-      isAuthenticated.set(
-        JSON.parse(
-          localStorage.getItem('isAuthenticated')
-            ? (localStorage.getItem('isAuthenticated') as string)
-            : 'false',
-        ),
-      );
-      user.set(
-        JSON.parse(
-          localStorage.getItem('user')
-            ? (localStorage.getItem('user') as string)
-            : '{}',
-        ),
-      );
-    }
-  });
-  $: theme = 'light';
-  if (typeof window !== 'undefined') {
-    theme = localStorage.getItem('theme') || 'light';
+  let isDark: boolean;
+  theme.subscribe(val => isDark = (val === "dark"));
+  
+  if (browser) {
+    theme.set(localStorage.getItem('theme') || 'light');
   }
   const handleThemeChange = () => {
-    if (theme === 'light') {
-      theme = 'dark';
+    console.log($theme);
+    if (!isDark) {
+      theme.set('dark');
     } else {
-      theme = 'light';
+      theme.set('light');
     }
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('theme', theme);
-      console.log('set');
+    if (browser) {
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
     }
   };
+  supabase_key.subscribe((data) => {
+		supabase.auth.setAuth(data);
+	});
 </script>
 
-<html lang="en" class="{theme === 'light' ? "light" : "dark"}">
-  <div class="fixed right-4 top-4 h-[2.4rem] w-[2.5rem] z-10">
+<html lang="en" class="dark">
+  <!-- <div class="fixed right-4 top-4 h-[2.4rem] w-[2.5rem] z-10">
     <button
       id="theme-toggle"
       type="button"
-      class="w-full h-full text-gray-500 dark:text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 rounded-lg text-sm p-4.5"
+      class="w-full h-full text-gray-500 dark:text-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none dark:focus:ring-gray-800 rounded-lg text-sm p-4.5"
     >
       <svg
         id="theme-toggle-dark-icon"
         on:click="{handleThemeChange}"
-        class="{theme === 'light' ? "z-20 w-full h-full hidden fill-[#da3c40]" : "z-20 w-full h-full fill-[#da3c40]"}"
+        class="{$theme === 'light' ? "z-20 w-full h-full hidden fill-[#da3c40]" : "z-20 w-full h-full fill-[#da3c40]"}"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -93,7 +50,7 @@
       <svg
         id="theme-toggle-light-icon"
         on:click="{handleThemeChange}"
-        class="{theme === 'light' ? "z-20 w-full h-full fill-[#da3c40]" : "z-20 w-full h-full hidden fill-[#da3c40]"}"
+        class="{$theme === 'light' ? "z-20 w-full h-full fill-[#da3c40]" : "z-20 w-full h-full hidden fill-[#da3c40]"}"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -104,6 +61,8 @@
         />
       </svg>
     </button>
-  </div>
-  <slot class="-z-10" />
+  </div> -->
+  <Lucia>
+    <slot class="-z-10" />
+  </Lucia>
 </html>

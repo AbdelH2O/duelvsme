@@ -1,24 +1,38 @@
-import {isAuthenticated} from '../stores/auth'; // stores related to app state, auth state
-import type { LoadOutput } from '@sveltejs/kit';
-import { redirect } from '@sveltejs/kit/data';
+import type { RequestHandler, RequestEvent, RequestHandlerOutput } from "@sveltejs/kit";
 
-// import type { User } from '../utils/User';
-
-let auth: boolean;
-isAuthenticated.subscribe(authState => auth = authState);
-
-export async function authGuard(url: URL): Promise<LoadOutput> {
-  const loggedIn = typeof window !== 'undefined' ? localStorage.getItem('isAthenticated') || auth : auth;
-  console.log(loggedIn);
-  if (loggedIn) {
-    return {};
-  } else {
-    console.log('not logged in');
-    console.log(typeof window !== 'undefined' ? localStorage.getItem('isAthenticated') || auth : auth);
-    throw redirect(302, '/')
-  }
+const withHandlers = (...handlers: RequestHandler[]) => {
+    return async (request: RequestEvent): Promise<RequestHandlerOutput> => {
+        for (const handle of handlers) {
+            // console.log(request.locals);
+            const result = await handle(request);
+            console.log(result);
+            if (result.status !== 600) {
+                return result;
+            }
+        }
+        return {
+            status: 500,
+            body: "Server error"
+        }
+    }
 }
 
-export default {
-  authGuard
-}
+const authHook = async ({ request, locals }: RequestEvent): Promise<RequestHandlerOutput> => { 
+    // const body = await request.json();
+    // console.log(body);
+    if (!locals.lucia || !locals.lucia.user) {
+        return {
+            status: 401,
+            body: {
+                message: 'unauthorized'
+            }
+        };
+    }
+    return {
+        status: 600,
+    }
+};
+
+export const withAuth = (endpoint: RequestHandler): RequestHandler  => {
+    return withHandlers(authHook, endpoint);
+};

@@ -3,10 +3,11 @@
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "vite dev",
-		"build": "svelte-kit build",
+		"dev:socket": "vite dev",
+		"build": "vite build",
+		"build:socket": "esbuild src/lib/server/socket.ts --bundle --tsconfig=tsconfig.esbuild.json --outfile=dist/socket.js",
 		"package": "svelte-kit package",
-		"preview": "svelte-kit preview",
-		"prepare": "svelte-kit sync",
+		"preview": "vite preview",
 		"test": "playwright test",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
@@ -14,20 +15,33 @@
 		"format": "prettier --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
+		"@abdelh2o/lucia-sveltekit": "^0.7.3",
+		"@lucia-sveltekit/adapter-supabase": "^0.3.1",
 		"@playwright/test": "^1.22.2",
+		"@quirrel/owl": "^0.14.3",
+		"@supabase/supabase-js": "^1.35.6",
 		"@sveltejs/adapter-auto": "next",
-		"@sveltejs/kit": "next",
+		"@sveltejs/adapter-netlify": "^1.0.0-next.75",
+		"@sveltejs/kit": "1.0.0-next.431",
 		"@tailwindcss/forms": "^0.5.2",
+		"@types/jsonwebtoken": "^8.5.8",
 		"@typescript-eslint/eslint-plugin": "^5.27.0",
 		"@typescript-eslint/parser": "^5.27.0",
+		"agnostic-svelte": "^1.1.27",
 		"autoprefixer": "^10.4.7",
+		"cf-wrapper": "^0.0.392",
 		"eslint": "^8.16.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-svelte3": "^4.0.0",
+		"ioredis": "^5.2.2",
+		"jsonwebtoken": "^8.5.1",
+		"lucia-sveltekit": "^0.7.0",
+		"monaco-editor": "^0.34.0",
 		"postcss": "^8.4.14",
 		"prettier": "^2.6.2",
 		"prettier-plugin-svelte": "^2.7.0",
-		"svelte": "^3.49.0",
+		"redis": "^4.2.0",
+		"svelte": "^3.44.0",
 		"svelte-check": "^2.7.1",
 		"svelte-preprocess": "^4.10.7",
 		"tailgrids": "^1.1.7",
@@ -37,8 +51,5 @@
 		"vite": "^3.0.4"
 	},
 	"type": "module",
-	"dependencies": {
-		"@auth0/auth0-spa-js": "^1.22.1",
-		"flowbite": "^1.4.7"
-	}
+	"dependencies": {}
 }

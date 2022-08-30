@@ -1,19 +1,22 @@
 <script lang="ts">
     import laptop from '../../../assets/laptop.jpeg';
     import dvsme from '../../../assets/duelvsme.svg';
-	import { createEventDispatcher } from 'svelte';
-	import { isAuthenticated } from '$lib/stores/auth';
+	import { getSession } from "@abdelh2o/lucia-sveltekit/client";
+	import { goto } from '$app/navigation';
+	import { signOut } from "@abdelh2o/lucia-sveltekit/client";
 
-    const dispatch = createEventDispatcher();
-	const login = () => {
-        dispatch('message', {
-            text: 'login'
-        });
-    }
-	const logout = () => {
-		dispatch('message', {
-			text: 'logout'
-		});
+	const lucia = getSession();
+
+	const handleLogin = () => {
+		goto('/auth/login');
+	};
+	const handleLogout = async () => {
+		try {
+			await signOut();
+			window.location.href = '/';
+		} catch (e) {
+			console.log(e);
+		}
 	};
 </script>
 <div class="relative bg-white dark:bg-gray-900 overflow-hidden lg:h-[95vh]">
@@ -38,50 +41,24 @@
 					>
 						<div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
 							<div class="flex items-center justify-between w-full md:w-auto">
-								<a href="#">
+								<a  >
 									<span class="sr-only">Workflow</span>
 									<img alt="Workflow" style="height: 60px" src={dvsme} />
 								</a>
-								<div class="-mr-2 flex items-center md:hidden">
-									<button
-										type="button"
-										class="bg-white dark:bg-gray-900 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
-										aria-expanded="false"
-									>
-										<span class="sr-only">Open main menu</span>
-										<!-- Heroicon name: outline/menu -->
-										<svg
-											class="h-6 w-6"
-											xmlns="http://www.w3.org/2000/svg"
-											fill="none"
-											viewBox="0 0 24 24"
-											stroke-width="2"
-											stroke="currentColor"
-											aria-hidden="true"
-										>
-											<path
-												stroke-linecap="round"
-												stroke-linejoin="round"
-												d="M4 6h16M4 12h16M4 18h16"
-											/>
-										</svg>
-									</button>
-								</div>
 							</div>
 						</div>
-						<div class="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
-							<a href="#" class="font-xl text-gray-500 dark:text-gray-300 dark:hover:text-gray-50">Product</a>
+						<div class="block ml-10 pr-4 space-x-8">
+							<a href="/" class="font-xl text-gray-500 dark:text-gray-300 dark:hover:text-gray-50">Product</a>
 
-							<a href="#" class="font-medium text-gray-500 dark:text-gray-300 hover:text-gray-50">Features</a>
+							<a href="/" class="font-medium text-gray-500 dark:text-gray-300 hover:text-gray-50">Features</a>
 
-							<!-- <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Marketplace</a> -->
+							<!-- <a href="/" class="font-medium text-gray-500 hover:text-gray-900">Marketplace</a> -->
 
-							<a href="#" class="font-medium text-gray-500 dark:text-gray-300 hover:text-gray-50">Company</a>
-							{#if !$isAuthenticated}
-								<button on:click={login} class="font-medium text-red-600 hover:text-red-50">Log in</button>
-								<!-- {/if} -->
+							<a href="/" class="font-medium text-gray-500 dark:text-gray-300 hover:text-gray-50">Company</a>
+							{#if !$lucia}
+								<button on:click={handleLogin} class="font-medium text-red-600 hover:text-red-50">Log in</button>
 							{:else}
-								<button on:click={logout} class="font-medium text-red-600 hover:text-red-50">Log out</button>
+								<button on:click={handleLogout} class="font-medium text-red-600 hover:text-red-50">Log out</button>
 							{/if}
 
 							<!-- <a href="/signup" class="font-medium text-red-600 hover:text-red-500">Sign up</a> -->
@@ -113,54 +90,34 @@
 									alt=""
 								/>
 							</div>
-							<div class="-mr-2">
-								<button
-									type="button"
-									class="bg-white dark:bg-gray-900 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
-								>
-									<span class="sr-only">Close main menu</span>
-									<!-- Heroicon name: outline/x -->
-									<svg
-										class="h-6 w-6"
-										xmlns="http://www.w3.org/2000/svg"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke-width="2"
-										stroke="currentColor"
-										aria-hidden="true"
-									>
-										<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-									</svg>
-								</button>
-							</div>
 						</div>
 						<div class="px-2 pt-2 pb-3 space-y-1">
 							<a
-								href="#"
+								 
 								class="block px-3 py-2 rounded-md text-base font-medium text-gray-500 dark:text-gray-300 dark:hover:bg-gray-50"
 								>Product</a
 							>
 
 							<a
-								href="#"
+								 
 								class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-gray-900 dark:hover:bg-gray-50"
 								>Features</a
 							>
 
 							<a
-								href="#"
+								 
 								class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-gray-900 dark:hover:bg-gray-50"
 								>Marketplace</a
 							>
 
 							<a
-								href="#"
+								 
 								class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-gray-900 dark:hover:bg-gray-50"
 								>Company</a
 							>
 						</div>
 						<a
-							href="/login"
+							href="/auth/login"
 							class="block w-full px-5 py-3 text-center font-medium text-red-600 bg-gray-50 hover:bg-gray-100"
 						>
 							Log in
@@ -184,16 +141,18 @@
 					</p>
 					<div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
 						<div class="rounded-md shadow">
-							{#if $isAuthenticated}
+							{#if $lucia}
 								<a
-									href="/dashboard"
-									class="font-bold w-full flex items-center justify-center px-8 py-3 border border-transparent text-base rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10"
+									on:click={async () => {window.location.href = '/app/dashboard'}}
+
+									href="/app/dashboard"
+									class="select-none cursor-pointer font-bold w-full flex items-center justify-center px-8 py-3 border border-transparent text-base rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10"
 								>
 									Get started
 								</a>
 							{:else}
 								<div
-									on:click={login}
+									on:click={handleLogin}
 									class="cursor-pointer font-bold w-full flex items-center justify-center px-8 py-3 border border-transparent text-base rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10"
 								>
 									Login
@@ -202,7 +161,7 @@
 						</div>
 						<div class="mt-3 sm:mt-0 sm:ml-3">
 							<a
-								href="#"
+								 
 								class="font-bold w-full flex items-center justify-center px-8 py-3 border border-transparent text-base rounded-md text-red-700 bg-red-100 dark:bg-white hover:bg-red-200 md:py-4 md:text-lg md:px-10"
 							>
 								Learn more
