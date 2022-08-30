@@ -1,5 +1,5 @@
 import lucia from "@abdelh2o/lucia-sveltekit";
-import supabase from "@lucia-sveltekit/adapter-supabase";
+import supabase from "@abdelh2o/adapter-supabase";
 import { dev } from "$app/env";
 
 const url: string = import.meta.env.VITE_SUPABASE_URL || "http://localhost:3000";

@@ -20,7 +20,7 @@
 	},
 	"devDependencies": {
 		"@abdelh2o/lucia-sveltekit": "^0.7.31",
-		"@lucia-sveltekit/adapter-supabase": "^0.3.1",
+		"@abdelh2o/adapter-supabase": "^0.3.1",
 		"@playwright/test": "^1.22.2",
 		"@quirrel/owl": "^0.14.3",
 		"@supabase/supabase-js": "^1.35.6",

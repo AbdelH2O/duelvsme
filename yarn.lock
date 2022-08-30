@@ -2,6 +2,17 @@
 # yarn lockfile v1
 
 
+"@abdelh2o/adapter-supabase@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@abdelh2o/adapter-supabase/-/adapter-supabase-0.3.1.tgz#834dc0e4b036990af6ce584ab885b40337773023"
+  integrity sha512-OX8Aq/HzEexk4q44TR2B51X6dFSiKLcqJaoO7TWMA9BDQEYBIcAu8IWx9/Uv9k0Ui/9X1FtKnK8A1lNZ0V5TnA==
+  dependencies:
+    "@supabase/postgrest-js" "^0.37.4"
+    bcryptjs "^2.4.3"
+    cookie "^0.5.0"
+    jsonwebtoken "^8.5.1"
+    nanoid "^3.0.0"
+
 "@abdelh2o/lucia-sveltekit@^0.7.31":
   version "0.7.31"
   resolved "https://registry.yarnpkg.com/@abdelh2o/lucia-sveltekit/-/lucia-sveltekit-0.7.31.tgz#11a70ffaafa5b5375cc278dcb120eea3a0ca0d09"
@@ -73,17 +84,6 @@
   dependencies:
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
-
-"@lucia-sveltekit/adapter-supabase@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@lucia-sveltekit/adapter-supabase/-/adapter-supabase-0.3.1.tgz#9140cd1c9686f4eed9a79c729628e9e87092ef8c"
-  integrity sha512-o2brli91PNK05EjNbrUwJ5tZ97Ly5PXSXzLmqzWzwaNP6wdYtphzVjIP2e9GYIwl1n511mAFeFSPV0iHdCroWw==
-  dependencies:
-    "@supabase/postgrest-js" "^0.37.4"
-    bcryptjs "^2.4.3"
-    cookie "^0.5.0"
-    jsonwebtoken "^8.5.1"
-    nanoid "^4.0.0"
 
 "@mapbox/node-pre-gyp@^1.0.5":
   version "1.0.9"

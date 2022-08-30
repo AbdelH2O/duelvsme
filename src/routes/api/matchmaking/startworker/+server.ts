@@ -2,8 +2,6 @@ import { json } from '@sveltejs/kit';
 import producer, { job } from "$lib/utils/owl";
 import Cf from "cf-wrapper";
 import client from "$lib/utils/redisClient";
-import fs from "fs";
-import process from 'process';
 
 export const POST = async () => {
     await client.connect();
