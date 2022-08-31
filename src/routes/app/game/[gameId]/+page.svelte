@@ -4,7 +4,7 @@
     import { getSession } from '@abdelh2o/lucia-sveltekit/client';
     import Monaco from '$lib/components/monaco.svelte';
     import lang, { editor } from '$lib/stores/lang';
-    import { Select, Button, Loader, Table, Toasts, Toast } from 'agnostic-svelte';
+    import { Select, Button, Loader, Table, Toasts, Toast } from '@abdelh2o/agnostic-svelte';
     import { onMount } from 'svelte';
     import { languageOptions } from '$lib/enums/languages';
     import { page } from '$app/stores';

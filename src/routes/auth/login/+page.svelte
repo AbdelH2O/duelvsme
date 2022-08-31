@@ -3,7 +3,7 @@
   import supabase from "$lib/utils/supabase";
   import { supabase_key } from "$lib/stores/supabase";
   import { goto } from "$app/navigation";
-  import { Loader, Button } from "agnostic-svelte";
+  import { Loader, Button } from "@abdelh2o/agnostic-svelte";
 
   let username: string = "";
   let password: string = "";

@@ -13,6 +13,19 @@
     jsonwebtoken "^8.5.1"
     nanoid "^3.0.0"
 
+"@abdelh2o/agnostic-helpers@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@abdelh2o/agnostic-helpers/-/agnostic-helpers-1.0.2.tgz#3e8220ba85a9ba870f1b504d91ab98e015816dd8"
+  integrity sha512-o01/bwkUnYErsKA/u3qPnUxWHAGnqZwJLSDyeNl6wf7swAow3VZmA/1EbX2gAD8RGpUahVLERTMgDLbQZlQl4g==
+
+"@abdelh2o/agnostic-svelte@^1.1.291":
+  version "1.1.291"
+  resolved "https://registry.yarnpkg.com/@abdelh2o/agnostic-svelte/-/agnostic-svelte-1.1.291.tgz#49b077e26db879f03a8b8fe8ffea0f293eb7cccc"
+  integrity sha512-RBwJ6HpfS07jnX1SYUW5FsDmmqN5qF/v8F5tSW3VMZ46WRNS6MsyFV5ay5b7xfpsBzxifrRie3+0z+/PqLSfsw==
+  dependencies:
+    "@abdelh2o/agnostic-helpers" "^1.0.2"
+    svelte-a11y-dialog "^0.2.0"
+
 "@abdelh2o/lucia-sveltekit@^0.7.31":
   version "0.7.31"
   resolved "https://registry.yarnpkg.com/@abdelh2o/lucia-sveltekit/-/lucia-sveltekit-0.7.31.tgz#11a70ffaafa5b5375cc278dcb120eea3a0ca0d09"
@@ -553,19 +566,6 @@ agent-base@6, agent-base@^6.0.2:
   integrity sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==
   dependencies:
     debug "4"
-
-agnostic-helpers@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/agnostic-helpers/-/agnostic-helpers-1.0.2.tgz#dd73fdb1dda0aecb1d7e422365d181c0b6fc13dd"
-  integrity sha512-BizdxC9SYdd0kgY/3lcDeeiSTs4BwUsa0oc5Nsaz5j397rZgC0vO1Tlvj5XOk/1pqTtnBi0ptu0/6CQvdwnsww==
-
-agnostic-svelte@^1.1.27:
-  version "1.1.27"
-  resolved "https://registry.yarnpkg.com/agnostic-svelte/-/agnostic-svelte-1.1.27.tgz#279a0959b5c358010bbb7270eda8f7c0792036a9"
-  integrity sha512-wV0JbTr1Jbkh8/YRWVvWsQ2aFY+std/rG0avADm7romk1Zptdyh8j2+507PvQHKSl3lqsCeDx7yLFq5SWfANIw==
-  dependencies:
-    agnostic-helpers "^1.0.2"
-    svelte-a11y-dialog "^0.2.0"
 
 ajv@^6.10.0, ajv@^6.12.4:
   version "6.12.6"
@@ -1325,11 +1325,11 @@ esutils@^2.0.2:
   integrity sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==
 
 ext@^1.1.2:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/ext/-/ext-1.6.0.tgz#3871d50641e874cc172e2b53f919842d19db4c52"
-  integrity sha512-sdBImtzkq2HpkdRLtlLWDa6w4DX22ijZLKx8BMPUuKe1c5lbN6xwQDQCxSfxBQnHZ13ls/FH0MQZx/q/gr6FQg==
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/ext/-/ext-1.7.0.tgz#0ea4383c0103d60e70be99e9a7f11027a33c4f5f"
+  integrity sha512-6hxeJYaL110a9b5TEJSj0gojyHQAmA2ch5Os+ySCiA1QGdS697XWY1pzsrSjqA9LDEEgdB/KypIlR59RcLuHYw==
   dependencies:
-    type "^2.5.0"
+    type "^2.7.2"
 
 fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
   version "3.1.3"
@@ -2891,7 +2891,7 @@ type@^1.0.1:
   resolved "https://registry.yarnpkg.com/type/-/type-1.2.0.tgz#848dd7698dafa3e54a6c479e759c4bc3f18847a0"
   integrity sha512-+5nt5AAniqsCnu2cEQQdpzCAh33kVx8n0VoFidKpB1dVVLAN/F+bgVOqOJqOnEnrhp222clB5p3vUlD+1QAnfg==
 
-type@^2.5.0:
+type@^2.7.2:
   version "2.7.2"
   resolved "https://registry.yarnpkg.com/type/-/type-2.7.2.tgz#2376a15a3a28b1efa0f5350dcf72d24df6ef98d0"
   integrity sha512-dzlvlNlt6AXU7EBSfpAscydQ7gXB+pPGsPnfJnZpiNJBDj7IaJzQlBZYGdEi4R9HmPdBv2XmWJ6YUtoTa7lmCw==

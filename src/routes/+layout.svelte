@@ -4,7 +4,7 @@
   import { Lucia } from "@abdelh2o/lucia-sveltekit/client";
   import supabase from '$lib/utils/supabase';
   import { browser } from '$app/env';
-  import 'agnostic-svelte/css/common.min.css';
+  import '@abdelh2o/agnostic-svelte/css/common.min.css';
   import '../app.css';
 
   let isDark: boolean;
