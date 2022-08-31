@@ -1,4 +1,4 @@
-// import Owl from '@quirrel/owl';
+import Owl, { type OwlConfig } from '@quirrel/owl';
 // import Redis from 'ioredis';
 // import matchmake from './matchmake';
 // import checkSubmissions from './checkSubmissions';
@@ -28,3 +28,8 @@
 // const producer = owl.createProducer();
 
 // export default producer;
+const getOwl = (params: OwlConfig<string>) => {
+    return new Owl(params);
+}
+
+export default getOwl;
