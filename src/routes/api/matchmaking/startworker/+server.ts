@@ -172,6 +172,7 @@ export const POST = async () => {
             message: "ok"
         });
     } catch (e) {
+        await client.disconnect();
         console.log(e);
         return json({
             message: "error"
