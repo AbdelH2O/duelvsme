@@ -3,7 +3,7 @@ import Redis from 'ioredis';
 import matchmake from './matchmake';
 import checkSubmissions from './checkSubmissions';
 
-const owl = new Owl({
+const owl = Owl({
     redisFactory: () => new Redis(`${import.meta.env.VITE_REDIS_FULL_URL}`),
     scheduleMap: {
         'api/matchmaking/checkqueue': (lastExecution, scheduleMeta) => {
