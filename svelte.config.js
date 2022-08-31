@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-netlify';
+import adapter from '@sveltejs/adapter-vercel';
 import preprocess from 'svelte-preprocess';
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -10,9 +10,7 @@ const config = {
     }),
 
 	kit: {
-        adapter: adapter({
-            split: true,
-        }),
+        adapter: adapter(),
         paths: {
             base: process.env.VITE_NODE_ENV === 'development' ? '' : ''
         },
