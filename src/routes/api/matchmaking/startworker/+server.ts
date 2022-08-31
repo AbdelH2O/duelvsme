@@ -156,7 +156,7 @@ export const POST = async () => {
         payload: "test",
         runAt: new Date(Date.now() + 15000),
     });
-    job.start();
+    await job.start();
     await client.set('back', 'true');
     return json({
         message: "ok"
