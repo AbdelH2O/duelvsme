@@ -1,5 +1,9 @@
 import { json } from '@sveltejs/kit';
-import producer, { job } from "$lib/utils/owl";
+// import producer, { job } from "$lib/utils/owl";
+import Redis from 'ioredis';
+import matchmake from '$lib/utils/matchmake';
+import checkSubmissions from '$lib/utils/checkSubmissions';
+import Owl from '@quirrel/owl';
 import Cf from "cf-wrapper";
 import client from "$lib/utils/redisClient";
 
@@ -125,6 +129,27 @@ export const POST = async () => {
         await client.sAdd(`${problem.rating}`, JSON.stringify(problem));
         // await client.zAdd('problems', [{score: problem.rating, value: JSON.stringify(problem)}]);
     }
+    const owl = new Owl({
+        redisFactory: () => new Redis(`${import.meta.env.VITE_REDIS_FULL_URL}`),
+        scheduleMap: {
+            'api/matchmaking/checkqueue': (lastExecution, scheduleMeta) => {
+                console.log('checking');
+                return null;
+            }
+        },
+    });
+    const producer = owl.createProducer();
+    const job = owl.createWorker(async (job, ackDescriptor) => {
+        // console.log(`${job.queue}: Received job #${job.id} with payload ${job.payload}.`);
+        await matchmake();
+        await checkSubmissions();
+        producer.enqueue({
+            queue: 'queue',
+            id: `${Math.floor(new Date(Date.now() + 15000).getTime()/1000)}`,
+            payload: 'test',
+            runAt: new Date(Date.now() + 15000),
+        });
+    });
     producer.enqueue({
         queue: "queue",
         id: `${Math.floor(new Date(Date.now() + 15000).getTime()/1000)}`,
