@@ -1,7 +1,7 @@
 // import Owl, { type OwlConfig } from '@quirrel/owl';
 // import Redis from 'ioredis';
-// import matchmake from './matchmake';
-// import checkSubmissions from './checkSubmissions';
+import matchmake from './matchmake';
+import checkSubmissions from './checkSubmissions';
 
 // const owl = new Owl({
 //     redisFactory: () => new Redis(`${import.meta.env.VITE_REDIS_FULL_URL}`),
@@ -48,6 +48,14 @@ const taskQueue = new Bull.default('taskQueue', import.meta.env.VITE_REDIS_FULL_
 
 taskQueue.process(async (job, done) => {
     console.log(job.data);
+    await matchmake();
+    await checkSubmissions();
+    await taskQueue.add({
+        queue: 'queue',
+        id: `${Math.floor(new Date(Date.now() + 15000).getTime()/1000)}`,
+    }, {
+        delay: 10000,
+    });
     done();
 });
 
