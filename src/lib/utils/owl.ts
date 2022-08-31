@@ -4,7 +4,7 @@ import matchmake from './matchmake';
 import checkSubmissions from './checkSubmissions';
 
 const owl = new Owl({
-    redisFactory: () => new Redis(),
+    redisFactory: () => new Redis(`${import.meta.env.VITE_REDIS_FULL_URL}`),
     scheduleMap: {
         'api/matchmaking/checkqueue': (lastExecution, scheduleMeta) => {
             console.log('checking');
