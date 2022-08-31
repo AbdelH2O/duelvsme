@@ -164,6 +164,8 @@ export const POST = async () => {
         await taskQueue.add({
             queue: 'queue',
             id: `${Math.floor(new Date(Date.now() + 15000).getTime()/1000)}`,
+        }, {
+            delay: 10000,
         });
         await client.set('back', 'true');
         return json({
