@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit';
-// import producer, { job } from "$lib/utils/owl";
+import getOwl from "$lib/utils/owl";
 import Redis from 'ioredis';
 import matchmake from '$lib/utils/matchmake';
 import checkSubmissions from '$lib/utils/checkSubmissions';
@@ -132,7 +132,7 @@ export const POST = async () => {
         // }
         console.log(typeof Owl);
         
-        const owl = new Owl({
+        const owl = getOwl({
             redisFactory: () => new Redis(`${import.meta.env.VITE_REDIS_FULL_URL}`),
             scheduleMap: {
                 'api/matchmaking/checkqueue': (lastExecution, scheduleMeta) => {
