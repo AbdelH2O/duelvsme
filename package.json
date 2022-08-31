@@ -19,8 +19,8 @@
 		"format": "prettier --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
-		"@abdelh2o/lucia-sveltekit": "^0.7.31",
 		"@abdelh2o/adapter-supabase": "^0.3.1",
+		"@abdelh2o/lucia-sveltekit": "^0.7.31",
 		"@playwright/test": "^1.22.2",
 		"@quirrel/owl": "^0.14.3",
 		"@supabase/supabase-js": "^1.35.6",
@@ -55,5 +55,8 @@
 		"vite": "^3.0.4"
 	},
 	"type": "module",
-	"dependencies": {}
+	"dependencies": {},
+	"resolutions": {
+		"http-cookie-agent/deasync": "0.1.16"
+	}
 }
