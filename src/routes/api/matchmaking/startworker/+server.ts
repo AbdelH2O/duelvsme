@@ -139,7 +139,7 @@ export const POST = async () => {
         },
     });
     const producer = owl.createProducer();
-    const job = owl.createWorker(async (job, ackDescriptor) => {
+    const job = await owl.createWorker(async (job, ackDescriptor) => {
         // console.log(`${job.queue}: Received job #${job.id} with payload ${job.payload}.`);
         await matchmake();
         await checkSubmissions();
@@ -156,7 +156,7 @@ export const POST = async () => {
         payload: "test",
         runAt: new Date(Date.now() + 15000),
     });
-    await (await job).start();
+    job.start();
     await client.set('back', 'true');
     return json({
         message: "ok"
