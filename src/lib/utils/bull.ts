@@ -1,4 +1,4 @@
-import Owl, { type OwlConfig } from '@quirrel/owl';
+// import Owl, { type OwlConfig } from '@quirrel/owl';
 // import Redis from 'ioredis';
 // import matchmake from './matchmake';
 // import checkSubmissions from './checkSubmissions';
@@ -28,8 +28,27 @@ import Owl, { type OwlConfig } from '@quirrel/owl';
 // const producer = owl.createProducer();
 
 // export default producer;
-const getOwl = (params: OwlConfig<string>) => {
-    return new Owl(params);
-}
+// const getOwl = (params: OwlConfig<string>) => {
+//     return new Owl(params);
+// }
 
-export default getOwl;
+// export default getOwl;
+
+import * as Bull from 'bull';
+// console.log(Bull.default);
+
+
+const taskQueue = new Bull.default('taskQueue', import.meta.env.VITE_REDIS_FULL_URL, {
+    settings: {
+        stalledInterval: 300000, // How often check for stalled jobs (use 0 for never checking).
+        guardInterval: 5000, // Poll interval for delayed jobs and added jobs.
+        drainDelay: 300 // A timeout for when the queue is in drained state (empty waiting for jobs).
+    }
+});
+
+taskQueue.process(async (job, done) => {
+    console.log(job.data);
+    done();
+});
+
+export default taskQueue;
