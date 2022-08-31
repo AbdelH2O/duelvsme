@@ -63,7 +63,6 @@ const update_scores = async () => {
 }
 
 const matchmake = async () => {
-    await client.connect();
     await update_scores();
     const { members: players_up } = await client.zScan('queue_upper', 0);
     console.log(players_up);
@@ -107,7 +106,6 @@ const matchmake = async () => {
              i--;
         }
     }
-    await client.disconnect();
 }
 
 export default matchmake;

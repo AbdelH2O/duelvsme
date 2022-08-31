@@ -10,6 +10,9 @@
 	const handleLogin = () => {
 		goto('/auth/login');
 	};
+	const handleSignup = () => {
+		goto('/auth/signup');
+	};
 	const handleLogout = async () => {
 		try {
 			await signOut();
@@ -19,13 +22,13 @@
 		}
 	};
 </script>
-<div class="relative bg-white dark:bg-gray-900 overflow-hidden lg:h-[95vh]">
+<div class="relative bg-white dark:bg-gray-900 overflow-hidden h-screen">
 	<div class="max-w-7xl mx-auto">
 		<div
-			class="relative z-10 pb-8 bg-white dark:bg-gray-900 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32 lg:h-[95vh]"
+			class="relative z-10 bg-white dark:bg-gray-900 sm:pb-16 md:pb-20 max-w-2xl w-full pb-28 xl:pb-32 h-screen"
 		>
 			<svg
-				class="hidden fill-white dark:fill-gray-900 lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2"
+				class="fill-white dark:fill-gray-900 block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2"
 				viewBox="0 0 100 100"
 				preserveAspectRatio="none"
 				aria-hidden="true"
@@ -34,12 +37,12 @@
 			</svg>
 
 			<div>
-				<div class="relative pt-6 px-4 sm:px-6 lg:px-8">
+				<div class="relative pt-6 sm:px-6 px-8">
 					<nav
-						class="relative flex items-center justify-between sm:h-10 lg:justify-start"
+						class="relative flex items-center sm:h-10 justify-start"
 						aria-label="Global"
 					>
-						<div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
+						<div class="flex items-center flex-grow flex-shrink-0 flex-grow-0">
 							<div class="flex items-center justify-between w-full md:w-auto">
 								<a  >
 									<span class="sr-only">Workflow</span>
@@ -47,83 +50,27 @@
 								</a>
 							</div>
 						</div>
-						<div class="block ml-10 pr-4 space-x-8">
-							<a href="/" class="font-xl text-gray-500 dark:text-gray-300 dark:hover:text-gray-50">Product</a>
+						<div class="block ml-10 pr-4 space-x-8 w-full">
+							<!-- <a href="/" class="font-xl text-gray-500 dark:text-gray-300 dark:hover:text-gray-50">Product</a>
 
-							<a href="/" class="font-medium text-gray-500 dark:text-gray-300 hover:text-gray-50">Features</a>
+							<a href="/" class="font-medium text-gray-500 dark:text-gray-300 hover:text-gray-50">Features</a> -->
 
 							<!-- <a href="/" class="font-medium text-gray-500 hover:text-gray-900">Marketplace</a> -->
 
-							<a href="/" class="font-medium text-gray-500 dark:text-gray-300 hover:text-gray-50">Company</a>
-							{#if !$lucia}
-								<button on:click={handleLogin} class="font-medium text-red-600 hover:text-red-50">Log in</button>
-							{:else}
-								<button on:click={handleLogout} class="font-medium text-red-600 hover:text-red-50">Log out</button>
-							{/if}
+							<!-- <a href="/" class="font-medium text-gray-500 dark:text-gray-300 hover:text-gray-50">Company</a> -->
+							<div class="w-full flex flex-row justify-end">
+								{#if !$lucia}
+								<button on:click={handleLogin} class="font-medium text-red-600 hover:text-red-50 mr-10">Log in</button>
+									<button on:click={handleSignup} class="font-medium bg-red-600 py-3 px-5 rounded-md text-white hover:brightness-90">Sign up</button>
+								{:else}
+									<button on:click={handleLogout} class="font-medium text-red-600 hover:text-red-50">Log out</button>
+								{/if}
 
-							<!-- <a href="/signup" class="font-medium text-red-600 hover:text-red-500">Sign up</a> -->
+							</div>
+
 						</div>
 					</nav>
-				</div>
-
-				<!--
-            Mobile menu, show/hide based on menu open state.
-  
-            Entering: "duration-150 ease-out"
-              From: "opacity-0 scale-95"
-              To: "opacity-100 scale-100"
-            Leaving: "duration-100 ease-in"
-              From: "opacity-100 scale-100"
-              To: "opacity-0 scale-95"
-          -->
-				<div
-					class="absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
-				>
-					<div
-						class="rounded-lg shadow-md bg-white dark:bg-gray-900 ring-1 ring-black ring-opacity-5 overflow-hidden"
-					>
-						<div class="px-5 pt-4 flex items-center justify-between">
-							<div>
-								<img
-									class="h-8 w-auto"
-									src="https://tailwindui.com/img/logos/workflow-mark-red-600.svg"
-									alt=""
-								/>
-							</div>
-						</div>
-						<div class="px-2 pt-2 pb-3 space-y-1">
-							<a
-								 
-								class="block px-3 py-2 rounded-md text-base font-medium text-gray-500 dark:text-gray-300 dark:hover:bg-gray-50"
-								>Product</a
-							>
-
-							<a
-								 
-								class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-gray-900 dark:hover:bg-gray-50"
-								>Features</a
-							>
-
-							<a
-								 
-								class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-gray-900 dark:hover:bg-gray-50"
-								>Marketplace</a
-							>
-
-							<a
-								 
-								class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-gray-900 dark:hover:bg-gray-50"
-								>Company</a
-							>
-						</div>
-						<a
-							href="/auth/login"
-							class="block w-full px-5 py-3 text-center font-medium text-red-600 bg-gray-50 hover:bg-gray-100"
-						>
-							Log in
-						</a>
-					</div>
-				</div>
+				</div>	
 			</div>
 
 			<main
@@ -142,30 +89,28 @@
 					<div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
 						<div class="rounded-md shadow">
 							{#if $lucia}
-								<a
-									on:click={async () => {window.location.href = '/app/dashboard'}}
-
-									href="/app/dashboard"
-									class="select-none cursor-pointer font-bold w-full flex items-center justify-center px-8 py-3 border border-transparent text-base rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10"
+								<div
+									on:click={async () => goto('/app/dashboard')}
+									class="select-none cursor-pointer font-bold w-full flex items-center justify-center px-8 py-3 border border-transparent text-base rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10 no-underline"
 								>
 									Get started
-								</a>
+								</div>
 							{:else}
 								<div
 									on:click={handleLogin}
-									class="cursor-pointer font-bold w-full flex items-center justify-center px-8 py-3 border border-transparent text-base rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10"
+									class="cursor-pointer font-bold w-full flex items-center justify-center px-8 py-3 border border-transparent text-base rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10 select-none no-underline"
 								>
 									Login
 							</div>
 							{/if}
 						</div>
 						<div class="mt-3 sm:mt-0 sm:ml-3">
-							<a
+							<div
 								 
-								class="font-bold w-full flex items-center justify-center px-8 py-3 border border-transparent text-base rounded-md text-red-700 bg-red-100 dark:bg-white hover:bg-red-200 md:py-4 md:text-lg md:px-10"
+								class="font-bold w-full flex items-center justify-center px-8 py-3 border border-transparent text-base rounded-md text-red-700 bg-red-100 dark:bg-white dark:hover:brightness-90 hover:bg-red-200 md:py-4 md:text-lg md:px-10 cursor-pointer select-none no-underline"
 							>
-								Learn more
-							</a>
+								Roadmap
+							</div>
 						</div>
 					</div>
 				</div>

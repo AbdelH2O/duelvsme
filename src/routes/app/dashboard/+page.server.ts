@@ -9,10 +9,8 @@ export const load = async ({ parent }: LoadEvent) =>  {
 		if (!lucia) {
 			throw error(401 ,'Not authenticated.');
 		}
-		await client.connect();	
 		const isQueued = await client.hExists('elo', lucia.user.username);
 		console.log('isQueues:', isQueued);
-		await client.disconnect();
 		return {
 			isQueued: isQueued,
 		};

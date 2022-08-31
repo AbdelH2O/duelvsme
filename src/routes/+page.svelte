@@ -6,6 +6,6 @@
 
 </script>
 <Hero/>
-<Split />
+<!-- <Split />
 <Features />
-<Footer />
+<Footer /> -->

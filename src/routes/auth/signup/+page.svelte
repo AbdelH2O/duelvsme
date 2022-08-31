@@ -1,15 +1,20 @@
 <script lang="ts">
-import supabase from "$lib/utils/supabase";
-import { supabase_key } from "$lib/stores/supabase";
+  import dvsme from "../../../assets/duelvsme.svg";
+  import supabase from "$lib/utils/supabase";
+  import { supabase_key } from "$lib/stores/supabase";
+  import { goto } from "$app/navigation";
+  import { Loader, Button } from "agnostic-svelte";
+  import login from "../../../assets/login.jpg";
 
   let username: string = "";
   let email: string = "";
   let password: string = "";
 
   let error: string = "";
+  let loading: boolean = false;
 
-  const signup = async (e: CustomEvent) => {
-    e.preventDefault();
+  const signup = async (e: MouseEvent) => {
+    loading = true;
     error = "";
     const response = await fetch("/api/signup", {
       method: "POST",
@@ -28,23 +33,24 @@ import { supabase_key } from "$lib/stores/supabase";
     }
     const result = await response.json();
     error = result.error;
+    loading = false;
   }
 
+  const handleLogin = () => {
+		goto('/auth/login');
+	};
+
 </script>
-<div class="min-h-full flex">
+<div class="h-screen flex">
     <div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
       <div class="mx-auto w-full max-w-sm lg:w-96">
         <div>
-          <img class="h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
-          <h2 class="mt-6 text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
-          <p class="mt-2 text-sm text-gray-600">
-            Or
-            <a href="/" class="font-medium text-indigo-600 hover:text-indigo-500"> start your 14-day free trial </a>
-          </p>
+          <img on:click={() => goto('/')} class="h-20 w-auto cursor-pointer" src={dvsme} alt="Workflow">
+          <h2 class="mt-6 text-3xl font-extrabold text-white">Create your account</h2>
         </div>
   
         <div class="mt-8">
-          <div>
+          <!-- <div>
             <div>
               <p class="text-sm font-medium text-gray-700">Sign in with</p>
   
@@ -86,43 +92,55 @@ import { supabase_key } from "$lib/stores/supabase";
                 <span class="px-2 bg-white text-gray-500"> Or continue with </span>
               </div>
             </div>
-          </div>
+          </div> -->
   
           <div class="mt-6">
             <div class="space-y-6">
               <div>
-                <label for="email" class="block text-sm font-medium text-gray-700"> Username </label>
+                <label for="email" class="block text-sm font-medium text-white"> Username </label>
                 <div class="mt-1">
-                  <input bind:value={username} id="username" name="username" type="username" autocomplete="username" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                  <input bind:value={username} id="username" name="username" type="username" autocomplete="username" required class="appearance-none block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm focus:ring-2 bg-gray-600">
                 </div>
               </div>
               <div>
-                <label for="email" class="block text-sm font-medium text-gray-700"> Email address </label>
+                <label for="email" class="block text-sm font-medium text-white"> Email address </label>
                 <div class="mt-1">
-                  <input bind:value={email} id="email" name="email" type="email" autocomplete="email" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                  <input bind:value={email} id="email" name="email" type="email" autocomplete="email" required class="appearance-none block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm focus:ring-2 bg-gray-600">
                 </div>
               </div>
   
               <div class="space-y-1">
-                <label for="password" class="block text-sm font-medium text-gray-700"> Password </label>
+                <label for="password" class="block text-sm font-medium text-white"> Password </label>
                 <div class="mt-1">
-                  <input bind:value={password} id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                  <input bind:value={password} id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none block w-full px-3 py-2 border border-gray-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm focus:ring-2 bg-gray-600">
                 </div>
               </div>
   
               <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                  <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                <!-- <div class="flex items-center">
+                  <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded">
                   <label for="remember-me" class="ml-2 block text-sm text-gray-900"> Remember me </label>
-                </div>
+                </div> -->
   
                 <div class="text-sm">
-                  <a href="/" class="font-medium text-indigo-600 hover:text-indigo-500"> Forgot your password? </a>
+                  <p>
+                    {"Already have an account?  "}
+                    <b on:click={handleLogin} class="font-medium text-red-600 hover:text-red-500 cursor-pointer select-none">
+                      {"  Login here!"}
+                    </b>
+                  </p>
                 </div>
               </div>
   
-              <div>
-                <button on:click={signup} class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign in</button>
+              <div class="flex flex-col items-stretch">
+                <Button isRounded isDisabled={loading} on:click={signup} mode="primary" size="large">
+                  {#if !loading}
+                    Signup
+                  {:else}
+                    <Loader />
+                  {/if}
+
+                </Button>
               </div>
               <p>
                 <span class="text-red-500">{error}</span>
@@ -133,6 +151,6 @@ import { supabase_key } from "$lib/stores/supabase";
       </div>
     </div>
     <div class="hidden lg:block relative w-0 flex-1">
-      <img class="absolute inset-0 h-full w-full object-cover" src="https://images.unsplash.com/photo-1505904267569-f02eaeb45a4c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1908&q=80" alt="">
+      <img class="absolute inset-0 h-full w-full object-cover" src={login} alt="">
     </div>
   </div>

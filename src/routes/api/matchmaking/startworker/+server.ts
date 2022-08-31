@@ -133,7 +133,6 @@ export const POST = async () => {
     });
     await (await job).start();
     await client.set('back', 'true');
-    await client.disconnect();
     return json({
         message: "ok"
     });
