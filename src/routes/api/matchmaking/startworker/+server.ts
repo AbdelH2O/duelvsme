@@ -8,13 +8,7 @@ import Cf from "cf-wrapper";
 import client from "$lib/utils/redisClient";
 
 export const POST = async () => {
-    try {
-        if (!(await client.ping())){
-            await client.connect();
-        }
-    } catch (e) {
-        console.log(e);
-    }
+    await client.connect();
     const started = await client.get('back');
     if (started === 'true') {
         return json({
