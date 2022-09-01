@@ -28,7 +28,7 @@
 			class="relative z-10 bg-white dark:bg-gray-900 sm:pb-16 md:pb-20 max-w-2xl w-full pb-28 xl:pb-32 h-screen"
 		>
 			<svg
-				class="fill-white dark:fill-gray-900 block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2"
+				class="fill-white dark:fill-gray-900 md:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2 hidden"
 				viewBox="0 0 100 100"
 				preserveAspectRatio="none"
 				aria-hidden="true"
@@ -117,7 +117,7 @@
 			</main>
 		</div>
 	</div>
-	<div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+	<div class="absolute inset-y-0 right-0 w-1/2">
 		<img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src={laptop} alt="" />
 	</div>
 </div>
