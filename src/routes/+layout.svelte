@@ -30,19 +30,6 @@
 	});
 </script>
 
-<svelte:head>
-  <link rel="icon" type="image/svg" href={ico} />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="keywords" content="Duelvsme, lockout, competitive programming">
-  <meta name="application-name" content="Duelvsme" />
-  <meta name="msapplication-TileImage" content={ico} />
-  <meta name="description" content="Level up your programming skills with multiple types of coding duels!" />
-  <meta name="author" content="@AbdelH2O">
-  <meta property="og:type" content="website">
-  <meta property="og:description"
-        content="Take on the challenge and face people in 1vs1 coding duels! Sign up today and join the fun!">
-  <meta property="og:image" content={ico}>
-</svelte:head>
 <html lang="en" class="dark">
   <!-- <div class="fixed right-4 top-4 h-[2.4rem] w-[2.5rem] z-10">
     <button
