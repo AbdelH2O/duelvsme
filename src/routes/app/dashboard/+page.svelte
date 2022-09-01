@@ -4,6 +4,7 @@
 	import lockout from '../../../assets/lockout.svg';
 	import { getSession } from '@abdelh2o/lucia-sveltekit/client';
 	import supabase from '$lib/utils/supabase';
+	import { goto } from '$app/navigation';
 
 	export let data: {
 		isQueued: boolean;
@@ -11,7 +12,6 @@
 	let gameFound = false, opponent = '', counter = 0;
 	
 	let st = 'Matchmaking in progress.', fact='';
-	const categories = ['trivia', 'math', 'date', 'year'];
 	fetch(`/api/random`)
 		.then(res => res.json())
 		.then(text => {
@@ -40,14 +40,14 @@
 			);
 		}, 10000);
 		sub = supabase.from('match').on('*', (data) => {
-			console.log(data);
 			gameFound = true;
 			opponent = $session.user.username === data.new.contestant_1 ? data.new.contestant_2 : data.new.contestant_1;
 			counter = 5;
 			setInterval(() => {
-				counter--;
 				if (counter == 0) {
-					window.location.href = '/app/game/' + data.new.id;
+					goto('/app/game/' + data.new.id);
+				} else {
+					counter--;
 				}
 			}, 1000);
 		}).subscribe();
@@ -65,21 +65,19 @@
 			},
 		});
 		data.isQueued = true;
-		console.log($session?.access_token || "");
 		supabase.auth.setAuth($session?.access_token || "");
-		sub = supabase.from('match').on('*', (data) => {
-			console.log(data);
+		sub = supabase.from('match').on('INSERT', (data) => {
 			gameFound = true;
 			opponent = $session.user.username === data.new.contestant_1 ? data.new.contestant_2 : data.new.contestant_1;
 			counter = 5;
 			setInterval(() => {
-				counter--;
 				if (counter == 0) {
-					window.location.href = '/app/game/' + data.new.id;
+					goto('/app/game/' + data.new.id);
+				} else {
+					counter--;
 				}
 			}, 1000);
 		}).subscribe();
-		console.log(supabase.getSubscriptions());
 		setInterval(() => {
 			st += ".";
 			
