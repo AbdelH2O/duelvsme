@@ -1,11 +1,12 @@
 <script lang="ts">
     import supabase from '$lib/utils/supabase'
     import { getSession } from '@abdelh2o/lucia-sveltekit/client';
+    import { browser } from '$app/environment';
 
     const session = getSession();
 
-    setInterval(() => {
-        supabase.auth.setAuth($session?.access_token);
-    }, 1000);
+    session.subscribe((val) => {
+        supabase.auth.setAuth(val?.access_token);
+    });
 </script>
 <slot></slot>

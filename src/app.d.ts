@@ -13,6 +13,7 @@ declare namespace Lucia {
 		username: string;
 		email: string;
 		rating: number;
+		match: string;
 		created_at?: string;
 	}
 }
