@@ -328,14 +328,14 @@
     "@vercel/nft" "^0.22.0"
     esbuild "^0.14.48"
 
-"@sveltejs/kit@1.0.0-next.431":
-  version "1.0.0-next.431"
-  resolved "https://registry.yarnpkg.com/@sveltejs/kit/-/kit-1.0.0-next.431.tgz#56e6657a676076d232f09d6a9e3d7a038fd90076"
-  integrity sha512-kK3FCw0cBB/nqjgV8G9W5ctDxemQpkqxidsKVr3aEXSExm4mdM3MYgNf6y2OuvOH9zLD+/t6DAxQQC/RPxuz8Q==
+"@sveltejs/kit@^1.0.0-next.460":
+  version "1.0.0-next.460"
+  resolved "https://registry.yarnpkg.com/@sveltejs/kit/-/kit-1.0.0-next.460.tgz#772ae20ff8d4bc19357ddb9b182187d6ec43d816"
+  integrity sha512-bwDkwzEN72+1K5FXqBQGrYOwyA6V5sSSec/A6qXMTfh4uycFTiIQh/e2ki3pxfG0SwijrUo43FEbdKLyBiuDgQ==
   dependencies:
-    "@sveltejs/vite-plugin-svelte" "^1.0.1"
+    "@sveltejs/vite-plugin-svelte" "^1.0.3"
     cookie "^0.5.0"
-    devalue "^2.0.1"
+    devalue "^3.1.2"
     kleur "^4.1.4"
     magic-string "^0.26.2"
     mime "^3.0.0"
@@ -346,7 +346,7 @@
     tiny-glob "^0.2.9"
     undici "^5.8.1"
 
-"@sveltejs/vite-plugin-svelte@^1.0.1":
+"@sveltejs/vite-plugin-svelte@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@sveltejs/vite-plugin-svelte/-/vite-plugin-svelte-1.0.3.tgz#f760677e03074b9f42335dbde33ba988c95d1e67"
   integrity sha512-0Qu51m2W9RBlxWPp8i31KJpnqmjWMOne8vAzgmOX6ZM9uX+/RAv6BNhEMcNoP5MsyLjyW1ZTCiJoaZZ5EeqpFg==
@@ -974,10 +974,10 @@ detective@^5.2.1:
     defined "^1.0.0"
     minimist "^1.2.6"
 
-devalue@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/devalue/-/devalue-2.0.1.tgz#5d368f9adc0928e47b77eea53ca60d2f346f9762"
-  integrity sha512-I2TiqT5iWBEyB8GRfTDP0hiLZ0YeDJZ+upDxjBfOC2lebO5LezQMv7QvIUTzdb64jQyAKLf1AHADtGN+jw6v8Q==
+devalue@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/devalue/-/devalue-3.1.2.tgz#412497b63d2dc0beba2179723475c2ef4c2b1b31"
+  integrity sha512-wUXbMGPAsBx79UF14nsWSsJlC7RcwPlf2w3bGheODWxKx57e9n68ceoijbqCJCEbjyo0S79nqfPwQgyijwLaqw==
 
 didyoumean@^1.2.2:
   version "1.2.2"

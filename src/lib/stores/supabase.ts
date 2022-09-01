@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import { browser } from "$app/env";
+import { browser } from "$app/environment";
 
 const key: string = browser ? localStorage.getItem('supabase_key') || "" : "";
 export const supabase_key = writable<string>(key);

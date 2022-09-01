@@ -1,6 +1,6 @@
 import lucia from "@abdelh2o/lucia-sveltekit";
 import supabase from "@abdelh2o/adapter-supabase";
-import { dev } from "$app/env";
+import { dev } from "$app/environment";
 
 const url: string = import.meta.env.VITE_SUPABASE_URL || "http://localhost:3000";
 const secret: string = import.meta.env.VITE_SUPABASE_SECRET || "";
