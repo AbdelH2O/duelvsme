@@ -110,6 +110,9 @@
         }
     }
 </script>
+<svelte:head>
+    <title>Lockout vs { ($session.user.username === data.game[0].contestant_1 ? data.game[0].contestant_2 : data.game[0].contestant_1)}</title>
+</svelte:head>
 <Toasts portalRootSelector="body" horizontalPosition="end" verticalPosition="top">
     <Toast isOpen={isOpen} type="dark">
         {message}

@@ -106,12 +106,14 @@
 			);
 		}, 10000);
 	}
-	const func = async (e: MouseEventHandler) => {
+	const func = async (e: MouseEvent) => {
     	e.preventDefault();
 		joinMatchmaking();
 	}
 </script>
-
+<svelte:head>
+    <title>Dashboard</title>
+</svelte:head>
 <div class="h-full max-w-[108rem] pt-12 px-14">
 	{#if data.isQueued}
 		{#if !gameFound}

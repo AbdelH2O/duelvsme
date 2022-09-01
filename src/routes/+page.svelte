@@ -5,6 +5,9 @@
     import Footer from "$lib/components/Footer.svelte";
 
 </script>
+<svelte:head>
+    <title>Duelvsme</title>
+</svelte:head>
 <Hero/>
 <!-- <Split />
 <Features />
