@@ -7,9 +7,10 @@
 	import { goto } from '$app/navigation';
 
 	export let data: {
+		match: string | null;
 		isQueued: boolean;
 	};
-	let gameFound = false, opponent = '', counter = 0;
+	let gameFound = false, opponent = '', counter = 0, rating = '';
 	
 	let st = 'Matchmaking in progress.', fact='';
 	fetch(`/api/random`)
@@ -42,6 +43,7 @@
 		sub = supabase.from('match').on('*', (data) => {
 			gameFound = true;
 			opponent = $session.user.username === data.new.contestant_1 ? data.new.contestant_2 : data.new.contestant_1;
+			rating = $session.user.username === data.new.contestant_2 ? data.new.ratings[0] : data.new.ratings[1];
 			counter = 5;
 			setInterval(() => {
 				if (counter == 0) {
@@ -69,6 +71,7 @@
 		sub = supabase.from('match').on('INSERT', (data) => {
 			gameFound = true;
 			opponent = $session.user.username === data.new.contestant_1 ? data.new.contestant_2 : data.new.contestant_1;
+			rating = $session.user.username === data.new.contestant_1 ? data.new.ratings[0] : data.new.ratings[1];
 			counter = 5;
 			setInterval(() => {
 				if (counter == 0) {
@@ -113,7 +116,7 @@
     <title>Dashboard</title>
 </svelte:head>
 <div class="h-full max-w-[108rem] pt-12 px-14">
-	{#if data.isQueued && $session?.user.match === null}
+	{#if data.isQueued}
 		{#if !gameFound}
 			<div class="flex flex-col items-center">
 				<div class="h-max flex flex-col justify-between mx-auto mt-4">
@@ -136,16 +139,27 @@
 				</div>
 			</div>
 		{:else}
-			<div class="text-center flex flex-col h-full">
-				<div>
-					<img class="inline-block h-24 w-24 rounded-full" src={`https://avatars.dicebear.com/api/identicon/${opponent}.svg`} alt="">
+			<div class="text-center flex flex-row justify-center">
+				<div class="bg-gray-800 border-gray-600 border-2 border-solid w-3/4 flex flex-col h-full py-6 rounded-md">
+					<div class="flex flex-row justify-center w-full">
+						<div class="bg-red-700 w-fit rounded-md p-8 px-20">
+							<img class="inline-block h-24 w-24 rounded-full bg-white" src={`https://avatars.dicebear.com/api/identicon/${opponent}.svg`} alt="">
+							<p class="pt-4 font-bold text-3xl">
+								{opponent}
+								AbdelH2O
+							</p>
+							<p class="text-gray-200">
+								Rating: {rating}
+							</p>
+						</div>
+					</div>
+					<h1 class="text-black dark:text-gray-50 text-5xl mt-14 select-none">
+						Lockout is starting in {counter}
+					</h1>
+					<!-- <h1 class="text-black dark:text-gray-50 text-5xl mt-14 select-none">
+						redirecting in {counter}
+					</h1> -->
 				</div>
-				<h1 class="text-black dark:text-gray-50 text-5xl mt-14 select-none">
-					{opponent} is waiting for you.
-				</h1>
-				<h1 class="text-black dark:text-gray-50 text-5xl mt-14 select-none">
-					redirecting in {counter}
-				</h1>
 			</div>
 		{/if}
 	{:else}

@@ -58,6 +58,7 @@ interface Game {
 	scores: number[];
 	start_time: string;
 	who_solved: number[];
+	elos: string[];
 }
 
 interface Submission {

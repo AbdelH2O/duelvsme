@@ -4,6 +4,7 @@
     import { getSession } from '@abdelh2o/lucia-sveltekit/client';
     import Monaco from '$lib/components/monaco.svelte';
     import lang, { editor } from '$lib/stores/lang';
+    import game from '$lib/stores/game';
     import { Select, Button, Loader, Table, Toasts, Toast } from '@abdelh2o/agnostic-svelte';
     import { onMount } from 'svelte';
     import { languageOptions } from '$lib/enums/languages';
@@ -36,6 +37,8 @@
         game: Game[],
         statements: string[],
     };
+
+    $: game.set(data.game[0]);
 
     const session = getSession();
 
@@ -127,10 +130,10 @@
             <table class="p-6 bg-gray-800 w-full border-solid border-2 border-t-0 border-gray-600 rounded-b-md">
                 <tr class="text-center rounded-md">
                     <td>
-                        { data.game[0].scores[myIndex-1] }
+                        { $game.scores[myIndex-1] }
                     </td>
                     <td>
-                        { data.game[0].scores[(myIndex + 1) %2] }
+                        { $game.scores[(myIndex) %2] }
                     </td>
                 </tr>
             </table>
@@ -153,10 +156,10 @@
                                 ${
                                     currentTab !== "A" ?
                                     (
-                                        data.game[0].who_solved[0] === 0 ?
+                                        $game.who_solved[0] === 0 ?
                                         "hover:bg-red-700 select-none cursor-pointer" : 
                                         (
-                                            data.game[0].who_solved[0] === myIndex ? 
+                                            $game.who_solved[0] === myIndex ? 
                                             "bg-green-700 select-none cursor-not-allowed" :
                                             "bg-black select-none cursor-not-allowed" 
                                         ) 
@@ -175,10 +178,10 @@
                                 ${
                                     currentTab !== "B" ?
                                     (
-                                        data.game[0].who_solved[1] === 0 ?
+                                        $game.who_solved[1] === 0 ?
                                         "hover:bg-red-700 select-none cursor-pointer" : 
                                         (
-                                            data.game[0].who_solved[1] === myIndex ? 
+                                            $game.who_solved[1] === myIndex ? 
                                             "bg-green-700 select-none cursor-not-allowed" :
                                             "bg-black select-none cursor-not-allowed" 
                                         ) 
@@ -197,10 +200,10 @@
                                 ${
                                     currentTab !== "C" ?
                                     (
-                                        data.game[0].who_solved[2] === 0 ?
+                                        $game.who_solved[2] === 0 ?
                                         "hover:bg-red-700 select-none cursor-pointer" : 
                                         (
-                                            data.game[0].who_solved[2] === myIndex ? 
+                                            $game.who_solved[2] === myIndex ? 
                                             "bg-green-700 select-none cursor-not-allowed" :
                                             "bg-black select-none cursor-not-allowed" 
                                         ) 
@@ -220,10 +223,10 @@
                                 ${
                                     currentTab !== "D" ?
                                     (
-                                        data.game[0].who_solved[3] === 0 ?
+                                        $game.who_solved[3] === 0 ?
                                         "hover:bg-red-700 select-none cursor-pointer" : 
                                         (
-                                            data.game[0].who_solved[3] === myIndex ? 
+                                            $game.who_solved[3] === myIndex ? 
                                             "bg-green-700 select-none cursor-not-allowed" :
                                             "bg-black select-none cursor-not-allowed" 
                                         ) 
@@ -242,10 +245,10 @@
                                 ${
                                     currentTab !== "E" ?
                                     (
-                                        data.game[0].who_solved[4] === 0 ?
+                                        $game.who_solved[4] === 0 ?
                                         "hover:bg-red-700 select-none cursor-pointer" : 
                                         (
-                                            data.game[0].who_solved[4] === myIndex ? 
+                                            $game.who_solved[4] === myIndex ? 
                                             "bg-green-700 select-none cursor-not-allowed" :
                                             "bg-black select-none cursor-not-allowed" 
                                         ) 

@@ -9,9 +9,11 @@ export const load = async ({ parent }: LoadEvent) =>  {
 		if (!lucia) {
 			throw error(401 ,'Not authenticated.');
 		}
+		const match = await client.hGet('match', lucia.user.username);
 		const isQueued = await client.hExists('elo', lucia.user.username);
-		console.log('isQueues:', isQueued);
+		console.log('isQueues:', match);
 		return {
+			match: match,
 			isQueued: isQueued,
 		};
 	} catch (err) {

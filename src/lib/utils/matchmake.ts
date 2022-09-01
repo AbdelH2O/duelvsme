@@ -8,7 +8,7 @@ function uuidv4() {
     );
   }
 
-const create_game = async (user1: string, user2: string, x: number) => {
+const create_game = async (user1: string, user2: string, x: number, elos: string[]) => {
     // Get random account for the set accounts
     // const account = await client.sRandMember('accounts') || 'username;password';
     const cl = new Cf('', '');
@@ -32,7 +32,8 @@ const create_game = async (user1: string, user2: string, x: number) => {
             problems: problems,
             start_time: new Date(Date.now() + 5000).toISOString(),
             duration: 45 * 60,
-            who_solved: [0, 0, 0, 0, 0]
+            who_solved: [0, 0, 0, 0, 0],
+            ratings: elos,
         });
 
         const resp = await supabase.from('user').update({
@@ -89,11 +90,15 @@ const matchmake = async () => {
             players_up[i - 1].score >= player1_lo &&
             players_up[i - 1].score <= player1_up
         ) {
+            const elos = [
+                await client.hGet('elo', player1.value) || '1500',
+                await client.hGet('elo', players_up[i - 1].value) || '1500'
+            ];
             const x = Math.min(
-                Math.round(parseInt(await client.hGet('elo', player1.value)|| '1500')/100) * 100,
-                Math.round(parseInt(await client.hGet('elo', players_up[i - 1].value) || '1500')) * 100
+                Math.round(parseInt(elos[0]|| '1500')/100) * 100,
+                Math.round(parseInt(elos[1] || '1500')) * 100
             );
-            await create_game(player1.value, players_up[i - 1].value, x);
+            await create_game(player1.value, players_up[i - 1].value, x, elos);
             console.log(player1.value, players_up[i - 1].value);
             await client.zRem('queue_upper', player1.value);
             await client.zRem('queue_lower', player1.value);
