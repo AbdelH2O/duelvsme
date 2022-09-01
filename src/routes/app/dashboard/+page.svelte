@@ -12,12 +12,12 @@
 	
 	let st = 'Matchmaking in progress.', fact='';
 	const categories = ['trivia', 'math', 'date', 'year'];
-	fetch(`http://numbersapi.com/random/${categories[Math.floor(Math.random() * categories.length)]}`)
-		.then(res => res.text())
+	fetch(`/api/random`)
+		.then(res => res.json())
 		.then(text => {
-			fact = text;
+			fact = text.text;
 		}).catch(err => {
-			fact = 'Error';
+			fact = err;
 		}
 	);
 	let sub;
@@ -30,12 +30,12 @@
 			}
 		} , 750);
 		setInterval(async () => {
-			await fetch(`http://numbersapi.com/random/${categories[Math.floor(Math.random() * categories.length)]}`)
-				.then(res => res.text())
+			await fetch(`/api/random`)
+				.then(res => res.json())
 				.then(text => {
-					fact = text;
+					fact = text.text;
 				}).catch(err => {
-					fact = 'Error';
+					fact = err;
 				}
 			);
 		}, 10000);
@@ -87,21 +87,21 @@
 				st = 'Matchmaking in progress';
 			}
 		} , 500);
-		fetch(`http://numbersapi.com/random/${categories[Math.floor(Math.random() * categories.length)]}`)
-			.then(res => res.text())
+		fetch(`/api/random`)
+			.then(res => res.json())
 			.then(text => {
-				fact = text;
+				fact = text.text;
 			}).catch(err => {
-				fact = 'Error';
+				fact = err;
 			}
 		);
 		setInterval(async () => {
-			await fetch(`http://numbersapi.com/random/${categories[Math.floor(Math.random() * categories.length)]}`)
-				.then(res => res.text())
+			await fetch(`/api/random`)
+				.then(res => res.json())
 				.then(text => {
-					fact = text;
+					fact = text.text;
 				}).catch(err => {
-					fact = 'Error';
+					fact = err;
 				}
 			);
 		}, 10000);
