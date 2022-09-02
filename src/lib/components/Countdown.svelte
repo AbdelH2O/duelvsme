@@ -28,5 +28,5 @@
 </script>
 
 <div class="countdown">
-    {Math.floor(time_left / 1000 / 60) % 60}:{Math.floor(time_left / 1000) % 60}
+    {Math.floor(time_left / 1000 / 60) % 60}:{Math.floor(time_left / 1000) % 60 < 10 ? "0" : ""}{Math.floor(time_left / 1000) % 60}
 </div>
