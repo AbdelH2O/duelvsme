@@ -13,7 +13,7 @@
 		isQueued: boolean;
 		game: Game;
 	};
-	let gameFound = false, opponent = '', counter = 0, rating = '', resuming = false;
+	let gameFound = false, opponent = '', counter = 0, rating = '', resuming = false, joining = false;
 	
 	let st = 'Matchmaking in progress.', fact='';
 	fetch(`/api/random`)
@@ -111,6 +111,7 @@
 		}, 10000);
 	}
 	const func = async (e: MouseEvent) => {
+		joining = true;
     	e.preventDefault();
 		joinMatchmaking();
 	}
@@ -155,7 +156,6 @@
 							<img class="inline-block h-24 w-24 rounded-full bg-white" src={`https://avatars.dicebear.com/api/identicon/${opponent}.svg`} alt="">
 							<p class="pt-4 font-bold text-3xl">
 								{opponent}
-								AbdelH2O
 							</p>
 							<p class="text-gray-200">
 								Rating: {rating}
@@ -172,25 +172,35 @@
 			</div>
 		{/if}
 	{:else}
+	{#if data.match === null}
 		<div>
 			<h1 class="text-black dark:text-gray-50 text-3xl">
 				Welcome back, {$session.user.username}
 			</h1>
 		</div>
-		{#if data.match === null}
 			<div class="h-max flex justify-between mx-auto mt-4">
 				<div
 					on:click={func}
-					class="cursor-pointer flex flex-col content-center ml-4 p-6 max-w-sm bg-gray-200 rounded-lg border border-gray-200 shadow-xl hover:bg-slate-300 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 items-center"
+					class={`${!joining ? "cursor-pointer" : ""}  flex flex-col content-center ml-4 p-6 max-w-sm bg-gray-200 rounded-lg border border-gray-200 shadow-xl hover:bg-slate-300 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 items-center`}
 				>
-					<img src={lockout} alt="lockout" class="h-min" />
-					<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">
-						Lockout Game
-					</h5>
-					<p class="font-normal text-gray-700 dark:text-gray-400 text-center">
-						Face off against an opponent in a 20-45mins lockout game and see who comes out on top. Ready
-						for the challenge?
-					</p>
+					{#if !joining}
+						<!-- <div> -->
+							<img src={lockout} alt="lockout" class="h-min" />
+							<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">
+								Lockout Game
+							</h5>
+							<p class="font-normal text-gray-700 dark:text-gray-400 text-center">
+								Face off against an opponent in a 20-45mins lockout game and see who comes out on top. Ready
+								for the challenge?
+							</p>
+						<!-- </div> -->
+					{:else}
+						<div class="h-full flex justify-center flex-col items-center w-screen">
+							<div class="top-1/2">
+								<Loader size="large" />
+							</div>
+						</div>
+					{/if}
 				</div>
 				<div
 					class="cursor-not-allowed brightness-50 flex flex-col content-center ml-4 p-6 max-w-sm bg-gray-200 rounded-lg border border-gray-200 shadow-xl dark:bg-gray-800 dark:border-gray-700 items-center"
@@ -329,7 +339,7 @@
 						Lockout in &nbsp; <Countdown start_date={data.game.start_time} duration={data.game.duration} />
 					</h1>
 					<div class="flex flex-row justify-center w-full">
-						<div class="bg-red-800 w-fit rounded-md p-8 px-20 border-2 border-solid border-red-600 mr-10">
+						<div class="w-fit rounded-md p-8 px-20 border-2 border-solid border-gray-500 mr-10">
 							<img class="inline-block h-24 w-24 rounded-full bg-white pointer-events-none" src={`https://avatars.dicebear.com/api/identicon/${$session?.user.username}.svg`} alt="">
 							<p class="pt-4 font-bold text-3xl select-none">
 								{$session.user.username}
@@ -338,7 +348,7 @@
 								Score: { $session.user.username === data.game.contestant_1 ? data.game.scores[0] : data.game.scores[1] }
 							</p>
 						</div>
-						<div class="bg-red-800 w-fit rounded-md p-8 px-20 border-2 border-solid border-red-600">
+						<div class="w-fit rounded-md p-8 px-20 border-2 border-solid border-gray-500">
 							<img class="inline-block h-24 w-24 rounded-full bg-white pointer-events-none" src={`https://avatars.dicebear.com/api/identicon/${$session.user.username === data.game.contestant_1 ? data.game.contestant_2 : data.game.contestant_1}.svg`} alt="">
 							<p class="pt-4 font-bold text-3xl select-none">
 								{$session.user.username === data.game.contestant_1 ? data.game.contestant_2 : data.game.contestant_1}
