@@ -15,7 +15,6 @@ export const POST: RequestHandler = async ({ request }) => {
     try {
         const user = await auth.validateRequest(request);
         const body = await request.json();
-        console.log(request.headers);
         const { 
             problem,
             language,
@@ -33,14 +32,14 @@ export const POST: RequestHandler = async ({ request }) => {
             throw error (400, 'Problem already solved');
         }
         const account = (await client.sRandMember('accounts'))?.split(';') || '';
-        const cl = new Cf(account[0], account[1]);
+        const cl = new Cf(account[0].trim(), account[1]);
         await cl.login();
         const submission = await cl.submit(
             problem.split('/')[0],
             problem.split('/')[1],
             language,
             code,
-        );
+        );        
         if(!submission) {
             throw error(500, 'Failed to submit.');
         }

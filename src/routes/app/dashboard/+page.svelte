@@ -152,7 +152,7 @@
 			<div class="text-center flex flex-row justify-center">
 				<div class="bg-gray-800 border-gray-600 border-2 border-solid w-3/4 flex flex-col h-full py-6 rounded-md">
 					<div class="flex flex-row justify-center w-full">
-						<div class="bg-red-700 w-fit rounded-md p-8 px-20">
+						<div class="bg-gray-700 w-fit rounded-md p-8 px-20">
 							<img class="inline-block h-24 w-24 rounded-full bg-white" src={`https://avatars.dicebear.com/api/identicon/${opponent}.svg`} alt="">
 							<p class="pt-4 font-bold text-3xl">
 								{opponent}
