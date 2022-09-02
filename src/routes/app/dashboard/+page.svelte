@@ -339,16 +339,16 @@
 						Lockout in &nbsp; <Countdown start_date={data.game.start_time} duration={data.game.duration} />
 					</h1>
 					<div class="flex flex-row justify-center w-full">
-						<div class="w-fit rounded-md p-8 px-20 border-2 border-solid border-gray-500 mr-10">
+						<div class="w-fit rounded-md p-8 px-20 bg-gray-700 mr-10">
 							<img class="inline-block h-24 w-24 rounded-full bg-white pointer-events-none" src={`https://avatars.dicebear.com/api/identicon/${$session?.user.username}.svg`} alt="">
 							<p class="pt-4 font-bold text-3xl select-none">
-								{$session.user.username}
+								{$session.user.username} (You)
 							</p>
 							<p class="text-gray-200 select-none">
 								Score: { $session.user.username === data.game.contestant_1 ? data.game.scores[0] : data.game.scores[1] }
 							</p>
 						</div>
-						<div class="w-fit rounded-md p-8 px-20 border-2 border-solid border-gray-500">
+						<div class="w-fit rounded-md p-8 px-20 bg-gray-700">
 							<img class="inline-block h-24 w-24 rounded-full bg-white pointer-events-none" src={`https://avatars.dicebear.com/api/identicon/${$session.user.username === data.game.contestant_1 ? data.game.contestant_2 : data.game.contestant_1}.svg`} alt="">
 							<p class="pt-4 font-bold text-3xl select-none">
 								{$session.user.username === data.game.contestant_1 ? data.game.contestant_2 : data.game.contestant_1}
