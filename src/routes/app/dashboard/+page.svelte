@@ -177,7 +177,7 @@
 				Welcome back, {$session.user.username}
 			</h1>
 		</div>
-		{#if $session.user.match === null}
+		{#if data.match === null}
 			<div class="h-max flex justify-between mx-auto mt-4">
 				<div
 					on:click={func}
