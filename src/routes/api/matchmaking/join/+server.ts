@@ -7,6 +7,11 @@ import client from "$lib/utils/redisClient";
 
 export const POST: RequestHandler = async ({ request }) => {
     try {
+        await client.connect();
+    } catch(err) {
+        console.log(err);
+    }
+    try {
         const user = await auth.validateRequest(request);
         const key = await client.hGet('sockets', user.user.username);
         console.log(key);

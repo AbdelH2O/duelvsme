@@ -8,6 +8,11 @@ import type { Error } from '@abdelh2o/lucia-sveltekit';
 
 export const POST: RequestHandler = async ({ request }) => {
     try {
+        await client.connect();
+    } catch(err) {
+        console.log(err);
+    }
+    try {
         const user = await auth.validateRequest(request);
         const body = await request.json();
         console.log(request.headers);

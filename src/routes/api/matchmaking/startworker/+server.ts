@@ -11,6 +11,10 @@ import client from "$lib/utils/redisClient";
 export const POST = async () => {
     try {
         await client.connect();
+    } catch (e) {
+        console.log(e);
+    }
+    try {
         const started = await client.get('back');        
         if (started === 'true') {
             return json({
