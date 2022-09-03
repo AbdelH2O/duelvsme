@@ -4,7 +4,7 @@
   import { Lucia } from "@abdelh2o/lucia-sveltekit/client";
   import supabase from '$lib/utils/supabase';
   import { browser } from '$app/environment';
-  import ico from '../assets/duelvsme.svg'
+  import { SvelteToast } from '@zerodevx/svelte-toast'
   import '@abdelh2o/agnostic-svelte/css/common.min.css';
   import '../app.css';
 
@@ -31,6 +31,7 @@
 </script>
 
 <html lang="en" class="dark">
+  <SvelteToast />
   <!-- <div class="fixed right-4 top-4 h-[2.4rem] w-[2.5rem] z-10">
     <button
       id="theme-toggle"

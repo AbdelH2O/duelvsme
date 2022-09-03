@@ -1,25 +1,23 @@
 <script lang="ts">
+    import { intervalToDuration, parseISO, addSeconds, subMinutes, addMinutes } from 'date-fns';
+    
     export let start_date: string;
     export let duration: number;
+    export const ssr = false;
 
     // make a countdown timer that counts down from the start date for the duration
 
     let timer: ReturnType<typeof setInterval>;
-    let time_left: number;
+    let diff: Duration = {
+        minutes: 0,
+        seconds: 0,
+    };
 
     function update_timer() {
-        const now = new Date();
-        const start = new Date(start_date);
-        const end = new Date(start_date);
-        end.setSeconds(end.getSeconds() + duration);
-
-        if (now < start) {
-            time_left = start.getTime() - now.getTime();
-        } else if (now < end) {
-            time_left = end.getTime() - now.getTime();
-        } else {
-            time_left = 0;
-        }
+        const dif = new Date().getTimezoneOffset();
+        const now = dif > 0 ? subMinutes(new Date(), dif) : addMinutes(new Date(), dif);
+        const end = addSeconds(parseISO(start_date), duration);
+        diff = intervalToDuration({ start: now, end });
     }
 
     $: update_timer();
@@ -28,5 +26,5 @@
 </script>
 
 <div class="countdown">
-    {Math.floor(time_left / 1000 / 60) % 60}:{Math.floor(time_left / 1000) % 60 < 10 ? "0" : ""}{Math.floor(time_left / 1000) % 60}
+    {diff.minutes}:{diff.seconds < 10 ? "0" : ""}{diff.seconds}
 </div>
