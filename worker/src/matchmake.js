@@ -8,14 +8,14 @@ function uuidv4() {
     );
   }
 
-const create_game = async (user1: string, user2: string, x: number, elos: string[]) => {
+const create_game = async (user1, user2, x, elos) => {
     // Get random account for the set accounts
     // const account = await client.sRandMember('accounts') || 'username;password';
     const cl = new Cf('', '');
     try {
-        const problems: string[] = [];
+        const problems = [];
         for (let i = 0; i < 500; i+=100) {
-            const problem: Problem = JSON.parse(await client.sRandMember(`${x+i}`) || '{}');
+            const problem = JSON.parse(await client.sRandMember(`${x+i}`) || '{}');
             const statement = await cl.getProblemStatement(problem.contestId, problem.index);
             console.log(statement);
             await client.hSet('problems', `${problem.contestId}/${problem.index}`, statement);

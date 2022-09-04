@@ -3,9 +3,7 @@ import Cf from 'cf-wrapper';
 
 const checkSubmissions = async () => {
     const cl = new Cf();
-    const submissions = (await supabase.from('submissions').select('*').filter('processed', 'eq', false)) as {
-        data: Submission[],
-    };
+    const submissions = (await supabase.from('submissions').select('*').filter('processed', 'eq', false));
     console.log('submissions:', submissions);
     submissions.data.forEach(async (sub) => {
         
@@ -17,9 +15,7 @@ const checkSubmissions = async () => {
             const match = await supabase
                 .from('match')
                 .select('problems, who_solved, contestant_1')
-                .filter('id', 'eq', sub.match) as {
-                    data: Game[],
-                };
+                .filter('id', 'eq', sub.match);
             const who_solved = match.data[0].who_solved;
             who_solved[match.data[0].problems.indexOf(sub.problem)] = match.data[0].contestant_1 === sub.username ? 1 : 2;            
             const resp = await supabase.from('match').update({
