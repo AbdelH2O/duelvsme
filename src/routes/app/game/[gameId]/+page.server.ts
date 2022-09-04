@@ -25,7 +25,7 @@ export const load = async ({ params, parent }: LoadEvent) =>  {
     
     const now = dif > 0 ? subMinutes(new Date(), dif) : addMinutes(new Date(), dif);
     // console.log(formatISO(new Date().getTime()), formatISO(now.getTime()));
-    console.log(now.getTime()/1000 >= addSeconds(parseISO(game.data[0].start_time), 2700).getTime()/1000);
+    // console.log(now.getTime()/1000 >= addSeconds(parseISO(game.data[0].start_time), 2700).getTime()/1000);
     
     if (addSeconds(parseISO(game.data[0].start_time), 2700).getTime() <= now.getTime()) {
         throw redirect(302, "/app/dashboard");
@@ -33,8 +33,7 @@ export const load = async ({ params, parent }: LoadEvent) =>  {
     const statements = await supabase
         .from('problems')
         .select('*')
-        .filter('id', 'in', game.data[0].problems);
-    console.log(statements);
+        .filter('id', 'in', `(${game.data[0].problems})`);
         
     // const statements: string[] = [
     //     await client.hGet('problems', game.data[0].problems[0]) || "",
@@ -45,6 +44,6 @@ export const load = async ({ params, parent }: LoadEvent) =>  {
     // ];
     return {
         game: game.data,
-        statements: statements.data,
+        statements: statements.data?.map((s) => s.statement) || [],
     };
 }
