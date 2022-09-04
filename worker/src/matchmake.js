@@ -1,5 +1,5 @@
-import client from './redisClient';
-import supabase from './utilitySupabase';
+import client from './redisClient.js';
+import supabase from './utilitySupabase.js';
 import Cf from 'cf-wrapper';
 
 function uuidv4() {

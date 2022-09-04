@@ -1,6 +1,6 @@
 import * as Bull from 'bull';
-import matchmake from './matchmake';
-import checkSubmissions from './checkSubmissions';
+import matchmake from './matchmake.js';
+import checkSubmissions from './checkSubmissions.js';
 // console.log(Bull.default);
 
 

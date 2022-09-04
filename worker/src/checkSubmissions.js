@@ -1,4 +1,4 @@
-import supabase from './utilitySupabase';
+import supabase from './utilitySupabase.js';
 import Cf from 'cf-wrapper';
 
 const checkSubmissions = async () => {
