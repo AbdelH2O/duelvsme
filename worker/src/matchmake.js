@@ -64,11 +64,11 @@ const update_scores = async () => {
 }
 
 const matchmake = async () => {
-    // try {
-    //     await client.connect();
-    // } catch(err) {
-    //     console.log(err);
-    // }
+    try {
+        await client.connect();
+    } catch(err) {
+        console.log(err);
+    }
     await update_scores();
     const { members: players_up } = await client.zScan('queue_upper', 0);
     console.log(players_up);
