@@ -17,7 +17,7 @@ export const load = async ({ parent }: LoadEvent) =>  {
 		}
 		const match = await client.hGet('match', lucia.user.username);
 		const isQueued = await client.hExists('elo', lucia.user.username);
-		console.log('isQueues:', match);
+		// console.log('isQueues:', isQueued);
 		if (match) {
 			const { data: matchData, error: matchError } = await supabase
 				.from('match')
@@ -26,6 +26,8 @@ export const load = async ({ parent }: LoadEvent) =>  {
 			if (matchError) {
 				throw error(500, matchError.message);
 			}
+			// console.log('matchData:', matchData);
+			
 			if (matchData) {
 				return {
 					match: match,

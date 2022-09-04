@@ -15,32 +15,35 @@
     import CountDown from '$lib/components/Countdown.svelte';
 import { goto } from '$app/navigation';
 
-    toast.push('Yo!', {
-        theme: {
-            '--toastBackground': '#15803c',
-            '--toastBarBackground': '#0e5227',
-        }
-    });
-    toast.push('Yo!', {
-        theme: {
-            '--toastBackground': '#B12E2E',
-            '--toastBarBackground': '#7f1d1d',
-        }
-    });
-    diff.subscribe((v) => {
-        console.log(v);
-        if (v.minutes === 0 && v.seconds === 0) {
-            toast.push('Time is up!', {
-                theme: {
-                    '--toastBackground': '#B12E2E',
-                    '--toastBarBackground': '#7f1d1d',
-                }
-            });
-        }
-        goto('/app/dashboard');
-    });
-
+    // toast.push('Yo!', {
+    //     theme: {
+    //         '--toastBackground': '#15803c',
+    //         '--toastBarBackground': '#0e5227',
+    //     }
+    // });
+    // toast.push('Yo!', {
+    //     theme: {
+    //         '--toastBackground': '#B12E2E',
+    //         '--toastBarBackground': '#7f1d1d',
+    //     }
+    // });
+    
     onMount(() => {
+        let init = false;
+        diff.subscribe((v) => {
+            // console.log(v);
+            if (v.minutes === 0 && v.seconds === 0 && init) {
+                toast.push('Time is up!', {
+                    theme: {
+                        '--toastBackground': '#B12E2E',
+                        '--toastBarBackground': '#7f1d1d',
+                    }
+                });
+                goto('/app/dashboard');
+            } else {
+                init = true;
+            }
+        });
         let script = document.createElement('script');
         script.src = "https://cdn-mathjax.codeforces.com/MathJax.js?config=TeX-AMS_HTML-full";
         document.head.append(script);   
@@ -326,9 +329,9 @@ import { goto } from '$app/navigation';
             </div>
         </div>
     </div>
-    <div class="w-full lg:flex lg:flex-col">
+    <div class="w-screen lg:flex lg:flex-col">
         <div class="my-5 px-10 flex flex-col items-center">
-            <p class="text-3xl bg-red-800 p-3 rounded-md">
+            <p class="text-xl bg-red-800 p-2 rounded-md">
                 <CountDown start_date={$game.start_time} duration={$game.duration} />
             </p>
             <div class="w-full">
@@ -336,7 +339,7 @@ import { goto } from '$app/navigation';
             </div>
         </div>
         <div class="w-full lg:flex lg:flex-shrink-0">
-            <div class={`${currentTab === "sub"? "hidden": ""} h-[89vh] w-1/2 p-10 pt-0`}>
+            <div class={`${currentTab === "sub"? "hidden": ""} h-[86vh] w-1/2 p-10 pt-0`}>
                 {#each data.statements as statement, ind }
                 <!-- {index[currentTab] === ind} -->
                     <div class={`bg-gray-800 h-full rounded-md overflow-scroll ${index[currentTab] !== ind ? "hidden" : ""} border-gray-700 border-solid border-2`}>
@@ -344,7 +347,7 @@ import { goto } from '$app/navigation';
                     </div>
                 {/each}
             </div>
-            <div class={`${currentTab === "sub"? "hidden": ""} h-[89vh] w-1/2 p-10 pl-0 pt-0`}>
+            <div class={`${currentTab === "sub"? "hidden": ""} h-[86vh] w-1/2 p-10 pl-0 pt-0`}>
                 <div class="flex flex-col h-full py-4 bg-gray-800 border-gray-700 border-solid border-2 rounded-md items-center">
                     <div class="mb-4 border-solid border-gray-700 border-2 rounded-md mx-6 w-2/3">
                         <Select

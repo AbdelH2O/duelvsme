@@ -1,6 +1,7 @@
-import { error, type LoadEvent } from "@sveltejs/kit";
+import { error, redirect, type LoadEvent } from "@sveltejs/kit";
 import supabase from "$lib/utils/supabase";
 import client from "$lib/utils/redisClient";
+import { addSeconds, parseISO, subMinutes, addMinutes, formatISO } from 'date-fns';
 
 export const load = async ({ params, parent }: LoadEvent) =>  {
     const { lucia } = await parent(); 
@@ -10,7 +11,7 @@ export const load = async ({ params, parent }: LoadEvent) =>  {
     try {
         await client.connect();
     } catch(err) {
-        console.log(err);
+        const h = 1;
     }
     supabase.auth.setAuth(lucia.access_token);
     const game = (await supabase.from("match").select("*").filter('id', 'eq', params.gameId)) as {
@@ -18,6 +19,16 @@ export const load = async ({ params, parent }: LoadEvent) =>  {
     };
     if (game.data?.length === 0) {
         throw error(404, "Game not found");
+    }
+    const dif = new Date().getTimezoneOffset();
+    // console.log(new Date().getTime());
+    
+    const now = dif > 0 ? subMinutes(new Date(), dif) : addMinutes(new Date(), dif);
+    // console.log(formatISO(new Date().getTime()), formatISO(now.getTime()));
+    console.log(now.getTime()/1000 >= addSeconds(parseISO(game.data[0].start_time), 2700).getTime()/1000);
+    
+    if (addSeconds(parseISO(game.data[0].start_time), 2700).getTime() <= now.getTime()) {
+        throw redirect(302, "/app/dashboard");
     }
     const statements: string[] = [
         await client.hGet('problems', game.data[0].problems[0]) || "",
