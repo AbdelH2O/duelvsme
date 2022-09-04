@@ -13,7 +13,7 @@ const taskQueue = new Bull.default('taskQueue', process.env.VITE_REDIS_FULL_URL,
 });
 
 taskQueue.process(async (job, done) => {
-    console.log(job.data);
+    // console.log(job.data);
     await matchmake();
     await checkSubmissions();
     await taskQueue.add({

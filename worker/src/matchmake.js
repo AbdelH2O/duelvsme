@@ -17,7 +17,7 @@ const create_game = async (user1, user2, x, elos) => {
         for (let i = 0; i < 500; i+=100) {
             const problem = JSON.parse(await client.sRandMember(`${x+i}`) || '{}');
             const statement = await cl.getProblemStatement(problem.contestId, problem.index);
-            console.log(statement);
+            // console.log(statement);
             await client.hSet('problems', `${problem.contestId}/${problem.index}`, statement);
             problems.push(`${problem.contestId}/${problem.index}`);
         }
@@ -67,7 +67,7 @@ const matchmake = async () => {
     try {
         await client.connect();
     } catch(err) {
-        console.log(err);
+        // console.log(err);
     }
     await update_scores();
     const { members: players_up } = await client.zScan('queue_upper', 0);

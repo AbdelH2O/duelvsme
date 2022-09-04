@@ -4,7 +4,7 @@ import Cf from 'cf-wrapper';
 const checkSubmissions = async () => {
     const cl = new Cf();
     const submissions = (await supabase.from('submissions').select('*').filter('processed', 'eq', false));
-    console.log('submissions:', submissions);
+    // console.log('submissions:', submissions);
     submissions.data.forEach(async (sub) => {
         
         const verdict = await cl.checkSubmission(sub.problem.split('/')[0], sub.id);
