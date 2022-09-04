@@ -30,15 +30,21 @@ export const load = async ({ params, parent }: LoadEvent) =>  {
     if (addSeconds(parseISO(game.data[0].start_time), 2700).getTime() <= now.getTime()) {
         throw redirect(302, "/app/dashboard");
     }
-    const statements: string[] = [
-        await client.hGet('problems', game.data[0].problems[0]) || "",
-        await client.hGet('problems', game.data[0].problems[1]) || "",
-        await client.hGet('problems', game.data[0].problems[2]) || "",
-        await client.hGet('problems', game.data[0].problems[3]) || "",
-        await client.hGet('problems', game.data[0].problems[4]) || "",
-    ];
+    const statements = await supabase
+        .from('problems')
+        .select('*')
+        .filter('id', 'in', game.data[0].problems);
+    console.log(statements);
+        
+    // const statements: string[] = [
+    //     await client.hGet('problems', game.data[0].problems[0]) || "",
+    //     await client.hGet('problems', game.data[0].problems[1]) || "",
+    //     await client.hGet('problems', game.data[0].problems[2]) || "",
+    //     await client.hGet('problems', game.data[0].problems[3]) || "",
+    //     await client.hGet('problems', game.data[0].problems[4]) || "",
+    // ];
     return {
         game: game.data,
-        statements: statements,
+        statements: statements.data,
     };
 }

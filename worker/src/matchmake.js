@@ -19,7 +19,17 @@ const create_game = async (user1, user2, x, elos) => {
             const problem = JSON.parse(await client.sRandMember(`${x+i}`) || '{}');
             const statement = await cl.getProblemStatement(problem.contestId, problem.index);
             // console.log(statement);
-            await client.hSet('problems', `${problem.contestId}/${problem.index}`, statement);
+            const repp = await supabase.from('problems').select('id').eq('id', `${problem.contestId}/${problem.index}`);
+            if (repp.data.length === 0) {
+                const { data, error } = await supabase.from('problems').insert({
+                    id: `${problem.contestId}/${problem.index}`,
+                    statement: statement,
+                });
+                if (error) {
+                    console.log(error);
+                }
+            }
+            // await client.hSet('problems', `${problem.contestId}/${problem.index}`, statement);
             problems.push(`${problem.contestId}/${problem.index}`);
         }
         const id = uuidv4();
