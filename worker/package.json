@@ -1,0 +1,17 @@
+{
+  "name": "worker",
+  "version": "1.0.0",
+  "description": "background worker for duelvsme",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "@AbdelH2O",
+  "license": "ISC",
+  "dependencies": {
+    "@supabase/supabase-js": "^1.35.6",
+    "bull": "^4.8.5",
+    "cf-wrapper": "^0.0.392",
+    "supabase": "^1.4.0"
+  }
+}

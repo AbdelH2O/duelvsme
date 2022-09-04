@@ -7,6 +7,11 @@
     --agnostic-btn-font-family: font-family: 'Lato';
     --agnostic-btn-primary: #B12E2E;
     --agnostic-btn-primary-color: #fafafa;
+    --agnostic-progress-background: #fafafa;
+    --agnostic-progress-fill-color: #B12E2E;
+}
+body {
+    overscroll-behavior-y: none;
 }
 .header{
 	text-align: center;

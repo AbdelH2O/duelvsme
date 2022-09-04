@@ -5,8 +5,9 @@
 	import { getSession } from '@abdelh2o/lucia-sveltekit/client';
 	import supabase from '$lib/utils/supabase';
 	import { goto } from '$app/navigation';
-	import { Button, Loader } from '@abdelh2o/agnostic-svelte';
+	import { Button, Loader, Spinner } from '@abdelh2o/agnostic-svelte';
 	import Countdown from '$lib/components/Countdown.svelte';
+	import { diff } from '$lib/stores/game';
 
 	export let data: {
 		match: string | null;
@@ -333,47 +334,61 @@
 				</div>
 			</div>
 		{:else}
-			<div class="text-center flex flex-row justify-center mt-5">
-				<div class="bg-gray-800 border-gray-600 border-2 border-solid w-3/4 flex flex-col h-full py-6 rounded-md">
-					<h1 class="text-5xl mb-5 inline-flex justify-center">
-						Lockout in &nbsp; <Countdown start_date={data.game.start_time} duration={data.game.duration} />
-					</h1>
-					<div class="flex flex-row justify-center w-full">
-						<div class="w-1/3 rounded-md p-8 px-20 bg-gray-700 mr-5">
-							<img class="inline-block h-24 w-24 rounded-full bg-white pointer-events-none" src={`https://avatars.dicebear.com/api/identicon/${$session?.user.username}.svg`} alt="">
-							<p class="pt-4 font-bold text-3xl select-none">
-								{$session.user.username} (You)
-							</p>
-							<p class="text-gray-200 select-none w-full">
-								Score: { $session.user.username === data.game.contestant_1 ? data.game.scores[0] : data.game.scores[1] }
-							</p>
-						</div>
-						<div class="w-1/3 rounded-md p-8 px-20 bg-gray-700 ml-5">
-							<img class="inline-block h-24 w-24 rounded-full bg-white pointer-events-none" src={`https://avatars.dicebear.com/api/identicon/${$session.user.username === data.game.contestant_1 ? data.game.contestant_2 : data.game.contestant_1}.svg`} alt="">
-							<p class="pt-4 font-bold text-3xl select-none">
-								{$session.user.username === data.game.contestant_1 ? data.game.contestant_2 : data.game.contestant_1}
-							</p>
-							<p class="text-gray-200 select-none">
-								Score: { $session.user.username === data.game.contestant_1 ? data.game.scores[1] : data.game.scores[0] }
-							</p>
-						</div>
-					</div>
-					<div class="w-full flex flex-col items-center mt-5">
-						<div class="w-1/2">
-							<Button on:click={resume} mode="primary" size="large" isRounded isDisabled={resuming}>
-								{#if !resuming}
-									Resume Lockout
-								{:else}
-									<Loader size="small" />
-								{/if}
-							</Button>
-						</div>
-					</div>
-					<!-- <h1 class="text-black dark:text-gray-50 text-5xl mt-14 select-none">
-						redirecting in {counter}
-					</h1> -->
-				</div>
+			<div class="hidden w-0 h-0">
+				<Countdown start_date={data.game.start_time} duration={data.game.duration} />
 			</div>
+			{#if $diff.minutes !== 0 || $diff.seconds !== 0}
+				<div class="text-center flex flex-row justify-center mt-5">
+					<div class="bg-gray-800 border-gray-600 border-2 border-solid w-3/4 flex flex-col h-full py-6 rounded-md">
+						<h1 class="text-5xl mb-5 inline-flex justify-center">
+							Lockout in &nbsp; <Countdown start_date={data.game.start_time} duration={data.game.duration} />
+						</h1>
+						<div class="flex flex-row justify-center w-full">
+							<div class="w-1/3 rounded-md p-8 px-20 bg-gray-700 mr-5">
+								<img class="inline-block h-24 w-24 rounded-full bg-white pointer-events-none" src={`https://avatars.dicebear.com/api/identicon/${$session?.user.username}.svg`} alt="">
+								<p class="pt-4 font-bold text-3xl select-none">
+									{$session.user.username} (You)
+								</p>
+								<p class="text-gray-200 select-none w-full">
+									Score: { $session.user.username === data.game.contestant_1 ? data.game.scores[0] : data.game.scores[1] }
+								</p>
+							</div>
+							<div class="w-1/3 rounded-md p-8 px-20 bg-gray-700 ml-5">
+								<img class="inline-block h-24 w-24 rounded-full bg-white pointer-events-none" src={`https://avatars.dicebear.com/api/identicon/${$session.user.username === data.game.contestant_1 ? data.game.contestant_2 : data.game.contestant_1}.svg`} alt="">
+								<p class="pt-4 font-bold text-3xl select-none">
+									{$session.user.username === data.game.contestant_1 ? data.game.contestant_2 : data.game.contestant_1}
+								</p>
+								<p class="text-gray-200 select-none">
+									Score: { $session.user.username === data.game.contestant_1 ? data.game.scores[1] : data.game.scores[0] }
+								</p>
+							</div>
+						</div>
+						<div class="w-full flex flex-col items-center mt-5">
+							<div class="w-1/2">
+								<Button on:click={resume} mode="primary" size="large" isRounded isDisabled={resuming}>
+									{#if !resuming}
+										Resume Lockout
+									{:else}
+										<Loader size="small" />
+									{/if}
+								</Button>
+							</div>
+						</div>
+						<!-- <h1 class="text-black dark:text-gray-50 text-5xl mt-14 select-none">
+							redirecting in {counter}
+						</h1> -->
+					</div>
+				</div>
+			{:else}
+				<div class="text-center flex flex-row justify-center mt-5">
+					<div class="bg-gray-800 border-gray-600 border-2 border-solid w-3/4 flex flex-col h-full py-6 rounded-md">
+						<h1 class="text-5xl mb-5 inline-flex justify-center">
+							Calculating results in progress
+						</h1>
+						<Spinner size="large" />
+					</div>
+				</div>
+			{/if}
 		{/if}
 	{/if}
 </div>

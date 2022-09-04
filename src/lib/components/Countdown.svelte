@@ -1,5 +1,6 @@
 <script lang="ts">
     import { intervalToDuration, parseISO, addSeconds, subMinutes, addMinutes } from 'date-fns';
+    import { diff as diffStore } from '$lib/stores/game';
     
     export let start_date: string;
     export let duration: number;
@@ -18,6 +19,7 @@
         const now = dif > 0 ? subMinutes(new Date(), dif) : addMinutes(new Date(), dif);
         const end = addSeconds(parseISO(start_date), duration);
         diff = intervalToDuration({ start: now, end });
+        diffStore.set(diff);
     }
 
     $: update_timer();

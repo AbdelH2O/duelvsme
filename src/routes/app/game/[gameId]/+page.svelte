@@ -4,13 +4,41 @@
     import { getSession } from '@abdelh2o/lucia-sveltekit/client';
     import Monaco from '$lib/components/monaco.svelte';
     import lang, { editor } from '$lib/stores/lang';
-    import game from '$lib/stores/game';
-    import { Select, Button, Loader, Table, Toasts, Toast } from '@abdelh2o/agnostic-svelte';
+    import game, { diff } from '$lib/stores/game';
+    import { Select, Button, Loader, Progress } from '@abdelh2o/agnostic-svelte';
     import { onMount } from 'svelte';
     import { languageOptions } from '$lib/enums/languages';
     import { page } from '$app/stores';
     import supabase from '$lib/utils/supabase';
     import Draggable from '$lib/components/draggable.svelte';
+    import { toast } from '@zerodevx/svelte-toast';
+    import CountDown from '$lib/components/Countdown.svelte';
+import { goto } from '$app/navigation';
+
+    toast.push('Yo!', {
+        theme: {
+            '--toastBackground': '#15803c',
+            '--toastBarBackground': '#0e5227',
+        }
+    });
+    toast.push('Yo!', {
+        theme: {
+            '--toastBackground': '#B12E2E',
+            '--toastBarBackground': '#7f1d1d',
+        }
+    });
+    diff.subscribe((v) => {
+        console.log(v);
+        if (v.minutes === 0 && v.seconds === 0) {
+            toast.push('Time is up!', {
+                theme: {
+                    '--toastBackground': '#B12E2E',
+                    '--toastBarBackground': '#7f1d1d',
+                }
+            });
+        }
+        goto('/app/dashboard');
+    });
 
     onMount(() => {
         let script = document.createElement('script');
@@ -75,9 +103,37 @@
         console.log(dt);
         console.log(reverse[data.game[0].problems.indexOf(dt.new.problem)]);
         if (dt.eventType === 'INSERT') {
+            toast.push("New attempt by " + dt.new.username + " on " + reverse[data.game[0].problems.indexOf(dt.new.problem)]);
             message = "New attempt by " + dt.new.username + " on " + reverse[data.game[0].problems.indexOf(dt.new.problem)];
         } else {
-            message = "Submission by " + dt.new.username + " on " + reverse[data.game[0].problems.indexOf(dt.new.problem)] + " is " + dt.new.status;
+            if (dt.new.status === 'Accepted') {
+                if (dt.new.username === $session.user.username) {
+                    toast.push("You solved " + reverse[data.game[0].problems.indexOf(dt.new.problem)] + "!", {
+                        theme: {
+                            '--toastBackground': '#15803c',
+                            '--toastBarBackground': '#0e5227',
+                        }
+                    });
+                } else {
+                    toast.push(dt.new.username + " solved " + reverse[data.game[0].problems.indexOf(dt.new.problem)] + "!", {
+                        theme: {
+                            '--toastBackground': '#B12E2E',
+                            '--toastBarBackground': '#7f1d1d',
+                        }
+                    });
+                }
+            } else {
+                if (dt.new.username === $session.user.username) {
+                    toast.push("Submission by " + dt.new.username + " on " + reverse[data.game[0].problems.indexOf(dt.new.problem)] + ": " + dt.new.status, {
+                        theme: {
+                            '--toastBackground': '#B12E2E',
+                            '--toastBarBackground': '#7f1d1d',
+                        }
+                    });
+                } else {
+                    toast.push("Submission by " + dt.new.username + " on " + reverse[data.game[0].problems.indexOf(dt.new.problem)] + ": " + dt.new.status);
+                }
+            }
         }
         isOpen = true;
         setTimeout(() => {
@@ -115,12 +171,15 @@
 </script>
 <svelte:head>
     <title>Lockout vs { ($session.user.username === data.game[0].contestant_1 ? data.game[0].contestant_2 : data.game[0].contestant_1)}</title>
+    <style>
+        :root {
+            --toastBackground: #1f2937;
+            --toastBorderRadius: 0.375rem;
+            --toastBorder: 2px solid #374151;
+            --toastBarBackground: #B12E2E;
+        }
+    </style>
 </svelte:head>
-<Toasts portalRootSelector="body" horizontalPosition="end" verticalPosition="top">
-    <Toast isOpen={isOpen} type="dark">
-        {message}
-    </Toast>
-</Toasts>
 <div class="w-screen h-screen flex bg-gray-900">
     <Draggable>
         <div class="z-50 bottom-10 left-10 rounded-md">
@@ -267,47 +326,59 @@
             </div>
         </div>
     </div>
-    <div class={`${currentTab === "sub"? "hidden": ""} h-screen w-1/2 p-10`}>
-        {#each data.statements as statement, ind }
-        <!-- {index[currentTab] === ind} -->
-            <div class={`bg-gray-800 h-full rounded-md overflow-scroll ${index[currentTab] !== ind ? "hidden" : ""} border-gray-700 border-solid border-2`}>
-                {@html statement}
-            </div>
-        {/each}
-    </div>
-    <div class={`${currentTab === "sub"? "hidden": ""} h-screen w-1/2 p-10 pl-0`}>
-        <div class="flex flex-col h-full py-4 bg-gray-800 border-gray-700 border-solid border-2 rounded-md items-center">
-            <div class="mb-4 border-solid border-gray-700 border-2 rounded-md mx-6 w-2/3">
-                <Select
-                    bind:singleSelected={selectedLang}
-                    on:selected={
-                        (e) => {
-                            selectedLang = e.detail;
-                        }
-                    }
-                    uniqueId="sel1"
-                    name="select1"
-                    labelCopy="Select a language"
-                    defaultOptionLabel="Select a language"
-                    options={languageOptions}
-                />
-            </div>
-            <div class="mb-4 h-full w-full border-y-2 border-solid border-gray-700 z-40">
-                <Monaco editor={editor} />
-            </div>
-            <div class="px-3 w-3/4 flex flex-col items-stretch">
-                <Button on:click={submit} mode="primary" size="large" isDisabled={submitting} isRounded>
-                    {#if submitting}
-                    <Loader size="small" />
-                    {/if}
-                    {#if !submitting}
-                        Submit
-                    {/if}
-                </Button>
+    <div class="w-full lg:flex lg:flex-col">
+        <div class="my-5 px-10 flex flex-col items-center">
+            <p class="text-3xl bg-red-800 p-3 rounded-md">
+                <CountDown start_date={$game.start_time} duration={$game.duration} />
+            </p>
+            <div class="w-full">
+                <Progress value={($diff.minutes || 0) * 60 + ($diff.seconds || 0)} max={2700}/>
             </div>
         </div>
-    </div>
-    <div class={`${currentTab !== "sub"? "hidden": ""} h-screen w-full p-10`}> 
-        <!-- display -->
+        <div class="w-full lg:flex lg:flex-shrink-0">
+            <div class={`${currentTab === "sub"? "hidden": ""} h-[89vh] w-1/2 p-10 pt-0`}>
+                {#each data.statements as statement, ind }
+                <!-- {index[currentTab] === ind} -->
+                    <div class={`bg-gray-800 h-full rounded-md overflow-scroll ${index[currentTab] !== ind ? "hidden" : ""} border-gray-700 border-solid border-2`}>
+                        {@html statement}
+                    </div>
+                {/each}
+            </div>
+            <div class={`${currentTab === "sub"? "hidden": ""} h-[89vh] w-1/2 p-10 pl-0 pt-0`}>
+                <div class="flex flex-col h-full py-4 bg-gray-800 border-gray-700 border-solid border-2 rounded-md items-center">
+                    <div class="mb-4 border-solid border-gray-700 border-2 rounded-md mx-6 w-2/3">
+                        <Select
+                            bind:singleSelected={selectedLang}
+                            on:selected={
+                                (e) => {
+                                    selectedLang = e.detail;
+                                }
+                            }
+                            uniqueId="sel1"
+                            name="select1"
+                            labelCopy="Select a language"
+                            defaultOptionLabel="Select a language"
+                            options={languageOptions}
+                        />
+                    </div>
+                    <div class="mb-4 h-full w-full border-y-2 border-solid border-gray-700 z-40">
+                        <Monaco editor={editor} />
+                    </div>
+                    <div class="px-3 w-3/4 flex flex-col items-stretch">
+                        <Button on:click={submit} mode="primary" size="large" isDisabled={submitting} isRounded>
+                            {#if submitting}
+                            <Loader size="small" />
+                            {/if}
+                            {#if !submitting}
+                                Submit
+                            {/if}
+                        </Button>
+                    </div>
+                </div>
+            </div>
+            <div class={`${currentTab !== "sub"? "hidden": ""} h-full w-full p-10`}> 
+                <!-- display -->
+            </div>
+        </div>
     </div>
 </div>
