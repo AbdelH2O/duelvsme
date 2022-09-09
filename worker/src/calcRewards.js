@@ -7,6 +7,9 @@ const calcReward = async (matchId) => {
         .from("match")
         .select("problems, who_solved, scores, contestant_1, contestant_2, ratings")
         .filter("id", "eq", matchId);
+    if (match.data[0].processed) {
+        return;
+    }
     const users = await supabase
         .from("user")
         .select('username, level, xp')

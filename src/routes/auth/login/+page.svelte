@@ -55,7 +55,7 @@
     </div>
   
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-      <div class="bg-gray-800 border-solid border-gray-600 border-2 py-8 px-4 shadow sm:rounded-lg sm:px-10 shadow-xl">
+      <div class="bg-gray-800 border-solid border-gray-700 border-2 py-8 px-4 shadow sm:rounded-lg sm:px-10 shadow-xl">
         <div class="space-y-6">
           <div>
             <label for="email" class="block text-sm font-medium text-white"> Username </label>

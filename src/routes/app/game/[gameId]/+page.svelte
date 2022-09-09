@@ -5,7 +5,7 @@
     import Monaco from '$lib/components/monaco.svelte';
     import lang, { editor } from '$lib/stores/lang';
     import game, { diff } from '$lib/stores/game';
-    import { Select, Button, Loader } from '@abdelh2o/agnostic-svelte';
+    import { Select, Button, Loader, Dialog } from '@abdelh2o/agnostic-svelte';
     import { onMount } from 'svelte';
     import { languageOptions } from '$lib/enums/languages';
     import { page } from '$app/stores';
@@ -62,7 +62,16 @@
 
     const myIndex = data.game[0].contestant_1 === $session.user.username ? 1 : 2;
 
-    // console.log(subs, submissionsSubs);
+    let dialogInstance: InstanceType<typeof Dialog>;
+    const assignDialogInstance = (ev: CustomEvent<any>) => {
+        dialogInstance = ev.detail.instance;
+    };
+
+    const openDialog = () => {
+        if (dialogInstance) {
+            dialogInstance.show();
+        }
+    };
     
     
     // let selectedValue: number;
@@ -87,6 +96,23 @@
     supabase.auth.setAuth($session?.access_token || '');
     const subs = supabase.from('match').on('UPDATE', (newData: {new: Game}) => {
         console.log(newData);
+        if (newData.new.scores.some((v) => v >= 800)) {
+            toast.push('Game is over!', {
+                theme: {
+                    '--toastBackground': '#B12E2E',
+                    '--toastBarBackground': '#7f1d1d',
+                }
+            });
+            message = "Time is up!";
+            subs.unsubscribe();
+            setTimeout(() => {
+                openDialog();
+                setTimeout(() => {
+                    goto('/app/dashboard');
+                }, 3000);
+            }, 1500);
+            // goto('/app/dashboard');
+        }
         data.game[0] = newData.new;
     }).subscribe();
     const submissionsSubs = supabase.from('submissions').on('*', (dt) => {
@@ -169,6 +195,11 @@
             --toastBarBackground: #B12E2E;
             --agnostic-progress-height: 1rem;
             --agnostic-progress-radius: 0.325rem;
+            --agnostic-radius: 0.325rem;
+            --agnostic-light: #1f2937;
+        }
+        .dialog-content {
+            border: 2px solid #374151;
         }
         progress {
             -webkit-appearance: none;
@@ -209,6 +240,14 @@
             </table>
         </div>
     </Draggable>
+    <!-- <Button mode="primary" isBlock isBordered isRounded type="button" on:click={openDialog} >
+        Open dialog via dialogRef
+    </Button> -->
+    <Dialog id="a11y-dialog" dialogRoot="#dialog-root" closeButtonLabel="My close button label" closeButtonPosition="last" title="Lockout Over!" role="dialog" classNames={{ title: "h4 mbe18 flex justify-center font-['Lato']" }} isAnimationSlideUp on:instance={assignDialogInstance} >
+        <div class="font-['Lato'] text-center">
+            {message}
+        </div>
+    </Dialog>
     <div class="hidden lg:flex lg:flex-shrink-0">
         <div class="flex flex-col w-20">
             <div class="flex-1 flex flex-col min-h-0 overflow-y-auto bg-red-600">
@@ -352,7 +391,7 @@
             </div>
         </div>
         <div class="w-full lg:flex lg:flex-shrink-0">
-            <div class={`${currentTab === "sub"? "hidden": ""} h-[86vh] w-1/2 p-10 pt-0`}>
+            <div class={`${currentTab === "sub"? "hidden": ""} h-[92vh] w-1/2 p-10 pt-0`}>
                 {#each data.statements as statement, ind }
                 <!-- {index[currentTab] === ind} -->
                     <div class={`bg-gray-800 h-full rounded-md overflow-scroll ${index[currentTab] !== ind ? "hidden" : ""} border-gray-700 border-solid border-2`}>
@@ -360,7 +399,7 @@
                     </div>
                 {/each}
             </div>
-            <div class={`${currentTab === "sub"? "hidden": ""} h-[86vh] w-1/2 p-10 pl-0 pt-0`}>
+            <div class={`${currentTab === "sub"? "hidden": ""} h-[92vh] w-1/2 p-10 pl-0 pt-0`}>
                 <div class="flex flex-col h-full py-4 bg-gray-800 border-gray-700 border-solid border-2 rounded-md items-center">
                     <div class="mb-4 border-solid border-gray-700 border-2 rounded-md mx-6 w-2/3">
                         <Select

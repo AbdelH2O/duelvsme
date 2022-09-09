@@ -1,4 +1,5 @@
 import supabase from './utilitySupabase.js';
+import calcReward from './calcRewards.js';
 import Cf from 'cf-wrapper';
 
 const checkSubmissions = async () => {
@@ -19,10 +20,16 @@ const checkSubmissions = async () => {
             const who_solved = match.data[0].who_solved;
             who_solved[match.data[0].problems.indexOf(sub.problem)] = match.data[0].contestant_1 === sub.username ? 1 : 2;   
             const scores = match.data[0].scores;
+            let processed = false;
+            if (scores.some((score) => score >= 800)) {
+                calcReward(sub.match);
+                processed = true;
+            }
             scores[match.data[0].contestant_1 === sub.username ? 0 : 1] += 100 * (match.data[0].problems.indexOf(sub.problem));
             const resp = await supabase.from('match').update({
                 who_solved,
                 scores,
+                processed,
             }).match({
                 id: sub.match,
             });
