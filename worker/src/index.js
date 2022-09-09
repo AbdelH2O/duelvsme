@@ -26,7 +26,7 @@ taskQueue.process(async (job, done) => {
         });
         done();
     } else {
-        await calcReward(job.data.id.split(' '[0]));
+        await calcReward(job.data.id.split(' ')[0]);
         done();
     }
 });
