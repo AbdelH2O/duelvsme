@@ -1,4 +1,4 @@
-import supabase from "./utilitySupabase";
+import supabase from "./utilitySupabase.js";
 import * as elo from "elo-rating";
 
 const calcReward = async (matchId) => {
