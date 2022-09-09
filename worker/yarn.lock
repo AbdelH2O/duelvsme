@@ -259,6 +259,11 @@ denque@^1.1.0:
   resolved "https://registry.yarnpkg.com/denque/-/denque-1.5.1.tgz#07f670e29c9a78f8faecb2566a1e2c11929c5cbf"
   integrity sha512-XwE+iZ4D6ZUB7mfYRMb5wByE8L74HCn30FBN7sWnXksWc1LO1bPDl67pBR9o/kC4z/xSNAwkMYcGgqDV3BE3Hw==
 
+elo-rating@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/elo-rating/-/elo-rating-1.0.1.tgz#2a633327d96128945a449eb6a19e6fbf12d1ccf6"
+  integrity sha512-i8pRaylahV6zZA8rVODR2ilRGrcbyqPpM7ZXpbaaXVNF5SrJoDVy7UTqog0QvWop8HSkjVCa6vPDUlVlhCZ+2g==
+
 es5-ext@^0.10.35, es5-ext@^0.10.50:
   version "0.10.62"
   resolved "https://registry.yarnpkg.com/es5-ext/-/es5-ext-0.10.62.tgz#5e6adc19a6da524bf3d1e02bbc8960e5eb49a9a5"

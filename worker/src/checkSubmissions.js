@@ -14,12 +14,15 @@ const checkSubmissions = async () => {
         } else if (verdict[0].startsWith('Accepted')) {
             const match = await supabase
                 .from('match')
-                .select('problems, who_solved, contestant_1')
+                .select('problems, who_solved, scores, contestant_1')
                 .filter('id', 'eq', sub.match);
             const who_solved = match.data[0].who_solved;
-            who_solved[match.data[0].problems.indexOf(sub.problem)] = match.data[0].contestant_1 === sub.username ? 1 : 2;            
+            who_solved[match.data[0].problems.indexOf(sub.problem)] = match.data[0].contestant_1 === sub.username ? 1 : 2;   
+            const scores = match.data[0].scores;
+            scores[match.data[0].contestant_1 === sub.username ? 0 : 1] += 100 * (match.data[0].problems.indexOf(sub.problem));
             const resp = await supabase.from('match').update({
                 who_solved,
+                scores,
             }).match({
                 id: sub.match,
             });

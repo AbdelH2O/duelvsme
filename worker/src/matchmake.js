@@ -1,5 +1,6 @@
 import client from './redisClient.js';
 import supabase from './utilitySupabase.js';
+import taskQueue from './index.js';
 import Cf from 'cf-wrapper';
 import crypto from "crypto";
 
@@ -45,6 +46,13 @@ const create_game = async (user1, user2, x, elos) => {
             duration: 45 * 60,
             who_solved: [0, 0, 0, 0, 0],
             ratings: elos,
+        });
+
+        taskQueue.add({
+            queue: 'rewards',
+            id: `${id} ${Math.floor(Date.now()/1000)}`,
+        }, {
+            delay: 1000 * 2700,
         });
 
         const resp = await supabase.from('user').update({
