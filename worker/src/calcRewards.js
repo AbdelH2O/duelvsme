@@ -19,7 +19,7 @@ const calcReward = async (matchId) => {
             [2, 1] :
             [1, 2]
         );
-    const result = elo.calculate(match.data[0].ratings[0], match.data[0].ratings[1], who_won % 2);
+    const result = elo.default.calculate(match.data[0].ratings[0], match.data[0].ratings[1], who_won % 2);
     const player1 = users.data.find((user) => user.username === match.data[0].contestant_1);
     const player2 = users.data.find((user) => user.username === match.data[0].contestant_2);
     const needed_xp1 = ((player1.level + 1) * (player1.level + 1) / 2) * 180;
