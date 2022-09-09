@@ -5,7 +5,7 @@
     import Monaco from '$lib/components/monaco.svelte';
     import lang, { editor } from '$lib/stores/lang';
     import game, { diff } from '$lib/stores/game';
-    import { Select, Button, Loader, Progress } from '@abdelh2o/agnostic-svelte';
+    import { Select, Button, Loader } from '@abdelh2o/agnostic-svelte';
     import { onMount } from 'svelte';
     import { languageOptions } from '$lib/enums/languages';
     import { page } from '$app/stores';
@@ -13,20 +13,7 @@
     import Draggable from '$lib/components/draggable.svelte';
     import { toast } from '@zerodevx/svelte-toast';
     import CountDown from '$lib/components/Countdown.svelte';
-import { goto } from '$app/navigation';
-
-    // toast.push('Yo!', {
-    //     theme: {
-    //         '--toastBackground': '#15803c',
-    //         '--toastBarBackground': '#0e5227',
-    //     }
-    // });
-    // toast.push('Yo!', {
-    //     theme: {
-    //         '--toastBackground': '#B12E2E',
-    //         '--toastBarBackground': '#7f1d1d',
-    //     }
-    // });
+    import { goto } from '$app/navigation';
     
     onMount(() => {
         let init = false;
@@ -180,6 +167,27 @@ import { goto } from '$app/navigation';
             --toastBorderRadius: 0.375rem;
             --toastBorder: 2px solid #374151;
             --toastBarBackground: #B12E2E;
+            --agnostic-progress-height: 1rem;
+            --agnostic-progress-radius: 0.325rem;
+        }
+        progress {
+            -webkit-appearance: none;
+            border: 0;
+            border-radius: 0.25rem;
+        }
+        progress::-webkit-progress-bar {
+            border: 0;
+            border-radius: 0.25rem;
+            background-color: #374151;
+        }
+        progress::-webkit-progress-value {
+            border: 0;
+            border-radius: 0.25rem;
+            background-color: #B12E2E;
+        }
+        progress::-moz-progress-bar {
+            border: 0;
+            border-radius: 0.25rem;
         }
     </style>
 </svelte:head>
@@ -331,11 +339,16 @@ import { goto } from '$app/navigation';
     </div>
     <div class="w-screen lg:flex lg:flex-col">
         <div class="my-5 px-10 flex flex-col items-center">
-            <p class="text-xl bg-red-800 p-2 rounded-md">
-                <CountDown start_date={$game.start_time} duration={$game.duration} />
-            </p>
-            <div class="w-full">
-                <Progress value={($diff.minutes || 0) * 60 + ($diff.seconds || 0)} max={2700}/>
+            <div class="w-full block relative">
+                    <div class="w-full flex flex-row justify-center h-[1px]">
+                        <CountDown
+                            classes="text-md bg-gray-800 border-2 border-gray-700 border-solid px-1 rounded-md absolute inline-block text-right"
+                            start_date={$game.start_time}
+                            duration={$game.duration}
+                        />
+                    </div>
+                    <progress class="w-full h-full rounded-md " value={($diff.minutes || 0) * 60 + ($diff.seconds || 0)} max={7000}>
+                    </progress>
             </div>
         </div>
         <div class="w-full lg:flex lg:flex-shrink-0">

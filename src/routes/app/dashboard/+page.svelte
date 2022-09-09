@@ -151,7 +151,7 @@
 			</div>
 		{:else}
 			<div class="text-center flex flex-row justify-center">
-				<div class="bg-gray-800 border-gray-600 border-2 border-solid w-3/4 flex flex-col h-full py-6 rounded-md">
+				<div class="bg-gray-800 border-gray-700 border-2 border-solid w-3/4 flex flex-col h-full py-6 rounded-md">
 					<div class="flex flex-row justify-center w-full">
 						<div class="bg-gray-700 w-fit rounded-md p-8 px-20">
 							<img class="inline-block h-24 w-24 rounded-full bg-white" src={`https://avatars.dicebear.com/api/identicon/${opponent}.svg`} alt="">
@@ -339,7 +339,7 @@
 			</div>
 			{#if $diff.minutes !== 0 || $diff.seconds !== 0}
 				<div class="text-center flex flex-row justify-center mt-5">
-					<div class="bg-gray-800 border-gray-600 border-2 border-solid w-3/4 flex flex-col h-full py-6 rounded-md">
+					<div class="bg-gray-800 border-gray-700 border-2 border-solid w-3/4 flex flex-col h-full py-6 rounded-md">
 						<h1 class="text-5xl mb-5 inline-flex justify-center">
 							Lockout in &nbsp; <Countdown start_date={data.game.start_time} duration={data.game.duration} />
 						</h1>
@@ -381,7 +381,7 @@
 				</div>
 			{:else}
 				<div class="text-center flex flex-row justify-center mt-5">
-					<div class="bg-gray-800 border-gray-600 border-2 border-solid w-3/4 flex flex-col h-full py-6 rounded-md">
+					<div class="bg-gray-800 border-gray-700 border-2 border-solid w-3/4 flex flex-col h-full py-6 rounded-md">
 						<h1 class="text-5xl mb-5 inline-flex justify-center">
 							Calculating results in progress
 						</h1>
