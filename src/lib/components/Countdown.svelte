@@ -1,6 +1,7 @@
 <script lang="ts">
     import { intervalToDuration, parseISO, addSeconds, subMinutes, addMinutes } from 'date-fns';
     import { diff as diffStore } from '$lib/stores/game';
+    import { onDestroy } from 'svelte';
     
     export let start_date: string;
     export let duration: number;
@@ -25,7 +26,7 @@
 
     $: update_timer();
     $: timer = setInterval(update_timer, 1000);
-
+    onDestroy(() => clearInterval(timer));
 </script>
 
 <span class={`countdown ${classes}`}>

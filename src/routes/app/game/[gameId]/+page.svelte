@@ -14,6 +14,7 @@
     import { toast } from '@zerodevx/svelte-toast';
     import CountDown from '$lib/components/Countdown.svelte';
     import { goto } from '$app/navigation';
+    import { browser } from '$app/environment';
     
     onMount(() => {
         let init = false;
@@ -26,7 +27,9 @@
                         '--toastBarBackground': '#7f1d1d',
                     }
                 });
-                goto('/app/dashboard');
+                if(browser){
+                    goto('/app/dashboard');
+                }
             } else {
                 init = true;
             }

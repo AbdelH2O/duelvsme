@@ -27,14 +27,14 @@
 	);
 	let sub;
 	if (data.isQueued) {
-		setInterval(() => {
+		const inter1 = setInterval(() => {
 			st += ".";
 			
 			if (st.length == 27) {
 				st = 'Matchmaking in progress';
 			}
 		} , 750);
-		setInterval(async () => {
+		const inter2 = setInterval(async () => {
 			await fetch(`/api/random`)
 				.then(res => res.json())
 				.then(text => {
@@ -49,8 +49,11 @@
 			opponent = $session.user.username === data.new.contestant_1 ? data.new.contestant_2 : data.new.contestant_1;
 			rating = $session.user.username === data.new.contestant_2 ? data.new.ratings[0] : data.new.ratings[1];
 			counter = 5;
-			setInterval(() => {
+			clearInterval(inter1);
+			clearInterval(inter2);
+			const inter3 = setInterval(() => {
 				if (counter == 0) {
+					clearInterval(inter3);
 					goto('/app/game/' + data.new.id);
 				} else {
 					counter--;
@@ -72,20 +75,7 @@
 		});
 		data.isQueued = true;
 		supabase.auth.setAuth($session?.access_token || "");
-		sub = supabase.from('match').on('INSERT', (data) => {
-			gameFound = true;
-			opponent = $session.user.username === data.new.contestant_1 ? data.new.contestant_2 : data.new.contestant_1;
-			rating = $session.user.username === data.new.contestant_1 ? data.new.ratings[0] : data.new.ratings[1];
-			counter = 5;
-			setInterval(() => {
-				if (counter == 0) {
-					goto('/app/game/' + data.new.id);
-				} else {
-					counter--;
-				}
-			}, 1000);
-		}).subscribe();
-		setInterval(() => {
+		const inter1 = setInterval(() => {
 			st += ".";
 			
 			if (st.length == 27) {
@@ -100,7 +90,7 @@
 				fact = err;
 			}
 		);
-		setInterval(async () => {
+		const inter2 = setInterval(async () => {
 			await fetch(`/api/random`)
 				.then(res => res.json())
 				.then(text => {
@@ -110,6 +100,22 @@
 				}
 			);
 		}, 10000);
+		sub = supabase.from('match').on('INSERT', (data) => {
+			gameFound = true;
+			opponent = $session.user.username === data.new.contestant_1 ? data.new.contestant_2 : data.new.contestant_1;
+			rating = $session.user.username === data.new.contestant_1 ? data.new.ratings[0] : data.new.ratings[1];
+			counter = 5;
+			clearInterval(inter1);
+			clearInterval(inter2);
+			const inter3 = setInterval(() => {
+				if (counter == 0) {
+					clearInterval(inter3);
+					goto('/app/game/' + data.new.id);
+				} else {
+					counter--;
+				}
+			}, 1000);
+		}).subscribe();
 	}
 	const func = async (e: MouseEvent) => {
 		joining = true;

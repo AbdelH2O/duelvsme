@@ -59,6 +59,7 @@ interface Game {
 	start_time: string;
 	who_solved: number[];
 	elos: string[];
+	processed: boolean;
 }
 
 interface Submission {

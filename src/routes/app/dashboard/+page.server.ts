@@ -28,7 +28,7 @@ export const load = async ({ parent }: LoadEvent) =>  {
 			}
 			// console.log('matchData:', matchData);
 			
-			if (matchData) {
+			if (matchData && !matchData[0].processed) {
 				return {
 					match: match,
 					game: matchData[0],
