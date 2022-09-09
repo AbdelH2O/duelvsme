@@ -25,8 +25,10 @@ taskQueue.process(async (job, done) => {
             delay: 10000,
         });
         done();
+    } else {
+        await calcReward(job.data.id.split(' '[0]));
+        done();
     }
-    await calcReward(job.data.id.split(' '[0]));
 });
 
 export default taskQueue;
