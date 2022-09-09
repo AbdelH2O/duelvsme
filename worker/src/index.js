@@ -22,7 +22,7 @@ taskQueue.process(async (job, done) => {
             queue: 'queue',
             id: `${Math.floor(new Date(Date.now() + 15000).getTime()/1000)}`,
         }, {
-            delay: 10000,
+            delay: 5000,
         });
         done();
     } else {
