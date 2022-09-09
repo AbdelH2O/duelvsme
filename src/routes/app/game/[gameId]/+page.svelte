@@ -347,7 +347,7 @@
                             duration={$game.duration}
                         />
                     </div>
-                    <progress class="w-full h-full rounded-md " value={($diff.minutes || 0) * 60 + ($diff.seconds || 0)} max={7000}>
+                    <progress class="w-full h-full rounded-md " value={($diff.minutes || 0) * 60 + ($diff.seconds || 0)} max={2700}>
                     </progress>
             </div>
         </div>
