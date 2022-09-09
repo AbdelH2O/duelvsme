@@ -1,4 +1,5 @@
 import supabase from "./utilitySupabase.js";
+import client from './redisClient.js';
 import * as elo from "elo-rating";
 
 const calcReward = async (matchId) => {
@@ -48,7 +49,8 @@ const calcReward = async (matchId) => {
         xp: player2.xp + xp2,
         level: player2.xp + xp2 >= needed_xp2 ? player2.level + 1 : player2.level,
     }).eq("username", match.data[0].contestant_2);
-    
+    await client.hSet('match', match.data[0].contestant_1, null);
+    await client.hSet('match', match.data[0].contestant_2, null);
 };
 
 export default calcReward;
