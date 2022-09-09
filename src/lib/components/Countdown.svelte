@@ -5,6 +5,7 @@
     export let start_date: string;
     export let duration: number;
     export const ssr = false;
+    export let classes = '';
 
     // make a countdown timer that counts down from the start date for the duration
 
@@ -27,6 +28,6 @@
 
 </script>
 
-<div class="countdown">
-    {diff.minutes}:{diff.seconds < 10 ? "0" : ""}{diff.seconds}
-</div>
+<span class={`countdown ${classes}`}>
+    {diff.minutes}m {diff.seconds < 10 ? "0" : ""}{diff.seconds}s
+</span>
