@@ -38,7 +38,11 @@ export const load = async ({ parent }: LoadEvent) =>  {
 				
 			// }
 
-			if (matchData && !matchData[0].processed && addSeconds(parseISO(matchData[0].start_time), matchData[0].duration).getTime() > now.getTime()) {
+			if (
+				matchData && !matchData[0].processed &&
+				addSeconds(parseISO(matchData[0].start_time), matchData[0].duration).getTime() > now.getTime() &&
+				matchData[0].scores.every((score: number) => score < 800)
+			) {
 				return {
 					match: match,
 					game: matchData[0],

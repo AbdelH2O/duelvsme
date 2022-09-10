@@ -202,7 +202,7 @@
             --agnostic-light: #1f2937;
         }
         .dialog-content {
-            border: 2px solid #374151;
+            border: 2px solid #1F2937;
         }
         progress {
             -webkit-appearance: none;
@@ -212,7 +212,7 @@
         progress::-webkit-progress-bar {
             border: 0;
             border-radius: 0.25rem;
-            background-color: #374151;
+            background-color: #1F2937;
         }
         progress::-webkit-progress-value {
             border: 0;
@@ -227,13 +227,13 @@
 </svelte:head>
 <div class="w-screen h-screen flex bg-gray-900">
     <Draggable>
-        <div class="z-50 bottom-10 left-10 rounded-md">
+        <div class="z-50 bottom-10 left-10 rounded-md overflow-hidden">
             <div class="p-3 bg-red-700  border-solid border-2 border-b-0 border-gray-600 rounded-t-md">
                 { $session.user.username} vs { ($session.user.username === data.game[0].contestant_1 ? data.game[0].contestant_2 : data.game[0].contestant_1)}
             </div>
             <table class="p-6 bg-gray-800 w-full border-solid border-2 border-t-0 border-gray-600 rounded-b-md">
-                <tr class="text-center rounded-md">
-                    <td>
+                <tr class="text-center rounded-md overflow-hidden">
+                    <td class="rounded-b-md">
                         { $game.scores[myIndex-1] }
                     </td>
                     <td>
@@ -389,8 +389,7 @@
                             duration={$game.duration}
                         />
                     </div>
-                    <progress class="w-full h-full rounded-md " value={($diff.minutes || 0) * 60 + ($diff.seconds || 0)} max={2700}>
-                    </progress>
+                    <progress class="w-full h-full rounded-md" value={($diff.minutes || 0) * 60 + ($diff.seconds || 0)} max={2700} />
             </div>
         </div>
         <div class="w-full lg:flex lg:flex-shrink-0">

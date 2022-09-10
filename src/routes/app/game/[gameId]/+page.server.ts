@@ -27,7 +27,7 @@ export const load = async ({ params, parent }: LoadEvent) =>  {
     // console.log(formatISO(new Date().getTime()), formatISO(now.getTime()));
     // console.log(now.getTime()/1000 >= addSeconds(parseISO(game.data[0].start_time), 2700).getTime()/1000);
     
-    if (addSeconds(parseISO(game.data[0].start_time), game.data[0].duration).getTime() <= now.getTime()) {
+    if (addSeconds(parseISO(game.data[0].start_time), game.data[0].duration).getTime() <= now.getTime() || game.data[0].scores.some((score) => score >= 800)) {
         await client.hDel('match', lucia.user.username);
         throw redirect(302, "/app/dashboard");
     }
