@@ -12,7 +12,7 @@
 	export let data: {
 		match: string | null;
 		isQueued: boolean;
-		game: Game;
+		game: Game | null;
 	};
 	let gameFound = false, opponent = '', counter = 0, rating = '', resuming = false, joining = false;
 	
@@ -128,6 +128,22 @@
 		e.preventDefault();
 		goto('/app/game/' + data.match);
 	}
+
+	let prev: Duration = { minutes: 0, seconds: 0 };
+	const subs = diff.subscribe((val) => {
+		if (
+			val &&
+			(val.minutes || 0) * 60 + (val.seconds || 0) !== prev
+		) {
+			data = {
+				game: null,
+				isQueued: false,
+				match: null,
+			}
+			subs();
+		}
+		val = prev;
+	});
 </script>
 <svelte:head>
     <title>Dashboard</title>

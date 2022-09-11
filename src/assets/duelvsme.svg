@@ -1,10 +1,12 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 163.36 187.96">
-    <defs>
-        <style>.cls-1{fill:none;stroke:#c12d32;stroke-miterlimit:10;stroke-width:6px;}</style>
-    </defs>
-    <title>duelvsme</title>
-    <polygon class="cls-1" points="160.91 139.16 82.04 185.36 2.58 140.16 2.01 48.75 80.88 2.54 160.33 47.75 160.91 139.16" />
-    <polyline class="cls-1" points="159.01 47.75 113.21 69.75 159.58 138.1 104.66 138.1 81.37 183.77 35.05 103.3 2.58 139.09" />
-    <polygon class="cls-1" points="36.45 102.89 113.22 70 104.82 137 36.45 102.89" />
-    <polyline class="cls-1" points="2.01 49.39 35.33 102.94 80.88 4.58 114.14 70.01" />
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.3.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 163.4 188" style="enable-background:new 0 0 163.4 188;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#C12D32;stroke-width:6;stroke-miterlimit:10;}
+</style>
+<polygon class="st0" points="160.3,136.3 81.6,183.7 3.1,137.4 3.1,47.2 80.6,3.5 160.3,47.9 "/>
+<polyline class="st0" points="159.3,49.6 113.2,70 156.3,133.7 104.7,138.1 81.5,180 35,103.3 3.4,136.1 "/>
+<polygon class="st0" points="39.4,103.2 113.2,70 104.5,135.9 "/>
+<polyline class="st0" points="3.4,47.7 35.3,102.9 80.7,7.1 114.1,70 "/>
 </svg>

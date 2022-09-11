@@ -22,7 +22,7 @@
 		}
 	};
 </script>
-<div class="relative bg-white dark:bg-gray-900 overflow-hidden h-screen">
+<div class="relative bg-white dark:bg-gray-900 overflow-hidden h-screen border-b-2 border-gray-800 border-solid shadow-2xl">
 	<div class="max-w-7xl mx-auto">
 		<div
 			class="relative z-10 bg-white dark:bg-gray-900 sm:pb-16 md:pb-20 max-w-2xl w-full pb-28 xl:pb-32 h-screen"
