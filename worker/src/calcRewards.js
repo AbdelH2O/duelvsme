@@ -57,8 +57,8 @@ const calcReward = async (matchId) => {
     } catch(err) {
         // console.log(err);
     }
-    await client.hSet('match', match.data[0].contestant_1, null);
-    await client.hSet('match', match.data[0].contestant_2, null);
+    await client.hDel('match', match.data[0].contestant_1);
+    await client.hDel('match', match.data[0].contestant_2);
 };
 
 export default calcReward;
