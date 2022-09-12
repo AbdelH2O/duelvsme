@@ -1,6 +1,7 @@
 <script lang="ts">
     import laptop from '../../../assets/laptop.jpeg';
     import dvsme from '../../../assets/duelvsme.svg';
+    import down from '../../../assets/down.svg';
 	import { getSession } from "@abdelh2o/lucia-sveltekit/client";
 	import { goto } from '$app/navigation';
 	import { signOut } from "@abdelh2o/lucia-sveltekit/client";
@@ -22,7 +23,14 @@
 		}
 	};
 </script>
-<div class="relative bg-white dark:bg-gray-900 overflow-hidden h-screen border-b-2 border-gray-800 border-solid shadow-2xl">
+
+<div class="relative bg-white dark:bg-gray-900 overflow-hidden h-screen lg:border-b-2 border-gray-800 border-solid shadow-2xl">
+	<div class="absolute w-full h-fit flex-row justify-center z-20 bottom-0 hidden lg:flex">
+		<div class="w-48 h-14 flex flex-col items-center animate-bounce mb-5 select-none cursor-pointer" on:click={() => window.scrollBy({top: window.innerHeight + 1, behavior: "smooth"})}>
+			<p class="text-gray-300">Keep scrolling</p>
+			<img src={down} alt="down" class="w-20 h-20" />
+		</div>
+	</div>
 	<div class="max-w-7xl mx-auto">
 		<div
 			class="relative z-10 bg-white dark:bg-gray-900 sm:pb-16 md:pb-20 max-w-2xl w-full pb-28 xl:pb-32 h-screen"
@@ -117,7 +125,7 @@
 			</main>
 		</div>
 	</div>
-	<div class="absolute inset-y-0 right-0 w-1/2">
+	<div class="absolute inset-y-0 right-0 w-1/2 hidden lg:block">
 		<img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src={laptop} alt="" />
 	</div>
 </div>

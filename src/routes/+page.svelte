@@ -10,7 +10,9 @@
     <title>Duelvsme</title>
 </svelte:head>
 <Hero/>
-<Parallax />
+<div class="hidden lg:block">
+    <Parallax />
+</div>
 <!-- <Split />
 <Features />
 <Footer /> -->
