@@ -130,20 +130,29 @@
 	}
 
 	let prev: Duration = { minutes: 0, seconds: 0 };
+	let ini = false;
 	const subs = diff.subscribe((val) => {
 		if (
 			val &&
-			(val.minutes || 0) * 60 + (val.seconds || 0) !== prev
+			(val.minutes || 0) * 60 + (val.seconds || 0) !== prev &&
+			ini
 		) {
 			data = {
 				game: null,
 				isQueued: false,
 				match: null,
 			}
-			subs();
+
+			unsubscribe();
 		}
 		val = prev;
+		ini = true;
 	});
+	function unsubscribe() {
+		if (subs) {
+			subs();
+		}
+	}
 </script>
 <svelte:head>
     <title>Dashboard</title>
