@@ -16,8 +16,8 @@ const create_game = async (user1, user2, x, elos) => {
     const cl = new Cf('', '');
     try {
         const problems = [];
-        for (let i = 0; i < 500; i+=100) {
-            const problem = JSON.parse(await client.sRandMember(`${x+i}`) || '{}');
+        for (let i = -200; i < 300; i+=100) {
+            const problem = JSON.parse(await client.sRandMember(`${Math.max(x+i, 800)}`) || '{}');
             const statement = await cl.getProblemStatement(problem.contestId, problem.index);
             // console.log(statement);
             const repp = await supabase.from('problems').select('id').eq('id', `${problem.contestId}/${problem.index}`);
