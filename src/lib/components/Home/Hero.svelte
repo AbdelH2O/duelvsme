@@ -26,7 +26,7 @@
 
 <div class="relative bg-white dark:bg-gray-900 overflow-hidden h-screen lg:border-b-2 border-gray-800 border-solid shadow-2xl">
 	<div class="absolute w-full h-fit flex-row justify-center z-20 bottom-0 hidden lg:flex">
-		<div class="w-48 h-14 flex flex-col items-center animate-bounce mb-5 select-none cursor-pointer" on:click={() => window.scrollBy({top: window.innerHeight + 1, behavior: "smooth"})}>
+		<div class="w-48 h-14 flex flex-col items-center animate-bounce mb-5 select-none cursor-pointer" on:click={() => window.scrollTo({top: window.innerHeight + 1, behavior: "smooth"})}>
 			<p class="text-gray-300">Keep scrolling</p>
 			<img src={down} alt="down" class="w-20 h-20" />
 		</div>
