@@ -40,7 +40,7 @@
                 `display: none;` :
                 `opacity: ${100 - height*60/scroll}%;color: white; transform: translateY(${Math.min(scroll + height/4, height*3.25)}px)`
             }
-            class="font-bold text-4xl"
+            class="font-bold text-4xl select-none pointer-events-none"
         >
             Matchmaking in progress{
                 scroll - height < height/3 ?
@@ -53,7 +53,7 @@
             }
         </h1>
     </div>
-    <p class="opacity-60" style={scroll < height ? `display: none;` : `position: absolute; transform: translateY(${scroll + 0.5 * height - 10}px) translateX(50vw) translateX(-52px)`}>
+    <p class="opacity-60 select-none pointer-events-none" style={scroll < height ? `display: none;` : `position: absolute; transform: translateY(${scroll + 0.5 * height - 10}px) translateX(50vw) translateX(-52px)`}>
         (keep scrolling)
     </p>
 </section>
