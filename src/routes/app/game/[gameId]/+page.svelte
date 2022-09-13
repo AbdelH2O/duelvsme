@@ -107,7 +107,7 @@
                 }
             });
             message = "Time is up!";
-            subs.unsubscribe();
+            unsubscribe();
             setTimeout(() => {
                 openDialog();
                 setTimeout(() => {
@@ -118,6 +118,9 @@
         }
         data.game[0] = newData.new;
     }).subscribe();
+    function unsubscribe() {
+        subs.unsubscribe();
+    }
     const submissionsSubs = supabase.from('submissions').on('*', (dt) => {
         console.log(dt);
         console.log(reverse[data.game[0].problems.indexOf(dt.new.problem)]);
