@@ -12,7 +12,10 @@
 <Hero/>
 <div class="hidden lg:block">
     <Parallax />
+    <div class="absolute top-[700vh] w-full flex flex-col items-center z-50">
+        <hr class="w-screen border-gray-800 border-t-2"/>
+        <Split />
+    </div>
 </div>
-<!-- <Split />
-<Features />
+<!-- <Features />
 <Footer /> -->

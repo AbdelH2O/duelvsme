@@ -53,12 +53,12 @@
             }
         </h1>
     </div>
-    <p class="opacity-60 select-none pointer-events-none" style={scroll < height ? `display: none;` : `position: absolute; transform: translateY(${scroll + 0.5 * height - 10}px) translateX(50vw) translateX(-52px)`}>
+    <p class="opacity-60 select-none pointer-events-none" style={scroll < height || scroll > height * 6 + 10 ? `display: none;` : `position: relative; transform: translateY(${scroll + 0.5 * height - 10}px) translateX(50vw) translateX(-52px)`}>
         (keep scrolling)
     </p>
 </section>
 <section class="h-[300vh] w-screen -z-10 absolute flex flex-row justify-center top-[400vh]">
-    <div class="w-[90vw] bg-gray-800 h-[85vh] rounded-md border-2 border-gray-700 flex flex-col items-stretch"  style={`transform: translateY(${Math.max(scroll + 0.075*height - 4*height, 0)}px);`}>
+    <div class="w-[90vw] bg-gray-800 h-[85vh] rounded-md border-2 border-gray-700 flex flex-col items-stretch"  style={`transform: translateY(${Math.max(Math.min(scroll + 0.075*height - 4*height, 2*height), 0)}px);`}>
         <div class="w-full border-b-2 border-gray-700 h-[6%] flex flex-row justify-start">
             <div class="w-[5%] ml-3 flex flex-row justify-around items-center">
                 <div class="bg-red-600 rounded-full w-3 h-3"></div>

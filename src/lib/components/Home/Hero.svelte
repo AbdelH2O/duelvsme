@@ -68,10 +68,10 @@
 							<!-- <a href="/" class="font-medium text-gray-500 dark:text-gray-300 hover:text-gray-50">Company</a> -->
 							<div class="w-full flex flex-row justify-end">
 								{#if !$lucia}
-								<button on:click={handleLogin} class="font-medium text-red-600 hover:text-red-50 mr-10">Log in</button>
-									<button on:click={handleSignup} class="font-medium bg-red-600 py-3 px-5 rounded-md text-white hover:brightness-90">Sign up</button>
+								<button on:click={handleLogin} class="font-semibold text-red-600 hover:text-red-50 mr-10">Log in</button>
+									<button on:click={handleSignup} class="font-semibold bg-red-600 py-3 px-5 rounded-md text-white hover:brightness-90">Sign up</button>
 								{:else}
-									<button on:click={handleLogout} class="font-medium text-red-600 hover:text-red-50">Log out</button>
+									<button on:click={handleLogout} class="font-semibold text-red-600 hover:text-red-50">Log out</button>
 								{/if}
 
 							</div>

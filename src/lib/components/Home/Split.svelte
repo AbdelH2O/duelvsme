@@ -1,21 +1,19 @@
 <!-- ====== Call To Action Section Start -->
-<section class="">
+<section class="w-screen shadow-2xl">
     <div class="">
        <div
           class="
-          bg-primary
           relative
-          overflow-hidden
           py-12
           px-8
           md:p-[70px]
-          z-10
+          z-30
           "
           >
           <div class="flex flex-wrap items-center -mx-4">
              <div class="w-full lg:w-1/2 px-4">
                 <span class="text-white text-base font-semibold mb-2">
-                Find Your Next Dream App
+                Want to try for yourself?
                 </span>
                 <h2
                    class="
@@ -29,13 +27,13 @@
                    lg:mb-0
                    "
                    >
-                   Get started with <br class="hidden xs:block" />
-                   our free trial
+                   Get started <br class="hidden xs:block" />
+                   Today!
                 </h2>
              </div>
              <div class="w-full lg:w-1/2 px-4">
                 <div class="flex flex-wrap lg:justify-end">
-                   <a
+                   <!-- <a
                       href="javascript:void(0)"
                       class="
                       inline-block
@@ -56,9 +54,8 @@
                       "
                       >
                    Get Pro Version
-                   </a>
-                   <a
-                      href="javascript:void(0)"
+                   </a> -->
+                   <div
                       class="
                       inline-block
                       py-4
@@ -68,16 +65,18 @@
                       xl:px-9
                       rounded
                       text-base
-                      font-medium
-                      bg-secondary
+                      font-semibold
+                      bg-red-700
                       transition
                       hover:bg-opacity-90
-                      text-black
+                      text-white
                       my-1
+                      cursor-pointer
                       "
+                      on:click={() => window.scrollTo({top: 0, behavior: 'smooth'})}
                       >
-                   Start Free Trial
-                   </a>
+                     Get Started
+                   </div>
                 </div>
              </div>
           </div>
