@@ -387,7 +387,7 @@
             <div class="w-full block relative">
                     <div class="w-full flex flex-row justify-center h-[1px]">
                         <CountDown
-                            classes="text-md bg-gray-800 border-2 border-gray-700 border-solid px-1 rounded-md absolute inline-block text-right"
+                            classes="text-md text-white bg-gray-800 border-2 border-gray-700 border-solid px-1 rounded-md absolute inline-block text-right"
                             start_date={$game.start_time}
                             duration={$game.duration}
                         />
@@ -399,7 +399,7 @@
             <div class={`${currentTab === "sub"? "hidden": ""} h-[92vh] w-1/2 p-10 pt-0`}>
                 {#each data.statements as statement, ind }
                 <!-- {index[currentTab] === ind} -->
-                    <div class={`bg-gray-800 h-full rounded-md overflow-scroll ${index[currentTab] !== ind ? "hidden" : ""} border-gray-700 border-solid border-2`}>
+                    <div class={`bg-gray-800 text-white h-full rounded-md overflow-scroll ${index[currentTab] !== ind ? "hidden" : ""} border-gray-700 border-solid border-2`}>
                         {@html statement}
                     </div>
                 {/each}

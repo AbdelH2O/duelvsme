@@ -24,7 +24,7 @@
 	};
 </script>
 
-<div class="relative bg-white dark:bg-gray-900 overflow-hidden h-screen lg:border-b-2 border-gray-800 border-solid shadow-2xl">
+<div class="relative bg-gray-900 overflow-hidden h-screen lg:border-b-2 border-gray-800 border-solid shadow-2xl">
 	<div class="absolute w-full h-fit flex-row justify-center z-20 bottom-0 hidden lg:flex">
 		<div class="w-48 h-14 flex flex-col items-center animate-bounce mb-5 select-none cursor-pointer" on:click={() => window.scrollTo({top: window.innerHeight + 1, behavior: "smooth"})}>
 			<p class="text-gray-300">Keep scrolling</p>
@@ -33,10 +33,10 @@
 	</div>
 	<div class="max-w-7xl mx-auto">
 		<div
-			class="relative z-10 bg-white dark:bg-gray-900 sm:pb-16 md:pb-20 max-w-2xl w-full pb-28 xl:pb-32 h-screen"
+			class="relative z-10 bg-gray-900 sm:pb-16 md:pb-20 max-w-2xl w-full pb-28 xl:pb-32 h-screen"
 		>
 			<svg
-				class="fill-white dark:fill-gray-900 md:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2 hidden"
+				class="fill-gray-900 md:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2 hidden"
 				viewBox="0 0 100 100"
 				preserveAspectRatio="none"
 				aria-hidden="true"
@@ -50,12 +50,11 @@
 						class="relative flex items-center sm:h-10 justify-start"
 						aria-label="Global"
 					>
-						<div class="flex items-center flex-grow flex-shrink-0 flex-grow-0">
+						<div class="flex items-center flex-shrink-0 flex-grow-0">
 							<div class="flex items-center justify-between w-full md:w-auto">
-								<a  >
-									<span class="sr-only">Workflow</span>
+								<div >
 									<img alt="Workflow" style="height: 60px" src={dvsme} />
-								</a>
+								</div>
 							</div>
 						</div>
 						<div class="block ml-10 pr-4 space-x-8 w-full">
@@ -85,12 +84,12 @@
 				class="mt-280 mx-200 max-w-7xl px-4 sm:mt-20 sm:px-6 md:mt-26 lg:mt-44 lg:px-8 xl:mt-400"
 			>
 				<div class="sm:text-center lg:text-left">
-					<h1 class="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
+					<h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl">
 						<span class="block xl:inline">A new take at</span>
 						<span class="block text-red-600 xl:inline">Competitive Programming</span>
 					</h1>
 					<p
-						class="mt-3 text-base text-gray-500 dark:text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
+						class="mt-3 text-base text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
 					>
 						Level up your programming skills with coding duels.
 					</p>
@@ -115,7 +114,7 @@
 						<div class="mt-3 sm:mt-0 sm:ml-3">
 							<div
 								 
-								class="font-bold w-full flex items-center justify-center px-8 py-3 border border-transparent text-base rounded-md text-red-700 bg-red-100 dark:bg-white dark:hover:brightness-90 hover:bg-red-200 md:py-4 md:text-lg md:px-10 cursor-pointer select-none no-underline"
+								class="font-bold w-full flex items-center justify-center px-8 py-3 border border-transparent text-base rounded-md text-red-700 bg-white hover:brightness-90 hover:bg-red-200 md:py-4 md:text-lg md:px-10 cursor-pointer select-none no-underline"
 							>
 								Roadmap
 							</div>

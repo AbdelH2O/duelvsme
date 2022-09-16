@@ -1,6 +1,5 @@
 import { error } from '@sveltejs/kit';
 import { auth } from '$lib/lucia';
-import jwt from 'jsonwebtoken';
 import type { RequestHandler } from '@sveltejs/kit';
 import type { Error } from '@abdelh2o/lucia-sveltekit';
 
