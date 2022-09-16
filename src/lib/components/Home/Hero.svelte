@@ -2,16 +2,21 @@
     import laptop from '../../../assets/laptop.jpeg';
     import dvsme from '../../../assets/duelvsme.svg';
     import down from '../../../assets/down.svg';
+	import { Loader } from '@abdelh2o/agnostic-svelte';
 	import { getSession } from "@abdelh2o/lucia-sveltekit/client";
 	import { goto } from '$app/navigation';
 	import { signOut } from "@abdelh2o/lucia-sveltekit/client";
 
 	const lucia = getSession();
 
-	const handleLogin = () => {
+	let joiningS = false, joining = 0, starting = false;
+
+	const handleLogin = (butt_ind: number) => {
+		joining = butt_ind;
 		goto('/auth/login');
 	};
 	const handleSignup = () => {
+		joiningS = true;
 		goto('/auth/signup');
 	};
 	const handleLogout = async () => {
@@ -67,8 +72,20 @@
 							<!-- <a href="/" class="font-medium text-gray-500 dark:text-gray-300 hover:text-gray-50">Company</a> -->
 							<div class="w-full flex flex-row justify-end">
 								{#if !$lucia}
-								<button on:click={handleLogin} class="font-semibold text-red-600 hover:text-red-50 mr-10">Log in</button>
-									<button on:click={handleSignup} class="font-semibold bg-red-600 py-3 px-5 rounded-md text-white hover:brightness-90">Sign up</button>
+									<button disabled={joining === 1} on:click={() => handleLogin(1)} class="font-semibold text-red-600 hover:text-red-50 mr-10">
+										{#if joining === 1}
+											<Loader />
+										{:else}
+											Login
+										{/if}
+									</button>
+									<button disabled={joiningS} on:click={handleSignup} class="font-semibold bg-red-600 py-3 px-5 rounded-md text-white hover:brightness-90">
+										{#if joiningS}
+											<Loader />
+										{:else}
+											Sign up
+										{/if}
+									</button>
 								{:else}
 									<button on:click={handleLogout} class="font-semibold text-red-600 hover:text-red-50">Log out</button>
 								{/if}
@@ -97,17 +114,30 @@
 						<div class="rounded-md shadow">
 							{#if $lucia}
 								<div
-									on:click={async () => goto('/app/dashboard')}
+									on:click={async () => {
+										starting = true;
+										goto('/app/dashboard');
+									}}
 									class="select-none cursor-pointer font-bold w-full flex items-center justify-center px-8 py-3 border border-transparent text-base rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10 no-underline"
 								>
-									Get started
+									{#if starting}
+										<Loader />
+									{:else}
+										<span>Get started</span>
+									{/if}
 								</div>
 							{:else}
 								<div
-									on:click={handleLogin}
-									class="cursor-pointer font-bold w-full flex items-center justify-center px-8 py-3 border border-transparent text-base rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10 select-none no-underline"
+									on:click={() => handleLogin(2)}
+									class={`${joining !== 2 ? "cursor-pointer" : ""} font-bold w-full flex items-center justify-center px-8 py-3 border border-transparent text-base rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10 select-none no-underline`}
 								>
-									Login
+									{#if joining === 2}
+										<span>
+											<Loader size="large"/>
+										</span>
+									{:else}
+										<span>Login</span>
+									{/if}
 							</div>
 							{/if}
 						</div>
