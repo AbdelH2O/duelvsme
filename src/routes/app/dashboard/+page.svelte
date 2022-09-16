@@ -129,13 +129,14 @@
 		goto('/app/game/' + data.match);
 	}
 
-	let prev: Duration = { minutes: 0, seconds: 0 };
+	let prev: number = 2702;
 	let ini = false;
 	const subs = diff.subscribe((val) => {
 		if (
-			val &&
-			(val.minutes || 0) * 60 + (val.seconds || 0) !== prev &&
-			ini
+			val.hours !== undefined &&
+			(val.minutes || 0) * 60 + (val.seconds || 0) > prev &&
+			ini &&
+			prev !== 2702
 		) {
 			data = {
 				game: null,
@@ -144,9 +145,10 @@
 			}
 
 			unsubscribe();
+		} else if (val.hours) {
+			prev = (val.minutes || 0) * 60 + (val.seconds || 0);
+			ini = true;
 		}
-		val = prev;
-		ini = true;
 	});
 	function unsubscribe() {
 		if (subs) {
@@ -364,15 +366,15 @@
 					</p>
 				</div>
 			</div>
-		{:else}
+			{:else}
 			<div class="hidden w-0 h-0">
-				<Countdown start_date={data.game.start_time} duration={data.game.duration} />
+				<Countdown start_date={data.game?.start_time || ''} duration={data.game?.duration || 2700} />
 			</div>
 			{#if $diff.minutes !== 0 || $diff.seconds !== 0}
 				<div class="text-center flex flex-row justify-center mt-5">
 					<div class="bg-gray-800 border-gray-700 border-2 border-solid w-3/4 flex flex-col h-full py-6 rounded-md">
 						<h1 class="text-5xl mb-5 inline-flex justify-center">
-							Lockout in &nbsp; <Countdown start_date={data.game.start_time} duration={data.game.duration} />
+							Lockout in &nbsp; <Countdown start_date={data.game?.start_time || ''} duration={data.game?.duration || 2700} />
 						</h1>
 						<div class="flex flex-row justify-center w-full">
 							<div class="w-1/3 rounded-md p-8 px-20 bg-gray-700 mr-5">
