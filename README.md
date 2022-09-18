@@ -48,10 +48,21 @@ Don't forget to give the project a star! Thanks again!
 5. Open a Pull Request
 
 # Built with
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Redis][Redis.com]][Redis-url]
-* [![Supabase][Supabase.com]][Supabase-url]
+[![Svelte][Svelte.dev]][Svelte-url]
 
+[![Redis][Redis.com]][Redis-url]
+
+[![Supabase][Supabase.com]][Supabase-url]
+
+[![Tailwind][Tailwindui.com]][Tailwind-url]
+
+# Contact
+Abderrahmane Hana [a.hana@aui.ma](mail:a.hana@aui.ma)
+
+Project link: https://github.com/AbdelH2O/duelvsme
+
+# Acknowledgments
+* Big thanks to [pilcrowOnPaper](https://github.com/pilcrowOnPaper) for his amazing library [Lucia-sveltekit](https://github.com/pilcrowOnPaper/lucia-sveltekit).
 
 [Svelte-url]: https://svelte.dev/
 [Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
@@ -59,3 +70,5 @@ Don't forget to give the project a star! Thanks again!
 [Redis.com]: https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white
 [Supabase-url]: https://supabase.com/
 [Supabase.com]: https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white
+[Tailwind-url]: https://tailwindui.com/
+[Tailwindui.com]: https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white
