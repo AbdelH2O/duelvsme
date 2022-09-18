@@ -57,7 +57,7 @@ Don't forget to give the project a star! Thanks again!
 [![Tailwind][Tailwindui.com]][Tailwind-url]
 
 # Contact
-Abderrahmane Hana [a.hana@aui.ma](mail:a.hana@aui.ma)
+Abderrahmane Hana a.hana@aui.ma
 
 Project link: https://github.com/AbdelH2O/duelvsme
 
