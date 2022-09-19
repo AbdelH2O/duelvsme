@@ -12,19 +12,21 @@
     });
     $: perc = 1 - ((scroll - 4 * height) / (2*height));
     $: prog = Math.round(Math.min(2700, Math.max(perc*2700, 0)));
-    $: coun = (
-                    scroll > 4*height
-                ) ?
-                (scroll - 4*height)/(2*height) :
-                0;
-    $: if($editor) {
-        $editor.setValue(
-            coun * 156 < 38 ?
-            '#include <bits/stdc++.h>\nint main() {\n\tint a;\n\tcin>>a;\n\tif(a%2 != 0 || a == 2){\n\t\tcout<<"NO\\n";\n\t}\n\telse{\n\t\tcout<<"YES\\n";\n\t}\n}'
-            .slice(0, Math.floor(coun*156)) :
-            '#include <bits/stdc++.h>\nint main() {\n\tint a;\n\tcin>>a;\n\tif(a%2 != 0 || a == 2){\n\t\tcout<<"NO\\n";\n\t}\n\telse{\n\t\tcout<<"YES\\n";\n\t}'.slice(0, Math.max(coun*146, 38)) + '\n}'
-        )
-    }
+    // $: coun = (
+    //                 scroll > 4*height
+    //             ) ?
+    //             (scroll - 4*height)/(2*height) :
+    //             0;
+    // $: if($editor) {
+    //     $editor.setValue(
+    //         coun * 156 < 38 ?
+    //         '#include <bits/stdc++.h>\nint main() {\n\tint a;\n\tcin>>a;\n\tif(a%2 != 0 || a == 2){\n\t\tcout<<"NO\\n";\n\t}\n\telse{\n\t\tcout<<"YES\\n";\n\t}\n}'
+    //         .slice(0, Math.floor(coun*156)) :
+    //         '#include <bits/stdc++.h>\nint main() {\n\tint a;\n\tcin>>a;\n\tif(a%2 != 0 || a == 2){\n\t\tcout<<"NO\\n";\n\t}\n\telse{\n\t\tcout<<"YES\\n";\n\t}'.slice(0, Math.max(coun*146, 38)) + '\n}'
+    //     )
+    // }
+    // slow down scroll speed
+    $: scroll = scroll*0.99;
     // $: console.log({calc: (100 - ((scroll - 4 * height) / height)*100), scroll, height: 3*height});
 </script>
 <style>
