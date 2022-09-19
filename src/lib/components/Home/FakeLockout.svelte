@@ -612,8 +612,11 @@
                             </option>
                         </select>
                     </div>
-                    <div class="mb-4 h-full w-full border-y-2 border-solid border-gray-700 z-40">
+                    <div class="mb-4 h-full w-full border-y-2 border-solid border-gray-700 z-40 relative">
                         <Monaco editor={editor} />
+                        <div class="h-full w-full z-20 bg-transparent inline-block absolute top-0">
+
+                        </div>
                     </div>
                     <div class="px-3 w-3/4 flex flex-col items-stretch">
                         <button type="button" class="button pointer-events-none"> Submit</button>
