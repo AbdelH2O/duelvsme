@@ -26,7 +26,8 @@
     //     )
     // }
     // slow down scroll speed
-    $: scroll = scroll*0.99;
+    // $: prev = scroll;
+    
     // $: console.log({calc: (100 - ((scroll - 4 * height) / height)*100), scroll, height: 3*height});
 </script>
 <style>
@@ -577,7 +578,7 @@
         <div class="my-5 px-10 flex flex-col items-center">
             <div class="w-full block relative">
                     <div class="w-full flex flex-row justify-center h-[1px]">
-                        <span class="text-md bg-gray-800 border-2 border-gray-700 border-solid px-1 rounded-md absolute inline-block text-right">
+                        <span class="text-md text-white bg-gray-800 border-2 border-gray-700 border-solid px-1 rounded-md absolute inline-block text-right">
                             {
                                 Math.max(
                                     Math.min(

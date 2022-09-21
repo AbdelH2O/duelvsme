@@ -53,7 +53,7 @@
             }
         </h1>
     </div>
-    <p class="opacity-60 select-none pointer-events-none" style={scroll < height || scroll > height * 6 + 10 ? `display: none;` : `position: relative; transform: translateY(${scroll + 0.5 * height - 10}px) translateX(50vw) translateX(-52px)`}>
+    <p class="opacity-60 select-none pointer-events-none text-white" style={scroll < height || scroll > height * 6 + 10 ? `display: none;` : `position: relative; transform: translateY(${scroll + 0.5 * height - 10}px) translateX(50vw) translateX(-52px)`}>
         (keep scrolling)
     </p>
 </section>
