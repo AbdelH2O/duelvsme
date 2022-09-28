@@ -143,8 +143,7 @@
 						</div>
 						<div class="mt-3 sm:mt-0 sm:ml-3">
 							<div
-								 
-								class="font-bold w-full flex items-center justify-center px-8 py-3 border border-transparent text-base rounded-md text-red-700 bg-white hover:brightness-90 hover:bg-red-200 md:py-4 md:text-lg md:px-10 cursor-pointer select-none no-underline"
+								class="cursor-not-allowed brightness-50 font-bold w-full flex items-center justify-center px-8 py-3 border border-transparent text-base rounded-md text-red-700 bg-white hover:brightness-90 hover:bg-red-200 md:py-4 md:text-lg md:px-10 select-none no-underline"
 							>
 								Roadmap
 							</div>

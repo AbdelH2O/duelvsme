@@ -215,7 +215,7 @@
 			<div class="h-max flex justify-between mx-auto mt-4">
 				<div
 					on:click={func}
-					class={`${!joining ? "cursor-pointer" : ""}  flex flex-col content-center ml-4 p-6 max-w-sm bg-gray-200 rounded-lg border border-gray-200 shadow-xl hover:bg-slate-300 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 items-center`}
+					class={`${!joining ? "cursor-pointer" : ""}  flex flex-col content-center ml-4 p-6 max-w-sm bg-gray-200 rounded-lg border border-gray-200 shadow-xl hover:bg-slate-300 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-800 dark:hover:brightness-[80%] items-center`}
 				>
 					{#if !joining}
 						<!-- <div> -->
@@ -365,6 +365,9 @@
 						now, you have all the time in the world.
 					</p>
 				</div>
+			</div>
+			<div class="w-full border border-gray-700 h-12 bg-gray-800 mt-8 rounded-md ml-4 flex justify-center items-center font-semibold select-none cursor-not-allowed brightness-50">
+				Custom matchmaking
 			</div>
 			{:else}
 			<div class="hidden w-0 h-0">

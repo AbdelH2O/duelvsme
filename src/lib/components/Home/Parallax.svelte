@@ -21,7 +21,7 @@
 </script>
 
 <svelte:window bind:scrollY={scroll} bind:innerHeight={height}/>
-<section class="h-[400vh] -z-10 absolute top-0 w-full">
+<section class="h-[400vh] -z-10 absolute top-0 w-full overflow-x-hidden">
     <div class="w-full flex flex-col items-center">
         <img src={dvsme} alt="Duelvsme" class="w-96 h-96 relative m-auto"
             style={
