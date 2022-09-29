@@ -382,7 +382,7 @@
             </div>
         </div>
     </div>
-    <div class="w-screen lg:flex lg:flex-col">
+    <div class="lg:flex lg:flex-col" style="width: calc(100vw - 80px);">
         <div class="my-5 px-10 flex flex-col items-center">
             <div class="w-full block relative">
                     <div class="w-full flex flex-row justify-center h-[1px]">
